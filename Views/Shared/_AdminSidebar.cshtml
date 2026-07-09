@@ -1,0 +1,47 @@
+@{
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<aside class="admin-sidebar">
+    <div class="admin-logo">
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; margin: 0; color: var(--c-primary);">Dr. Kechida</h2>
+        <div style="height: 3px; width: 40px; background: var(--c-primary); margin: 0.5rem 0 1rem 0; border-radius: 2px;"></div>
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--c-grey-400);">Administration</span>
+    </div>
+
+    <div class="sidebar-scroll" style="flex-grow: 1; overflow-y: auto; margin: 1rem -1rem; padding: 0 1rem;">
+        <nav class="admin-nav">
+        <a href="/Admin/Index" class="admin-nav-item @(action == "Index" ? "active" : "")">
+            <i class="fa-solid fa-gauge"></i>
+            Tableau de Bord
+        </a>
+        <a href="/Admin/Treatments" class="admin-nav-item @(action?.Contains("Treatment") == true ? "active" : "")">
+            <i class="fa-solid fa-stethoscope"></i>
+            Soins
+        </a>
+        <a href="/Admin/Gallery" class="admin-nav-item @(action?.Contains("Gallery") == true ? "active" : "")">
+            <i class="fa-solid fa-camera-retro"></i>
+            Galerie
+        </a>
+        <a href="/Admin/Videos" class="admin-nav-item @(action?.Contains("Video") == true ? "active" : "")">
+            <i class="fa-solid fa-video"></i>
+            Vidéos
+        </a>
+        <a href="/Admin/Consultations" class="admin-nav-item @(action?.Contains("Consultation") == true ? "active" : "")">
+            <i class="fa-solid fa-envelope"></i>
+            Consultations
+        </a>
+        </nav>
+    </div>
+
+    <div style="padding-top: 1rem; border-top: 1px solid var(--c-grey-100); display: flex; flex-direction: column; gap: 0.5rem;">
+        <a href="/" class="admin-nav-item" style="background: var(--c-grey-50); color: var(--c-grey-600);">
+            <i class="fa-solid fa-arrow-left"></i>
+            Quitter l'Admin
+        </a>
+        <a href="/Account/Logout" class="admin-nav-item" style="color: #ef4444;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Déconnexion
+        </a>
+    </div>
+</aside>

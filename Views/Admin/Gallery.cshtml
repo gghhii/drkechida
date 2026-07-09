@@ -1,0 +1,68 @@
+@model IEnumerable<DrKchida.Models.GalleryItem>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Gérer la Galerie";
+}
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2.5rem;">
+    <div>
+        <h1 class="admin-title">Gestion de la Galerie</h1>
+        <p class="admin-subtitle">Gérez vos résultats cliniques Avant/Après pour le public.</p>
+    </div>
+    <a href="/Admin/CreateGalleryItem" class="btn-premium">
+        <i class="fa-solid fa-plus"></i> Nouveau Résultat
+    </a>
+</div>
+
+<div class="admin-card" style="padding: 0;">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th style="padding-left: 2rem;">Aperçu Avant/Après</th>
+                <th>Détails</th>
+                <th>Catégorie</th>
+                <th style="text-align: right; padding-right: 2rem;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="padding-left: 2rem; width: 220px;">
+                        <div style="display: flex; gap: 8px;">
+                            <div style="position: relative; width: 80px; height: 80px;">
+                                <img src="~/@item.ImageBefore" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;" />
+                                <span style="position: absolute; bottom: 4px; left: 4px; background: rgba(0,0,0,0.6); color: white; font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase;">Av.</span>
+                            </div>
+                            <div style="position: relative; width: 80px; height: 80px;">
+                                <img src="~/@item.ImageAfter" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;" />
+                                <span style="position: absolute; bottom: 4px; left: 4px; background: #0ea5e9; color: white; font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase;">Ap.</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 1rem;">@item.Title</div>
+                        <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px; max-width: 400px; line-height: 1.4;">@item.Description</div>
+                    </td>
+                    <td>
+                        <span class="status-badge" style="background: #f0f9ff; color: #0ea5e9;">
+                            @item.GetCategoryDisplay()
+                        </span>
+                    </td>
+                    <td style="text-align: right; padding-right: 2rem;">
+                        <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                            <a href="/Admin/EditGalleryItem/@item.Id" class="btn-premium" style="padding: 0.5rem 1rem; font-size: 0.75rem; background: #f1f5f9; color: #0f172a;">
+                                <i class="fa-solid fa-pen"></i> Modifier
+                            </a>
+                            <form action="/Admin/DeleteGalleryItem/@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Supprimer ce résultat ?')">
+                                <button type="submit" class="btn-premium" style="padding: 0.5rem 1rem; font-size: 0.75rem; background: #fee2e2; color: #ef4444;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>FAQ Patients</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Ressources Patients</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>FAQ Patients</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Trouvez des réponses aux questions fréquemment posées sur nos interventions, la sécurité clinique et ce à quoi vous attendre pendant votre parcours dans notre clinique à Sousse.</value></data>
+  <data name="Q1" xml:space="preserve"><value>La consultation est-elle obligatoire avant une intervention ?</value></data>
+  <data name="A1" xml:space="preserve"><value>Oui, une consultation préalable est essentielle pour évaluer la qualité de votre peau, discuter de vos attentes et s'assurer qu'il n'y a pas de contre-indications. Elle permet au Dr. Kechida de créer un protocole de sécurité personnalisé pour vous.</value></data>
+  <data name="Q2" xml:space="preserve"><value>Combien de temps durent les résultats des Fillers Dermiques ?</value></data>
+  <data name="A2" xml:space="preserve"><value>En général, les fillers durent entre 6 et 18 mois, selon la zone traitée, le type de produit utilisé et votre métabolisme individuel. Le Dr. Kechida vous donnera une estimation plus précise lors de votre visite.</value></data>
+  <data name="Q3" xml:space="preserve"><value>Les traitements sont-ils douloureux ?</value></data>
+  <data name="A3" xml:space="preserve"><value>La plupart de nos interventions sont minimalement invasives et impliquent peu ou pas d'inconfort. Pour les traitements injectables, nous utilisons des aiguilles ultra-fines et pouvons appliquer une crème anesthesiante si demandé. Nos systèmes laser incluent également une technologie de refroidissement avancée.</value></data>
+  <data name="Q4" xml:space="preserve"><value>Quel est le temps de récupération après un "Liquid Facelift" ?</value></data>
+  <data name="A4" xml:space="preserve"><value>L'un des principaux avantages du rajeunissement non-chirurgical est le temps de récupération minimal. La plupart des patients peuvent reprendre le travail immédiatement. Un léger gonflement ou des ecchymoses mineures peuvent survenir mais disparaissent généralement en 24–48 heures.</value></data>
+  <data name="Q5" xml:space="preserve"><value>Proposez-vous des plans de paiement ?</value></data>
+  <data name="A5" xml:space="preserve"><value>Veuillez contacter directement notre accueil au +216 23 322 399 pour discuter des politiques de réservation actuelles et des forfaits promotionnels disponibles pour les traitements multi-séances tels que l'épilation laser ou les boosters cutanes.</value></data>
+  <data name="StillHaveQuestions" xml:space="preserve"><value>Avez-vous encore des questions ?</value></data>
+  <data name="ContactUsBtn" xml:space="preserve"><value>Contactez Notre Clinique</value></data>
+</root>

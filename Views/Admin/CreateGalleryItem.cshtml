@@ -1,0 +1,54 @@
+@model DrKchida.Models.GalleryItem
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Ajouter un Résultat";
+}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <div class="eyebrow">Nouveau Résultat</div>
+    <h1 class="admin-title">Ajouter à la Galerie</h1>
+
+    <div class="admin-card">
+        <form method="post" action="/Admin/CreateGalleryItem" enctype="multipart/form-data">
+            <div style="margin-bottom: 2rem;">
+                <label>Titre du Résultat</label>
+                <input asp-for="Title" class="admin-input" placeholder="Ex: Protocole Rajeunissement - 2 séances" required />
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Catégorie</label>
+                <select asp-for="Category" class="admin-input" required>
+                    <option value="Face">Visage (Face)</option>
+                    <option value="Hair">Cheveux (Hair)</option>
+                    <option value="Body">Corps (Body)</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Description du Cas</label>
+                <textarea asp-for="Description" class="admin-input" style="height: 120px;" placeholder="Détaillez le traitement effectué..."></textarea>
+            </div>
+
+            <div class="grid grid-2" style="gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <label>Image Avant (Before)</label>
+                    <input type="file" name="imageBefore" class="admin-input" accept="image/*" style="padding: 0.75rem;" />
+                    <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Téléchargez l'image avant le traitement</span>
+                </div>
+                <div>
+                    <label>Image Après (After)</label>
+                    <input type="file" name="imageAfter" class="admin-input" accept="image/*" style="padding: 0.75rem;" />
+                    <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Téléchargez l'image après le traitement</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; display: flex; gap: 1.5rem;">
+                <button type="submit" class="btn-premium">
+                    <i class="fa-solid fa-check"></i>
+                    Publier le Résultat
+                </button>
+                <a href="/Admin/Gallery" class="btn-premium" style="background: var(--c-grey-400);">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>

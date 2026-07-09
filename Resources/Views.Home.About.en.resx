@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>About</value></data>
+  <data name="TheDoctor" xml:space="preserve"><value>The Doctor</value></data>
+  <data name="HeroIntro" xml:space="preserve"><value>Pioneer of non-surgical rejuvenation, combining medical precision and the art of natural beauty.</value></data>
+  <data name="MedicalDirector" xml:space="preserve"><value>Medical Director</value></data>
+  <data name="Philosophy" xml:space="preserve"><value>The Philosophy</value></data>
+  <data name="ArtOfGrace" xml:space="preserve"><value>The Art of&lt;br&gt;&lt;span class="text-teal"&gt;Natural Grace&lt;/span&gt;</value></data>
+  <data name="DropCap" xml:space="preserve"><value>D</value></data>
+  <data name="Narrative1" xml:space="preserve"><value>r. Kaouthar Kechida is a pillar of aesthetic excellence in Sousse. With a career spanning decades and continents—from the thalassotherapy centers of Tunisia to high-level projects in Saudi Arabia and France (Juan-les-Pins, Cannes)—she has developed a unique approach that marries strict medical discipline with an artistic eye.</value></data>
+  <data name="Narrative2" xml:space="preserve"><value>Her philosophy differs from the "transformation" trend. Instead, Dr. Kechida believes in restoration. It's about rediscovering the light that time may have dimmed, respecting the unique anatomy of each face, and ensuring that no patient ever leaves with a "done" look—only refreshed.</value></data>
+  <data name="Quote" xml:space="preserve"><value>I do not create beauty; I reveal it. My role is to sweep away the shadows of time so that your true nature can shine.</value></data>
+  <data name="ProfessionalExperience" xml:space="preserve"><value>Professional Experience</value></data>
+  <data name="Present" xml:space="preserve"><value>Present</value></data>
+  <data name="PrivateClinic" xml:space="preserve"><value>Private Aesthetic Clinic</value></data>
+  <data name="ClinicLocation" xml:space="preserve"><value>Tunisia - Sousse</value></data>
+  <data name="ClinicDesc" xml:space="preserve"><value>Independent clinic specializing in non-surgical facial rejuvenation, volumetry, regenerative stem cell medicine (PRP, nanofat), and anti-aging protocols.</value></data>
+  <data name="IntlProjectsDirector" xml:space="preserve"><value>International Projects Director</value></data>
+  <data name="CollabSalahKamel" xml:space="preserve"><value>Collaboration with Sheikh Salah Kamel</value></data>
+  <data name="ProjectDirectorSpa" xml:space="preserve"><value>Project Director for Spa Center Openings</value></data>
+  <data name="ThalassoDirector" xml:space="preserve"><value>Thalassotherapy Center Director</value></data>
+  <data name="MedicalOperationalMgmt" xml:space="preserve"><value>Medical &amp; Operational Management</value></data>
+  <data name="EducationFormation" xml:space="preserve"><value>Education &amp; Training</value></data>
+  <data name="MasterAnatomy" xml:space="preserve"><value>Master's in Superficial Facial Anatomy</value></data>
+  <data name="InjectionTechniques" xml:space="preserve"><value>Injection Techniques &amp; Aesthetic Volumetry</value></data>
+  <data name="LaserDermatologyDiploma" xml:space="preserve"><value>Diploma in Lasers in Medical Dermatology</value></data>
+  <data name="TurkiFormation" xml:space="preserve"><value>Training with Dr. Khaled Turki, Tunisia</value></data>
+  <data name="MesotherapyIntern" xml:space="preserve"><value>Mesotherapy Intern</value></data>
+  <data name="MedicalDoctorate" xml:space="preserve"><value>Doctorate in General Medicine</value></data>
+  <data name="CertificationsCongresses" xml:space="preserve"><value>Certifications &amp; Congresses</value></data>
+  <data name="EstheticCongressParis" xml:space="preserve"><value>Aesthetic Medicine Congress PARIS</value></data>
+  <data name="EstheticCongressMonaco" xml:space="preserve"><value>Aesthetic Medicine Congress MONACO</value></data>
+  <data name="DermatologyCert" xml:space="preserve"><value>Tunisian Certification in Private Dermatology</value></data>
+</root>

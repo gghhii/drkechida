@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>Contact</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Commencez Votre Parcours</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>Contactez-nous</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Que vous ayez une intervention spécifique en tête ou que vous souhaitiez simplement explorer vos options, nous sommes là pour vous guider à chaque étape.</value></data>
+  <data name="Consultation" xml:space="preserve"><value>Consultation</value></data>
+  <data name="StartExperience" xml:space="preserve"><value>Démarrer l'Expérience</value></data>
+  <data name="FormPrompt" xml:space="preserve"><value>Votre beauté mérite l'expertise. Envoyez-nous un message pour planifier votre visite.</value></data>
+  <data name="LabelFullName" xml:space="preserve"><value>Nom Complet</value></data>
+  <data name="PlaceholderFullName" xml:space="preserve"><value>Entrez votre nom</value></data>
+  <data name="LabelEmail" xml:space="preserve"><value>Email</value></data>
+  <data name="PlaceholderEmail" xml:space="preserve"><value>votre@email.com</value></data>
+  <data name="LabelPhone" xml:space="preserve"><value>Téléphone</value></data>
+  <data name="PlaceholderPhone" xml:space="preserve"><value>+216...</value></data>
+  <data name="LabelSubject" xml:space="preserve"><value>Sujet</value></data>
+  <data name="SelectTreatment" xml:space="preserve"><value>Sélectionnez un soin</value></data>
+  <data name="Other" xml:space="preserve"><value>Autre</value></data>
+  <data name="LabelMessage" xml:space="preserve"><value>Message</value></data>
+  <data name="PlaceholderMessage" xml:space="preserve"><value>Dites-nous en plus sur vos besoins...</value></data>
+  <data name="SubmitRequest" xml:space="preserve"><value>Confirmer la Demande</value></data>
+  <data name="ContactDetails" xml:space="preserve"><value>Nos Coordonnées</value></data>
+  <data name="Address" xml:space="preserve"><value>Adresse</value></data>
+  <data name="AddressFull" xml:space="preserve"><value>05, Avenue Mahmoud Hochlef&lt;br&gt;(près de la clinique La Corniche)&lt;br&gt;Sousse, Tunisie</value></data>
+  <data name="Phone" xml:space="preserve"><value>Téléphone</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="OpeningHours" xml:space="preserve"><value>Horaires d'Ouverture</value></data>
+  <data name="WeekdayRange" xml:space="preserve"><value>Lun - Ven</value></data>
+  <data name="Saturday" xml:space="preserve"><value>Samedi</value></data>
+  <data name="Submitting" xml:space="preserve"><value>Envoi en cours</value></data>
+</root>

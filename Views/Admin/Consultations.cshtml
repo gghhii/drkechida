@@ -1,0 +1,111 @@
+@model IEnumerable<DrKchida.Models.Consultation>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Gérer les Consultations";
+}
+
+<div style="margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+    <div>
+        <h1 class="admin-title">Consultations & Messages</h1>
+        <p class="admin-subtitle">Gérez les demandes de rendez-vous et les messages de vos patients.</p>
+    </div>
+    
+    <div class="admin-search-wrapper" style="position: relative; flex: 1; max-width: 400px;">
+        <i class="fa-solid fa-search" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: #94a3b8; pointer-events: none;"></i>
+        <input type="text" id="consultationSearch" placeholder="Rechercher par #ID ou Nom..." 
+               style="width: 100%; padding: 0.8rem 1rem 0.8rem 3rem; background: white; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 0.9rem; transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); color: #0f172a;"
+               onkeyup="filterConsultations()">
+    </div>
+</div>
+
+<script>
+    function filterConsultations() {
+        var input = document.getElementById("consultationSearch");
+        var filter = input.value.toLowerCase();
+        var table = document.querySelector(".admin-table");
+        var tr = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < tr.length; i++) {
+            var idCell = tr[i].getElementsByTagName("td")[0];
+            var nameCell = tr[i].getElementsByTagName("td")[2];
+            
+            if (idCell || nameCell) {
+                var idValue = (idCell.textContent || idCell.innerText).toLowerCase();
+                var nameValue = (nameCell.textContent || nameCell.innerText).toLowerCase();
+                
+                if (idValue.indexOf(filter) > -1 || nameValue.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<div class="admin-card" style="padding: 0;">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th style="padding-left: 2rem; width: 80px;"># ID</th>
+                <th style="width: 100px;">Statut</th>
+                <th>Patient</th>
+                <th>Sujet</th>
+                <th>Aperçu Message</th>
+                <th>Date</th>
+                <th style="text-align: right; padding-right: 2rem;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(c => c.SubmittedAt))
+            {
+                <tr style="@(item.IsRead ? "" : "background-color: #f8fafc;")">
+                    <td style="padding-left: 2rem; font-weight: 700; color: var(--c-teal);">#@item.Id</td>
+                    <td>
+                        @if (item.IsRead)
+                        {
+                            <span class="status-badge" style="background: #f1f5f9; color: #94a3b8;">Lu</span>
+                        }
+                        else
+                        {
+                            <span class="status-badge" style="background: #e0f2fe; color: #0ea5e9; border: 1px solid #bae6fd; font-weight: 700;">Nouveau</span>
+                        }
+                    </td>
+                    <td>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 0.95rem;">@item.FullName</div>
+                        <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">@item.Email</div>
+                    </td>
+                    <td>
+                        <span style="font-weight: 600; font-size: 0.9rem; color: #334155;">@item.Subject</span>
+                        @if (item.Message.Contains("Zones sélectionnées :"))
+                        {
+                            <span style="display: inline-block; padding: 2px 6px; background: #25d366; color: white; border-radius: 4px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-left: 5px; letter-spacing: 0.5px;">WhatsApp</span>
+                        }
+                    </td>
+                    <td style="max-width: 200px;">
+                        <div style="font-size: 0.85rem; line-height: 1.4; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@item.Message</div>
+                    </td>
+                    <td>
+                        <div style="font-size: 0.8rem; color: #94a3b8;">@item.SubmittedAt.ToString("dd/MM/yy HH:mm")</div>
+                    </td>
+                    <td style="text-align: right; padding-right: 2rem;">
+                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                            <a href="/Admin/ConsultationDetails/@item.Id" class="btn-premium" style="padding: 0.5rem 1rem; font-size: 0.75rem; background: #f1f5f9; color: #0f172a;" title="Voir détails">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            @if (!item.IsRead)
+                            {
+                                <a href="/Admin/MarkAsRead/@item.Id" class="btn-premium" style="padding: 0.5rem 1rem; font-size: 0.75rem; background: #0ea5e9; color: white;" title="Marquer comme lu">
+                                    <i class="fa-solid fa-check"></i>
+                                </a>
+                            }
+                            <a href="/Admin/DeleteConsultation/@item.Id" class="btn-premium" style="padding: 0.5rem 1rem; font-size: 0.75rem; background: #fee2e2; color: #ef4444;" onclick="return confirm('Supprimer cette demande ?')" title="Supprimer">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

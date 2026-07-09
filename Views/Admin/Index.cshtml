@@ -1,0 +1,94 @@
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Tableau de Bord";
+}
+
+<div style="margin-bottom: 3rem;">
+    <h1 class="admin-title">Tableau de Bord</h1>
+    <p class="admin-subtitle">Gérez le contenu de votre clinique et suivez vos activités.</p>
+</div>
+
+<!-- QUICK STATS -->
+<div class="grid grid-4" style="gap: 1.5rem; margin-bottom: 3rem;">
+    <div class="admin-card" style="padding: 1.5rem; margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Soins</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">@ViewBag.TreatmentsCount</div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-card" style="padding: 1.5rem; margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: #f0fdf4; color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Galerie</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">@ViewBag.GalleryCount</div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-card" style="padding: 1.5rem; margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: #fff7ed; color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid fa-video"></i>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Vidéos</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">@ViewBag.VideosCount</div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-card" style="padding: 1.5rem; margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: #faf5ff; color: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Mails</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">@ViewBag.ConsultationsCount</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-3" style="gap: 2rem;">
+    <!-- SOINS -->
+    <div class="admin-card">
+        <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Gestion des Soins</h3>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem;">
+            Publiez de nouveaux traitements ou modifiez les soins existants.
+        </p>
+        <a href="/Admin/Treatments" class="btn-premium" style="width: 100%; justify-content: center; padding: 0.75rem;">Accéder</a>
+    </div>
+
+    <!-- GALERIE -->
+    <div class="admin-card">
+        <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Résultats Avant/Après</h3>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem;">
+            Mettez à jour vos résultats cliniques pour illustrer votre expertise.
+        </p>
+        <a href="/Admin/Gallery" class="btn-premium" style="width: 100%; justify-content: center; padding: 0.75rem;">Accéder</a>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="admin-card">
+        <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Vidéos & Education</h3>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem;">
+            Administrez vos vidéos YouTube pour informer vos patients.
+        </p>
+        <a href="/Admin/Videos" class="btn-premium" style="width: 100%; justify-content: center; padding: 0.75rem;">Accéder</a>
+    </div>
+</div>
+
+<div class="admin-card" style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; background: #0f172a; color: white;">
+    <div>
+        <h4 class="text-white" style="text-transform: none; font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-sans);">Besoin d'aide ?</h4>
+        <p style="margin: 0; color: #94a3b8; font-size: 0.9rem;">Consultez les guides d'utilisation ou contactez le support.</p>
+    </div>
+    <a href="#" class="btn-premium" style="background: white; color: #0f172a;">Support</a>
+</div>

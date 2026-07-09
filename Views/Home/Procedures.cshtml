@@ -1,0 +1,147 @@
+@model IEnumerable<DrKchida.Models.ServiceCategory>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["HeroTitle"];
+}
+
+<!-- HERO SECTION -->
+<section class="hero-bg" style="background-image: url('/images/cabinet.png?v=2');">
+    <div class="hero-bg-overlay"></div>
+    <div class="container fade-in">
+        <span class="eyebrow">@Localizer["HeroEyebrow"]</span>
+        <h1 style="font-size: clamp(2.5rem, 10vw, 4.5rem); line-height: 1.1; overflow-wrap: break-word; hyphens: auto;">@Localizer["HeroTitle"]</h1>
+        <div class="accent-line" style="width: 120px; height: 6px; margin-top: 3rem; background-color: var(--c-white);"></div>
+        <p style="max-width: 850px; font-size: 1.5rem; line-height: 1.7; color: var(--c-white); margin-top: 4rem;">
+            @Localizer["HeroDesc"]
+        </p>
+    </div>
+</section>
+
+<!-- DYNAMIC CATEGORY GRID -->
+<section class="section no-top-padding">
+    <div class="container">
+        <div class="grid grid-2" style="gap: 4rem;">
+            
+            @foreach (var category in Model)
+            {
+                var displayImage = category.ImageUrl;
+                if (category.Slug == "injectables") displayImage = "/images/h1.jpeg";
+                else if (category.Slug == "biostimulation") displayImage = "/images/h6.png";
+                else if (category.Slug == "regenerative") displayImage = "/images/rag.png";
+                else if (category.Slug == "technologie") displayImage = "/images/las.png";
+
+                <div id="@category.Slug" class="procedure-cat-card">
+                    <div class="cat-image">
+                        <img src="@displayImage" alt="@Localizer[category.Title ?? ""]" />
+                    </div>
+                    <div class="cat-content">
+                        <h2 class="text-teal">@Localizer[category.Title ?? ""]</h2>
+                        <p>@Localizer[category.Description ?? ""]</p>
+                        
+                        @{
+                            var groupedTreatments = category.Treatments?.GroupBy(t => t.SubCategory ?? "Autres") ?? Enumerable.Empty<IGrouping<string, DrKchida.Models.Treatment>>();
+                        }
+
+                        @foreach (var group in groupedTreatments)
+                        {
+                            <div class="sub-category">
+                                <h3>@Localizer[group.Key]</h3>
+                                <ul class="cat-list">
+                                    @foreach (var treatment in group)
+                                    {
+                                        <li>@Localizer[treatment.Name ?? ""]</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- RESULTS CTA -->
+<section class="section bg-grey">
+    <div class="container">
+        <div class="grid grid-2-miller align-center">
+            <div class="text-side">
+                <span class="eyebrow">@Localizer["ResultsEyebrow"]</span>
+                <h2 class="text-teal">@Localizer["ResultsTitle"]</h2>
+                <p>@Localizer["ResultsDesc"]</p>
+                <a asp-action="Gallery" class="btn-miller-primary" style="margin-top: 2rem;">@Localizer["ResultsCTA"]</a>
+            </div>
+            <div class="image-side">
+                <img src="~/images/before_after_face_skin.png" alt="Transformation Result" class="glass" style="box-shadow: 0 40px 80px rgba(0,0,0,0.1);" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .procedure-cat-card {
+        background: white;
+        transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--c-grey-border);
+    }
+
+    .cat-image {
+        height: 350px;
+        overflow: hidden;
+    }
+
+    .cat-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .procedure-cat-card:hover .cat-image img { transform: scale(1.1); }
+
+    .cat-content {
+        padding: 4rem 3rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cat-content h2 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .cat-content p { font-size: 0.95rem; color: var(--c-grey-text); line-height: 1.6; margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+
+    .sub-category { margin-top: 1.5rem; }
+    .sub-category h3 { font-size: 1.2rem; font-family: var(--font-sans); font-weight: 800; color: var(--c-charcoal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+
+    .cat-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .cat-list li {
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+        font-family: var(--font-sans);
+        font-weight: 500;
+        color: var(--c-charcoal);
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .cat-list li::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--c-teal);
+    }
+
+    @@media (max-width: 1024px) {
+        .grid-2 { grid-template-columns: 1fr; }
+    }
+</style>

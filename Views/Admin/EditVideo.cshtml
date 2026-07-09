@@ -1,0 +1,64 @@
+@model DrKchida.Models.VideoItem
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Modifier la Vidéo";
+}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <div class="eyebrow">Mise à Jour</div>
+    <h1 class="admin-title">Modifier Vidéo</h1>
+
+    <div class="admin-card">
+        <form method="post" action="/Admin/EditVideo" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+
+            <div style="margin-bottom: 2rem;">
+                <label>Titre de la Vidéo</label>
+                <input asp-for="Title" class="admin-input" required />
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Catégorie</label>
+                <select asp-for="Category" class="admin-input" required>
+                    <option value="Interventions">Interventions</option>
+                    <option value="Témoignages Patients">Témoignages Patients</option>
+                    <option value="À Propos de la Pratique">À Propos de la Pratique</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Description Courte</label>
+                <textarea asp-for="Description" class="admin-input" style="height: 100px;"></textarea>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Modifier le Fichier Vidéo</label>
+                <input type="file" name="videoFile" class="admin-input" accept="video/*" />
+                <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Laissez vide pour conserver la vidéo actuelle : @Model.VideoUrl</span>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Modifier l'Image de couverture (Thumbnail)</label>
+                @if (!string.IsNullOrEmpty(Model.ThumbnailUrl))
+                {
+                    <img src="@Model.ThumbnailUrl" style="width: 150px; border-radius: 8px; margin-bottom: 1rem; display: block; border: 1px solid var(--c-grey-200);" />
+                }
+                <input type="file" name="thumbnailFile" class="admin-input" accept="image/*" />
+                <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Changez l'image affichée avant le début de la vidéo.</span>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>OU Lien YouTube (Embed)</label>
+                <input asp-for="VideoUrl" class="admin-input" />
+            </div>
+
+            <div style="margin-top: 4rem; display: flex; gap: 1.5rem;">
+                <button type="submit" class="btn-premium">
+                    <i class="fa-solid fa-save"></i>
+                    Sauvegarder
+                </button>
+                <a href="/Admin/Videos" class="btn-premium" style="background: var(--c-grey-400);">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>

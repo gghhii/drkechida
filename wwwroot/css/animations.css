@@ -1,0 +1,97 @@
+/* ============================================
+   SUBTLE ANIMATIONS - SERIOUS MEDICAL THEME
+   ============================================ */
+
+/* === FADE IN & SLIDE === */
+.animate-fade-in {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+.animate-fade-in.animated {
+    opacity: 1;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-up.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-left.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-right.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* === UTILITY ANIMATIONS === */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* === HOVER EFFECTS (SUBTLE) === */
+.hover-lift {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+/* === STAGGER DELAYS === */
+.stagger-1 {
+    transition-delay: 0.1s;
+}
+
+.stagger-2 {
+    transition-delay: 0.2s;
+}
+
+.stagger-3 {
+    transition-delay: 0.3s;
+}
+
+.stagger-4 {
+    transition-delay: 0.4s;
+}
+
+/* === PREFERS REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,223 @@
+@model DrKchida.Models.Treatment
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Ajouter un Soin";
+}
+
+<style>
+    .tabs-nav {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 2px solid #e2e8f0;
+        margin-bottom: 2rem;
+    }
+    .tab-btn {
+        background: none;
+        border: none;
+        padding: 1rem 1.5rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        color: #94a3b8;
+        cursor: pointer;
+        position: relative;
+        bottom: -2px;
+        transition: 0.3s;
+        border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active {
+        color: #0f172a;
+        border-bottom: 2px solid #0f172a;
+    }
+    .tab-btn:hover { color: #0f172a; }
+</style>
+
+<div style="max-width: 900px; margin: 0 auto;">
+    <div class="eyebrow">Nouveau Contenu</div>
+    <h1 class="admin-title">Ajouter un Soin</h1>
+
+    <div class="admin-card">
+        <form method="post" action="/Admin/CreateTreatment" enctype="multipart/form-data">
+            
+            <!-- TABS NAVIGATION -->
+            <div class="tabs-nav">
+                <button type="button" class="tab-btn active" onclick="switchTab('general', this)">1. Informations Générales</button>
+                <button type="button" class="tab-btn" onclick="switchTab('details', this)">2. Contenu Page Détails</button>
+            </div>
+
+            <!-- TAB 1: GENERAL -->
+            <div id="tab-general" class="tab-section">
+                
+                <div class="grid grid-2" style="gap: 2rem;">
+                    <div>
+                        <label>Nom du Traitement</label>
+                        <input asp-for="Name" class="admin-input" placeholder="Ex: Injections Botox" required />
+                    </div>
+                    <div>
+                        <label>Catégorie Principale</label>
+                        <select asp-for="ServiceCategoryId" id="categorySelect" class="admin-input" required>
+                            <option value="">-- Sélectionner une catégorie --</option>
+                            @if (ViewBag.Categories != null)
+                            {
+                                foreach (var cat in ViewBag.Categories as IEnumerable<DrKchida.Models.ServiceCategory>)
+                                {
+                                    <option value="@cat.Id" data-subs="@cat.AllowedSubCategories">@cat.Title</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <label>Sous-Catégorie</label>
+                        <select asp-for="SubCategory" id="subCategorySelect" class="admin-input" required>
+                            <option value="">-- Choisir d'abord une catégorie --</option>
+                        </select>
+                    </div>
+                    <div>
+                         <label>Icône (Emoji ou SVG)</label>
+                         <input asp-for="Icon" class="admin-input" placeholder="✨" />
+                    </div>
+                </div>
+
+                <div class="grid grid-2" style="gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <label>Image de Couverture</label>
+                        <input type="file" name="imageFile" class="admin-input" accept="image/*" />
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                         <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+                            <input type="checkbox" asp-for="ShowOnCard" style="width: 20px; height: 20px;" />
+                            <label style="margin: 0;">Mettre en avant (Page Services)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <label>Description Courte (Résumé pour les cartes)</label>
+                    <textarea asp-for="Description" class="admin-input" style="height: 100px;" placeholder="Bref résumé qui apparaît sur les cartes d'aperçu..."></textarea>
+                </div>
+
+                <div style="margin-top: 2rem; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <label style="display: block; margin-bottom: 1rem; font-weight: 700;">Filtres Zones (Cochez pour activer)</label>
+                    <div style="display: flex; gap: 2rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" class="area-checkbox" value="face" style="width: 18px; height: 18px;" /> Visage
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" class="area-checkbox" value="body" style="width: 18px; height: 18px;" /> Corps
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" class="area-checkbox" value="hair" style="width: 18px; height: 18px;" /> Cheveux
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" class="area-checkbox" value="laser" style="width: 18px; height: 18px;" /> Laser
+                        </label>
+                    </div>
+                    <input type="hidden" asp-for="TargetArea" id="targetAreaInput" />
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: right;">
+                    <button type="button" class="btn-premium" onclick="switchTab('details', document.querySelectorAll('.tab-btn')[1])">
+                        Suivant <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                    </button>
+                    <a href="/Admin/Treatments" class="btn-premium" style="background: #94a3b8; margin-left: 1rem;">Annuler</a>
+                </div>
+            </div>
+
+            <!-- TAB 2: DETAILS CONTENT -->
+            <div id="tab-details" class="tab-section" style="display: none;">
+                
+                <div style="margin-top: 0;">
+                    <label>Description Complète (Section "À Propos")</label>
+                    <textarea asp-for="FullDescription" class="admin-input" style="height: 150px;" placeholder="Description détaillée pour la page unique du soin..."></textarea>
+                </div>
+
+                <div class="grid grid-2" style="gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <label>Bénéfices Clés</label>
+                        <textarea asp-for="Benefits" class="admin-input" style="height: 300px; font-family: monospace; font-size: 0.9rem;" placeholder="Une ligne par bénéfice.
+Format:
+Titre: Description
+
+Exemple:
+Volume: Restaure les volumes
+Naturel: Résultat subtil"></textarea>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Utilisez le format "Titre: Description"</p>
+                    </div>
+                    <div>
+                        <label>Étapes de la Procédure</label>
+                         <textarea asp-for="ProcedureSteps" class="admin-input" style="height: 300px; font-family: monospace; font-size: 0.9rem;" placeholder="Une ligne par étape.
+Format:
+Titre: Description
+
+Exemple:
+Consultation: Bilan complet
+Acte: Injection indolore
+Suivi: Contrôle à 15 jours"></textarea>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Utilisez le format "Titre: Description"</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid #e2e8f0; padding-top: 2rem;">
+                    <button type="button" class="btn-premium" style="background: #94a3b8;" onclick="switchTab('general', document.querySelectorAll('.tab-btn')[0])">
+                        <i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Retour
+                    </button>
+                    <button type="submit" class="btn-premium">
+                        <i class="fa-solid fa-check" style="margin-right: 8px;"></i> Enregistrer le Soin
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId, btn) {
+        // Hide all sections
+        document.querySelectorAll('.tab-section').forEach(el => el.style.display = 'none');
+        // Deactivate all buttons
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        // Show target section
+        document.getElementById('tab-' + tabId).style.display = 'block';
+        // Activate target button
+        btn.classList.add('active');
+        
+        // Window scroll to top of form smoothly
+        document.querySelector('.admin-title').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Category Logic
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var subs = selectedOption.getAttribute('data-subs');
+        var subSelect = document.getElementById('subCategorySelect');
+        
+        subSelect.innerHTML = '<option value="">-- Sélectionner une sous-catégorie --</option>';
+        
+        if (subs) {
+            var subArray = subs.split(';');
+            subArray.forEach(function(s) {
+                var opt = document.createElement('option');
+                opt.value = s;
+                opt.innerHTML = s;
+                subSelect.appendChild(opt);
+            });
+        }
+    });
+
+    // Checkbox Logic
+    const areaCheckboxes = document.querySelectorAll('.area-checkbox');
+    const targetAreaInput = document.getElementById('targetAreaInput');
+    
+    areaCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function() {
+            const selectedAreas = Array.from(areaCheckboxes)
+                .filter(i => i.checked)
+                .map(i => i.value);
+            targetAreaInput.value = selectedAreas.join(' ');
+        });
+    });
+</script>

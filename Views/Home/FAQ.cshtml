@@ -1,0 +1,158 @@
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<!-- HERO SECTION -->
+<section class="hero-bg" style="background-image: url('/images/cabinet.png');">
+    <div class="hero-bg-overlay"></div>
+    <div class="container fade-in">
+        <span class="eyebrow">@Localizer["HeroEyebrow"]</span>
+        <h1 style="font-size: 6rem; line-height: 0.9;">@Localizer["HeroTitle"]</h1>
+        <div class="accent-line" style="width: 120px; height: 6px; margin-top: 3rem; background-color: var(--c-white);"></div>
+        <p style="max-width: 850px; font-size: 1.5rem; line-height: 1.7; color: var(--c-white); margin-top: 4rem;">
+            @Localizer["HeroDesc"]
+        </p>
+    </div>
+</section>
+
+<!-- FAQ ACCORDION -->
+<section class="section bg-grey">
+    <div class="container" style="max-width: 900px;">
+        
+        <div class="faq-accordion">
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>@Localizer["Q1"]</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        @Localizer["A1"]
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>@Localizer["Q2"]</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        @Localizer["A2"]
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>@Localizer["Q3"]</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        @Localizer["A3"]
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>@Localizer["Q4"]</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        @Localizer["A4"]
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>@Localizer["Q5"]</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        @Localizer["A5"]
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top: 6rem;">
+            <p style="color: var(--c-grey-text);">@Localizer["StillHaveQuestions"]</p>
+            <a asp-action="Contact" class="btn-miller-primary">@Localizer["ContactUsBtn"]</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    toggle.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.display = 'block';
+                    toggle.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    .faq-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .faq-item {
+        background: white;
+        border: 1px solid var(--c-grey-border);
+        padding: 2.5rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .faq-item:hover { border-color: var(--c-teal); }
+
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-question h3 {
+        font-family: var(--font-sans);
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin: 0;
+        color: var(--c-black);
+    }
+
+    .faq-toggle {
+        font-size: 1.5rem;
+        color: var(--c-teal);
+        font-weight: 300;
+        transition: transform 0.3s;
+    }
+
+    .faq-answer {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--c-grey-light);
+        display: none;
+    }
+</style>

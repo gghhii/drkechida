@@ -1,0 +1,60 @@
+@model DrKchida.Models.VideoItem
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Ajouter une Vidéo";
+}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <div class="eyebrow">Nouveau Contenu Vidéo</div>
+    <h1 class="admin-title">Ajouter une Vidéo</h1>
+
+    <div class="admin-card">
+        <form method="post" action="/Admin/CreateVideo" enctype="multipart/form-data">
+            <div style="margin-bottom: 2rem;">
+                <label>Titre de la Vidéo</label>
+                <input asp-for="Title" class="admin-input" placeholder="Ex: Ma philosophie du Lifting Naturel" required />
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Catégorie</label>
+                <select asp-for="Category" class="admin-input" required>
+                    <option value="">Sélectionner une catégorie</option>
+                    <option value="Interventions">Interventions</option>
+                    <option value="Témoignages Patients">Témoignages Patients</option>
+                    <option value="À Propos de la Pratique">À Propos de la Pratique</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Description Courte</label>
+                <textarea asp-for="Description" class="admin-input" style="height: 100px;" placeholder="Quelques mots sur le contenu de cette vidéo..."></textarea>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Télécharger une vidéo (Recommandé)</label>
+                <input type="file" name="videoFile" class="admin-input" accept="video/*" />
+                <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Formats supportés: MP4, WebM, etc.</span>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Image de couverture (Thumbnail) - Optionnel</label>
+                <input type="file" name="thumbnailFile" class="admin-input" accept="image/*" />
+                <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Cette image sera affichée avant que la vidéo ne commence.</span>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>OU Lien d'intégration YouTube (Embed Link)</label>
+                <input asp-for="VideoUrl" class="admin-input" placeholder="https://www.youtube.com/embed/XXXXXXX" />
+                <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Utilisez ceci uniquement si vous n'avez pas de fichier vidéo.</span>
+            </div>
+
+            <div style="margin-top: 4rem; display: flex; gap: 1.5rem;">
+                <button type="submit" class="btn-premium">
+                    <i class="fa-solid fa-cloud-upload"></i>
+                    Publier la Vidéo
+                </button>
+                <a href="/Admin/Videos" class="btn-premium" style="background: var(--c-grey-400);">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>

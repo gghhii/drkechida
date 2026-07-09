@@ -1,0 +1,1317 @@
+@using Microsoft.AspNetCore.Http
+
+
+@{
+    var isHomePage = ViewContext.RouteData.Values["action"]?.ToString() == "Index" && ViewContext.RouteData.Values["controller"]?.ToString() == "Home";
+    var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dr. Kaouthar KECHIDA</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sublimer la Beauté Naturelle avec Confiance & Précision. Médecine Esthétique Personnalisée et Rajeunissement Avancé par le Dr. Kaouthar KECHIDA à Sousse, Tunisie." />
+    <meta name="keywords" content="Dr Kaouthar Kechida, Médecine Esthétique Sousse, Botox Sousse, Fillers Tunisie, Rajeunissement Peau Sousse, Clinique Cosmétique Sousse" />
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/components.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/animations.css" asp-append-version="true" />
+    
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+
+    <style>
+        /* MAIN CONTENT SPACING */
+        main {
+            padding-bottom: 120px; /* Space for sticky bar */
+        }
+
+        /* HEADER: TRANSPARENT TO SOLID */
+        .main-header {
+            height: 100px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s var(--transition-smooth);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .main-header.scrolled, 
+        .main-header.header-internal {
+            background: rgba(255, 255, 255, 0.95);
+            height: 80px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid var(--c-grey-200);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .brand-logo { display: flex; flex-direction: column; }
+        
+        .dr-name {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: white;
+            transition: 0.4s;
+            line-height: 1;
+        }
+
+        .main-header.scrolled .dr-name,
+        .main-header.header-internal .dr-name { 
+            background: var(--c-gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-sub {
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            letter-spacing: 2.5px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            transition: all 0.4s var(--transition-smooth);
+            margin-top: 6px;
+        }
+
+        .main-header.scrolled .brand-sub,
+        .main-header.header-internal .brand-sub { color: var(--c-text-light); }
+
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+
+        
+        .nav-item {
+            color: white;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--c-gradient-1);
+            transition: width 0.3s var(--transition-smooth);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .main-header.scrolled .nav-item,
+        .main-header.header-internal .nav-item { color: var(--c-black); }
+        
+        .nav-item:hover { 
+            background: var(--c-gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* DROPDOWN STYLES */
+        .nav-dropdown { position: relative; display: inline-block; }
+        
+        /* INVISIBLE BRIDGE: Fixes the gap issue */
+        .nav-dropdown::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 40px; /* Covers the 20px gap + buffer */
+            top: 100%;
+            left: 0;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            z-index: 1001;
+            margin-top: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-header.scrolled .dropdown-content,
+        .main-header.header-internal .dropdown-content { margin-top: 10px; }
+        .nav-dropdown:hover .dropdown-content { display: block; }
+
+        /* Fix dropdown text color on transparent state */
+        .main-header:not(.scrolled):not(.header-internal) .dropdown-content {
+            background: rgba(0,0,0,0.8);
+        }
+        .main-header:not(.scrolled):not(.header-internal) .dropdown-content a {
+            color: white;
+        }
+
+        .dropdown-content a {
+            color: var(--c-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .dropdown-content a:hover { background: var(--c-grey-light); color: var(--c-teal); }
+
+        /* Re-scoping phone and buttons */
+        .header-action { display: flex; align-items: center; gap: 2rem; }
+        .phone-link { color: white; font-weight: 800; font-size: 0.9rem; }
+        
+        .main-header.scrolled .phone-link,
+        .main-header.header-internal .phone-link { color: var(--c-black); }
+
+        .btn-header {
+            padding: 0.75rem 2rem;
+            border: 2px solid white;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--c-gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .btn-header:hover::before {
+            transform: scaleX(1);
+        }
+
+        .main-header.scrolled .btn-header,
+        .main-header.header-internal .btn-header {
+            border-color: var(--c-primary);
+            background: var(--c-gradient-1);
+            color: white;
+        }
+
+        .main-header.scrolled .btn-header:hover,
+        .main-header.header-internal .btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* LANGUAGE SWITCHER (FAR RIGHT) */
+        .lang-switcher-nav {
+            display: flex;
+            gap: 0.1rem;
+            align-items: center;
+            margin-left: 1rem;
+            border-left: 1px solid rgba(255,255,255,0.2);
+            padding-left: 1rem;
+        }
+
+        .main-header.scrolled .lang-switcher-nav,
+        .main-header.header-internal .lang-switcher-nav {
+            border-left-color: var(--c-grey-200);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: all 0.3s;
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .lang-btn.active {
+            color: white !important;
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 4px;
+        }
+
+        /* Visibility on White/Scrolled Background */
+        .main-header.scrolled .lang-btn,
+        .main-header.header-internal .lang-btn {
+            color: rgba(0,0,0,0.4);
+        }
+
+        .main-header.scrolled .lang-btn.active,
+        .main-header.header-internal .lang-btn.active {
+            color: var(--c-black) !important;
+            background: rgba(0,0,0,0.05) !important;
+        }
+
+        .lang-btn:hover {
+            color: var(--c-teal) !important;
+        }
+        
+
+        /* ABSOLUTE CLEANUP FOR HEADER – preserve toggle spans */
+        .main-header .nav-item::before,
+        .main-header .nav-item::after,
+        .main-header .btn-header::after,
+        .main-header .nav-dropdown::before { 
+            display: none !important; 
+            content: none !important; 
+        }
+        /* Restore necessary pseudos */
+        .nav-item::after { display: block !important; content: '' !important; }
+        .btn-header::before { display: block !important; content: '' !important; }
+        .nav-dropdown::after { display: block !important; content: '' !important; }
+        
+        .lang-btn.active {
+            color: white !important;
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 4px;
+        }
+        .main-header.scrolled .lang-btn.active {
+            background: rgba(0,0,0,0.05) !important;
+        }
+
+
+
+        /* HEADER FIXES: ULTIMATE PRECISION */
+        .container.header-flex {
+            max-width: 95%; /* Use more width for the header */
+            gap: 1rem;
+        }
+
+        .header-action {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .phone-link {
+            white-space: nowrap;
+            font-size: 0.8rem !important;
+            letter-spacing: 0;
+        }
+
+        .btn-header {
+            padding: 0.6rem 1.2rem; /* Slightly smaller button */
+            font-size: 0.65rem;
+        }
+
+        .navbar-toggle { display: none; } /* HIDDEN ON DESKTOP */
+
+
+
+        /* MODERN STICKY BAR */
+        .miller-sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--c-black);
+            display: flex;
+            z-index: 999;
+            border-top: 3px solid transparent;
+            border-image: var(--c-gradient-1) 1;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sticky-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            color: white;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            padding: 0 5px;
+        }
+
+        @@media (max-width: 600px) {
+            .miller-sticky-bar { height: 60px; }
+            .sticky-text { font-size: 0.6rem; letter-spacing: 0.5px; }
+            .sticky-item { gap: 0.4rem; padding: 0 2px; }
+            .sticky-icon i { font-size: 1rem !important; }
+            main { padding-bottom: 80px; }
+        }
+
+        .sticky-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--c-gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s var(--transition-smooth);
+        }
+
+        .sticky-item:hover::before {
+            opacity: 0.2;
+        }
+
+        .sticky-item.highlight { 
+            background: var(--c-gradient-1);
+        }
+        
+        .sticky-item.highlight:hover { 
+            transform: scale(1.02);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
+        }
+        
+        .sticky-item:hover:not(.highlight) { 
+            color: white;
+        }
+
+        .sticky-icon,
+        .sticky-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* FOOTER */
+        .footer-list { list-style: none; padding: 0; margin-top: 1rem; }
+        .footer-list li { margin-bottom: 0.7rem; }
+        .footer-list a { 
+            color: var(--c-grey-400); 
+            font-size: 0.9rem; 
+            transition: all 0.3s var(--transition-smooth); 
+        }
+        .footer-list a:hover { 
+            background: var(--c-gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-left: 5px; 
+        }
+
+        @@media (max-width: 768px) {
+            .footer { text-align: center; }
+            .real-social-row { justify-content: center; }
+            .footer-bottom { text-align: center; }
+            .footer-bottom > div { justify-content: center !important; }
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            color: white;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .social-icon:hover { 
+            border-color: transparent;
+            background: var(--c-gradient-1);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        @@media (max-width: 1200px) {
+            .nav-links { gap: 1rem; }
+            .nav-item { font-size: 0.65rem; }
+            .header-action { gap: 1rem; }
+        }
+
+        @@media (max-width: 1150px) {
+            .nav-links, .header-action { display: none; }
+            
+            .nav-links.active {
+                display: flex !important;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                gap: 2rem;
+                padding: 4rem 2rem;
+                overflow-y: auto;
+            }
+
+            .nav-links.active .nav-item { 
+                font-size: 1.2rem; 
+                color: var(--c-black) !important;
+            }
+
+            /* HAMBURGER ICON — always visible on mobile */
+            .navbar-toggle {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 44px;
+                height: 44px;
+                background: var(--c-gradient-1);
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 2000;
+                transition: 0.3s;
+                position: relative;
+                flex-shrink: 0;
+                padding: 0;
+            }
+
+            .navbar-toggle span {
+                display: block !important;
+                width: 20px;
+                height: 2px;
+                background: white !important;
+                transition: all 0.3s ease;
+                border-radius: 2px;
+                margin: 0;
+                opacity: 1 !important;
+                transform: none;
+                position: static;
+            }
+
+            /* Toggle active (X) state — driven by JS inline styles in animations.js */
+
+            .lang-switcher-nav {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 1rem;
+            }
+            .lang-btn {
+                font-size: 1rem;
+            }
+
+            .dr-name { font-size: clamp(1rem, 4vw, 1.3rem); }
+            .brand-sub { font-size: clamp(0.4rem, 1.5vw, 0.5rem); letter-spacing: 1px; }
+
+            /* Show header action in mobile menu */
+            .nav-links.active .header-action-mobile {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                margin-top: 2rem;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- HEADER -->
+        <header class="main-header navbar @(isHomePage ? "" : "header-internal")">
+            <div class="container header-flex">
+                <!-- LOGO -->
+                <a asp-controller="Home" asp-action="Index" class="brand-logo">
+                    <span class="dr-name">Dr. Kaouthar KECHIDA</span>
+                    <span class="brand-sub">MÉDECINE ESTHÉTIQUE & RAJEUNISSEMENT</span>
+                </a>
+
+                <nav class="nav-links navbar-menu">
+                    <a asp-controller="Home" asp-action="Index" class="nav-item">@Localizer["Home"]</a>
+                    <a asp-controller="Home" asp-action="About" class="nav-item">@Localizer["About"]</a>
+                    <div class="nav-dropdown">
+                        <a asp-controller="Home" asp-action="Services" class="nav-item dropdown-toggle">@Localizer["Services"]</a>
+                        <div class="dropdown-content">
+                            <a href="/Home/ServiceDetails?service=injectables">Art des Injectables</a>
+                            <a href="/Home/ServiceDetails?service=biostimulation">Biostimulation</a>
+                            <a href="/Home/ServiceDetails?service=regenerative">Soins Régénératifs</a>
+                            <a href="/Home/ServiceDetails?service=technologie">Technologie Avancée</a>
+                            <a href="/Home/Services">Toutes les Collections</a>
+                        </div>
+                    </div>
+                    <a asp-controller="Home" asp-action="Gallery" class="nav-item">@Localizer["Gallery"]</a>
+                    <a asp-controller="Home" asp-action="Videos" class="nav-item">@Localizer["Videos"]</a>
+                    <a asp-controller="Home" asp-action="FAQ" class="nav-item">@Localizer["FAQ"]</a>
+                    <a asp-controller="Home" asp-action="Contact" class="nav-item">@Localizer["Contact"]</a>
+
+                    <!-- MOBILE-ONLY ACTIONS -->
+                    <div class="header-action-mobile" style="display: none;">
+                        <a href="tel:+21623322399" class="phone-link" style="color: var(--c-black) !important; font-size: 1.2rem !important; font-weight: 700;">+216 23 322 399</a>
+                        <a asp-controller="Home" asp-action="Contact" class="btn-header" style="background: var(--c-gradient-1); border: none; color: white; width: 100%; text-align: center;">@Localizer["BookNow"]</a>
+                        <div class="lang-switcher-nav" style="background: var(--c-grey-50); padding: 5px 15px; border-radius: 50px;">
+                             <a href="/Home/SetLanguage?culture=fr&returnUrl=@Context.Request.Path" class="lang-btn @(currentCulture.StartsWith("fr") ? "active" : "")" style="color: var(--c-black) !important;">FR</a>
+                             <span style="width: 1px; height: 10px; background: rgba(0,0,0,0.1);"></span>
+                             <a href="/Home/SetLanguage?culture=en&returnUrl=@Context.Request.Path" class="lang-btn @(currentCulture.StartsWith("en") ? "active" : "")" style="color: var(--c-black) !important;">EN</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="header-action">
+                    <a href="tel:+21623322399" class="phone-link">+216 23 322 399</a>
+                    <a asp-controller="Home" asp-action="Contact" class="btn-header">@Localizer["BookNow"]</a>
+                    
+                    <div class="lang-switcher-nav">
+                        <a href="/Home/SetLanguage?culture=fr&returnUrl=@Context.Request.Path" class="lang-btn @(currentCulture.StartsWith("fr") ? "active" : "")">FR</a>
+                        <span style="width: 1px; height: 10px; background: rgba(128,128,128,0.2);"></span>
+                        <a href="/Home/SetLanguage?culture=en&returnUrl=@Context.Request.Path" class="lang-btn @(currentCulture.StartsWith("en") ? "active" : "")">EN</a>
+                    </div>
+                </div>
+                <button class="navbar-toggle" aria-label="Toggle Navigation"><span></span><span></span><span></span></button>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <main role="main">
+            @RenderBody()
+        </main>
+
+        <!-- STICKY CTA BAR (MILLER STYLE) -->
+        <div class="miller-sticky-bar">
+            <a asp-controller="Home" asp-action="Gallery" class="sticky-item">
+                <span class="sticky-icon"><i class="fa-solid fa-camera" style="font-size: 1.2rem;"></i></span>
+                <span class="sticky-text">Galerie Photos</span>
+            </a>
+            <a asp-controller="Home" asp-action="Contact" class="sticky-item highlight">
+                <span class="sticky-text">Demander Consultation</span>
+            </a>
+            <button onclick="openWAModal()" class="sticky-item" id="wa-sticky-btn" style="background:none;border:none;cursor:pointer;width:100%;">
+                <span class="sticky-icon"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i></span>
+                <span class="sticky-text">WhatsApp</span>
+            </button>
+        </div>
+
+        <!-- MAIN FOOTER -->
+        <footer class="footer bg-black text-white section">
+            <div class="container">
+                <div class="grid grid-4">
+                    <div>
+                        <h4 class="text-white">Emplacement</h4>
+                        <p style="color: #888; margin-top: 1rem; line-height: 1.8;">
+                            05, Avenue Mahmoud Hochlef<br>
+                            (près de la clinique La Corniche)<br>
+                            Sousse, Tunisie
+                        </p>
+                        <p style="color: #888;">+216 23 322 399</p>
+                    </div>
+                    <div class="footer-col px-4">
+                    <h4 class="mb-4">Services</h4>
+                    <ul class="footer-list">
+                        <li><a href="/Home/ServiceDetails?service=face">Soins du Visage</a></li>
+                        <li><a href="/Home/ServiceDetails?service=body">Soins du Corps</a></li>
+                        <li><a href="/Home/ServiceDetails?service=hair">Soins des Cheveux</a></li>
+                        <li><a href="/Home/Services">Tout voir</a></li>
+                    </ul>
+                </div>
+                    <div>
+                        <h4 class="text-white">Entreprise</h4>
+                        <ul class="footer-list">
+                            <li><a asp-controller="Home" asp-action="About">À Propos du Dr. Kechida</a></li>
+                            <li><a asp-controller="Home" asp-action="Videos">Bibliothèque Vidéo</a></li>
+                            <li><a asp-controller="Home" asp-action="FAQ">FAQ Patients</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Nous Contacter</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white">Suivez-nous</h4>
+                        <div class="real-social-row" style="margin-top: 1.5rem;">
+                            <a href="https://instagram.com" target="_blank" class="social-btn instagram" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" class="social-btn facebook" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" class="social-btn tiktok" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <span>&copy; @DateTime.Now.Year Dr. Kaouthar KECHIDA. Tous Droits Réservés.</span>
+                        <div style="display: flex; gap: 2rem;">
+                            <a href="#" style="color: inherit;">Politique de Confidentialité</a>
+                            <a href="#" style="color: inherit;">Conditions de Service</a>
+                            <a asp-controller="Admin" asp-action="Index" style="color: #444; font-size: 0.6rem; vertical-align: bottom;">Admin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         WHATSAPP FACE ZONE PICKER MODAL
+    ═══════════════════════════════════════════════════════════ -->
+    <div id="wa-modal-overlay" style="display:none;" onclick="closeWAModalOutside(event)">
+        <div id="wa-modal">
+            <!-- Close -->
+            <button id="wa-close-btn" onclick="closeWAModal()" aria-label="Fermer">&times;</button>
+
+            <!-- Header -->
+            <div id="wa-modal-header">
+                <div id="wa-modal-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div>
+                    <h2 id="wa-modal-title">Sélectionnez vos zones à traiter</h2>
+                    <p id="wa-modal-sub">Cliquez sur les zones qui vous intéressent, puis envoyez votre message au Dr. Kechida.</p>
+                </div>
+            </div>
+
+            <!-- Gender Toggle -->
+            <div id="wa-gender-toggle">
+                <button id="btn-female" class="wa-gender-btn active" onclick="switchGender('female')"><i class="fa-solid fa-venus"></i> Femme</button>
+                <button id="btn-male" class="wa-gender-btn" onclick="switchGender('male')"><i class="fa-solid fa-mars"></i> Homme</button>
+            </div>
+
+            <!-- Face + Zones Layout -->
+            <div id="wa-face-layout">
+
+                <!-- Left Labels -->
+                <div class="wa-labels wa-labels-left">
+                    <div class="wa-label" data-zone="Glabelle" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Glabelle</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Zone du regard" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Zone du regard</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Pommettes" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Pommettes</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Nez" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Nez</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Joues" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Joues</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Sillons nasogéniens" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Sillons nasogéniens</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Angle mandibulaire" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Angle mandibulaire</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label" data-zone="Ovale du visage" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Ovale du visage</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                    <div class="wa-label female-only" data-zone="Cou" onclick="toggleZone(this)">
+                        <span class="wa-label-text">Cou</span><span class="wa-connector"></span><div class="wa-checkbox"></div>
+                    </div>
+                </div>
+
+                <!-- Face SVG (Realistic Anatomical) -->
+                <div id="wa-face-center">
+                    <!-- FEMALE FACE SVG -->
+                    <svg id="face-female" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" class="wa-face-svg">
+                        <!-- Photorealistic female face -->
+                        <image href="/images/wa_real_female.png" x="0" y="0" width="300" height="340" preserveAspectRatio="xMidYMid slice" />
+                        <!-- HOTSPOTS (Ajustés : Largeur réduite pour correspondre au visage féminin plus étroit) -->
+                        <rect class="wa-hotspot" data-zone="Front" x="115" y="55" width="70" height="40" fill="transparent" onclick="toggleZoneByName('Front')"/>
+                        <ellipse class="wa-hotspot" data-zone="Glabelle" cx="150" cy="122" rx="22" ry="12" fill="transparent" onclick="toggleZoneByName('Glabelle')"/>
+                        <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="125" cy="132" rx="22" ry="14" fill="transparent" onclick="toggleZoneByName('Zone du regard')"/>
+                        <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="175" cy="132" rx="22" ry="14" fill="transparent" onclick="toggleZoneByName('Zone du regard')"/>
+                        <ellipse class="wa-hotspot" data-zone="Tempes" cx="100" cy="128" rx="18" ry="16" fill="transparent" onclick="toggleZoneByName('Tempes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Tempes" cx="200" cy="128" rx="18" ry="16" fill="transparent" onclick="toggleZoneByName('Tempes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="102" cy="142" rx="16" ry="12" fill="transparent" onclick="toggleZoneByName('Pattes d\'oie')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="198" cy="142" rx="16" ry="12" fill="transparent" onclick="toggleZoneByName('Pattes d\'oie')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pommettes" cx="112" cy="175" rx="22" ry="16" fill="transparent" onclick="toggleZoneByName('Pommettes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pommettes" cx="188" cy="175" rx="22" ry="16" fill="transparent" onclick="toggleZoneByName('Pommettes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Nez" cx="150" cy="172" rx="18" ry="25" fill="transparent" onclick="toggleZoneByName('Nez')"/>
+                        <ellipse class="wa-hotspot" data-zone="Joues" cx="115" cy="205" rx="22" ry="20" fill="transparent" onclick="toggleZoneByName('Joues')"/>
+                        <ellipse class="wa-hotspot" data-zone="Joues" cx="185" cy="205" rx="22" ry="20" fill="transparent" onclick="toggleZoneByName('Joues')"/>
+                        <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="132" cy="198" rx="12" ry="16" fill="transparent" onclick="toggleZoneByName('Sillons nasogéniens')"/>
+                        <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="168" cy="198" rx="12" ry="16" fill="transparent" onclick="toggleZoneByName('Sillons nasogéniens')"/>
+                        <ellipse class="wa-hotspot" data-zone="Contour des lèvres" cx="150" cy="202" rx="26" ry="12" fill="transparent" onclick="toggleZoneByName('Contour des lèvres')"/>
+                        <ellipse class="wa-hotspot" data-zone="Volume des lèvres" cx="150" cy="204" rx="20" ry="8" fill="transparent" onclick="toggleZoneByName('Volume des lèvres')"/>
+                        <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="135" cy="225" rx="12" ry="12" fill="transparent" onclick="toggleZoneByName('Plis d\'amertume')"/>
+                        <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="165" cy="225" rx="12" ry="12" fill="transparent" onclick="toggleZoneByName('Plis d\'amertume')"/>
+                        <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="115" cy="225" rx="20" ry="20" fill="transparent" onclick="toggleZoneByName('Angle mandibulaire')"/>
+                        <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="185" cy="225" rx="20" ry="20" fill="transparent" onclick="toggleZoneByName('Angle mandibulaire')"/>
+                        <ellipse class="wa-hotspot" data-zone="Menton" cx="150" cy="235" rx="22" ry="14" fill="transparent" onclick="toggleZoneByName('Menton')"/>
+                        <ellipse class="wa-hotspot" data-zone="Ovale du visage" cx="150" cy="228" rx="60" ry="20" fill="transparent" onclick="toggleZoneByName('Ovale du visage')"/>
+                        <rect class="wa-hotspot" data-zone="Cou" x="130" y="260" width="40" height="40" fill="transparent" onclick="toggleZoneByName('Cou')"/>
+                    </svg>
+
+
+                    <!-- MALE FACE SVG -->
+                    <svg id="face-male" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" class="wa-face-svg" style="display:none;">
+                        <!-- Photorealistic male face -->
+                        <image href="/images/wa_real_male.png" x="0" y="0" width="300" height="340" preserveAspectRatio="xMidYMid slice" />
+                        <!-- HOTSPOTS -->
+                        <rect class="wa-hotspot" data-zone="Front" x="100" y="55" width="100" height="55" fill="transparent" onclick="toggleZoneByName('Front')"/>
+                        <ellipse class="wa-hotspot" data-zone="Glabelle" cx="150" cy="122" rx="30" ry="14" fill="transparent" onclick="toggleZoneByName('Glabelle')"/>
+                        <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="110" cy="134" rx="30" ry="16" fill="transparent" onclick="toggleZoneByName('Zone du regard')"/>
+                        <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="190" cy="134" rx="30" ry="16" fill="transparent" onclick="toggleZoneByName('Zone du regard')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="68" cy="148" rx="20" ry="16" fill="transparent" onclick="toggleZoneByName('Pattes d\'oie')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="232" cy="148" rx="20" ry="16" fill="transparent" onclick="toggleZoneByName('Pattes d\'oie')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pommettes" cx="82" cy="188" rx="28" ry="18" fill="transparent" onclick="toggleZoneByName('Pommettes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Pommettes" cx="218" cy="188" rx="28" ry="18" fill="transparent" onclick="toggleZoneByName('Pommettes')"/>
+                        <ellipse class="wa-hotspot" data-zone="Nez" cx="150" cy="180" rx="24" ry="30" fill="transparent" onclick="toggleZoneByName('Nez')"/>
+                        <ellipse class="wa-hotspot" data-zone="Joues" cx="90" cy="218" rx="30" ry="24" fill="transparent" onclick="toggleZoneByName('Joues')"/>
+                        <ellipse class="wa-hotspot" data-zone="Joues" cx="210" cy="218" rx="30" ry="24" fill="transparent" onclick="toggleZoneByName('Joues')"/>
+                        <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="122" cy="216" rx="15" ry="20" fill="transparent" onclick="toggleZoneByName('Sillons nasogéniens')"/>
+                        <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="178" cy="216" rx="15" ry="20" fill="transparent" onclick="toggleZoneByName('Sillons nasogéniens')"/>
+                        <ellipse class="wa-hotspot" data-zone="Contour des lèvres" cx="150" cy="234" rx="34" ry="14" fill="transparent" onclick="toggleZoneByName('Contour des lèvres')"/>
+                        <ellipse class="wa-hotspot" data-zone="Volume des lèvres" cx="150" cy="236" rx="28" ry="10" fill="transparent" onclick="toggleZoneByName('Volume des lèvres')"/>
+                        <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="116" cy="252" rx="16" ry="14" fill="transparent" onclick="toggleZoneByName('Plis d\'amertume')"/>
+                        <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="184" cy="252" rx="16" ry="14" fill="transparent" onclick="toggleZoneByName('Plis d\'amertume')"/>
+                        <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="76" cy="245" rx="26" ry="24" fill="transparent" onclick="toggleZoneByName('Angle mandibulaire')"/>
+                        <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="224" cy="245" rx="26" ry="24" fill="transparent" onclick="toggleZoneByName('Angle mandibulaire')"/>
+                        <ellipse class="wa-hotspot" data-zone="Menton" cx="150" cy="270" rx="28" ry="16" fill="transparent" onclick="toggleZoneByName('Menton')"/>
+                        <ellipse class="wa-hotspot" data-zone="Ovale du visage" cx="150" cy="262" rx="85" ry="24" fill="transparent" onclick="toggleZoneByName('Ovale du visage')"/>
+                    </svg>
+
+                </div>
+
+                <!-- Right Labels -->
+                <div class="wa-labels wa-labels-right">
+                    <div class="wa-label" data-zone="Front" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Front</span>
+                    </div>
+                    <div class="wa-label female-only" data-zone="Tempes" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Tempes</span>
+                    </div>
+                    <div class="wa-label" data-zone="Pattes d'oie" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Pattes d'oie</span>
+                    </div>
+                    <div class="wa-label" data-zone="Contour des lèvres" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Contour des lèvres</span>
+                    </div>
+                    <div class="wa-label" data-zone="Volume des lèvres" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Volume des lèvres</span>
+                    </div>
+                    <div class="wa-label" data-zone="Plis d'amertume" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Plis d'amertume</span>
+                    </div>
+                    <div class="wa-label" data-zone="Menton" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Menton</span>
+                    </div>
+                    <div class="wa-label female-only" data-zone="Main" onclick="toggleZone(this)">
+                        <div class="wa-checkbox"></div><span class="wa-connector"></span><span class="wa-label-text">Mains</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected zones summary -->
+            <div id="wa-selected-summary">
+                <span id="wa-summary-label">Zones sélectionnées :</span>
+                <div id="wa-tags-container"><span id="wa-no-selection">Aucune zone sélectionnée</span></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div id="wa-actions">
+                <button id="wa-clear-btn" onclick="clearAllZones()"><i class="fa-solid fa-rotate-left"></i> Effacer tout</button>
+                <button id="wa-send-btn" onclick="sendToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Envoyer via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WA MODAL STYLES -->
+    <style>
+        /* ── Overlay ── */
+        #wa-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,10,18,0.75);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: waFadeIn 0.25s ease;
+        }
+        @@keyframes waFadeIn { from{opacity:0} to{opacity:1} }
+
+        /* ── Modal Box ── */
+        #wa-modal {
+            background: #fff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 860px;
+            max-height: 95vh;
+            overflow-y: auto;
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            animation: waSlideUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @@keyframes waSlideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+        /* ── Close ── */
+        #wa-close-btn {
+            position: absolute; top: 1.2rem; right: 1.4rem;
+            background: none; border: none;
+            font-size: 1.8rem; line-height: 1;
+            color: #888; cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            z-index: 2;
+        }
+        #wa-close-btn:hover { color: #111; transform: rotate(90deg); }
+
+        /* ── Header ── */
+        #wa-modal-header {
+            display: flex; align-items: flex-start; gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        #wa-modal-icon {
+            width: 52px; height: 52px; min-width: 52px;
+            background: linear-gradient(135deg,#25d366,#128c5e);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: white;
+            box-shadow: 0 8px 20px rgba(37,211,102,0.35);
+        }
+        #wa-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; color: #1a1a2e; margin: 0 0 0.3rem;
+        }
+        #wa-modal-sub { font-size: 0.85rem; color: #777; margin: 0; line-height: 1.5; }
+
+        /* ── Gender Toggle ── */
+        #wa-gender-toggle {
+            display: flex; gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .wa-gender-btn {
+            padding: 0.6rem 2rem;
+            border: 2px solid #e5e7eb;
+            background: #f9fafb;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem; font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            color: #555;
+        }
+        .wa-gender-btn.active {
+            background: linear-gradient(135deg,#0ea5e9,#0369a1);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 14px rgba(14,165,233,0.4);
+        }
+        .wa-gender-btn:hover:not(.active) { border-color: #0ea5e9; color: #0ea5e9; }
+
+        /* ── Face Layout ── */
+        #wa-face-layout {
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+            gap: 0.5rem;
+            align-items: center;
+            min-height: 340px;
+        }
+
+        /* ── Labels ── */
+        .wa-labels {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .wa-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .wa-labels-left .wa-label { flex-direction: row-reverse; justify-content: flex-end; }
+        .wa-labels-right .wa-label { flex-direction: row; justify-content: flex-start; }
+        .wa-label-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap;
+            transition: color 0.2s;
+            line-height: 1.3;
+        }
+        .wa-label.selected .wa-label-text { color: #0ea5e9; }
+        .wa-connector {
+            flex: 1; min-width: 8px; max-width: 22px;
+            height: 1px;
+            background: #d1d5db;
+            margin: 0 4px;
+            transition: background 0.2s;
+        }
+        .wa-label.selected .wa-connector { background: #0ea5e9; }
+        .wa-checkbox {
+            width: 16px; height: 16px; min-width: 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            background: white;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .wa-label.selected .wa-checkbox {
+            background: #0ea5e9;
+            border-color: #0ea5e9;
+        }
+        .wa-label.selected .wa-checkbox::after {
+            content: '';
+            position: absolute;
+            top: 1px; left: 4px;
+            width: 5px; height: 9px;
+            border: 2px solid white;
+            border-top: none; border-left: none;
+            transform: rotate(45deg);
+        }
+        .wa-label:hover .wa-checkbox { border-color: #0ea5e9; }
+        .wa-label:hover .wa-label-text { color: #0ea5e9; }
+
+        /* ── Face SVG ── */
+        #wa-face-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wa-face-svg {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.08));
+        }
+        .wa-hotspot {
+            cursor: pointer;
+            transition: fill 0.2s;
+        }
+        .wa-hotspot:hover { fill: rgba(14,165,233,0.15) !important; }
+        .wa-hotspot.active { fill: rgba(14,165,233,0.25) !important; }
+
+        /* ── Selected Summary ── */
+        #wa-selected-summary {
+            margin-top: 1.5rem;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+        #wa-summary-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0369a1;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        #wa-tags-container { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        #wa-no-selection { font-size: 0.82rem; color: #aaa; font-style: italic; }
+        .wa-tag {
+            background: white;
+            border: 1.5px solid #0ea5e9;
+            color: #0369a1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 0.4rem;
+            animation: waTagIn 0.2s ease;
+        }
+        @@keyframes waTagIn { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+        .wa-tag-remove {
+            cursor: pointer; color: #0ea5e9;
+            font-size: 1rem; line-height: 1;
+        }
+        .wa-tag-remove:hover { color: #dc2626; }
+
+        /* ── Action Buttons ── */
+        #wa-actions {
+            display: flex; gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        #wa-clear-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 700;
+            color: #555; cursor: pointer;
+            transition: all 0.2s;
+        }
+        #wa-clear-btn:hover { border-color: #dc2626; color: #dc2626; }
+        #wa-send-btn {
+            padding: 0.7rem 2rem;
+            background: linear-gradient(135deg,#25d366,#128c5e);
+            border: none; border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem; font-weight: 800;
+            color: white; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+            transition: all 0.25s;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        #wa-send-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.5); }
+        #wa-send-btn:active { transform: translateY(0); }
+
+        /* ── female-only / male-only visibility ── */
+        .female-only { display: flex; }
+        .male-mode .female-only { display: none !important; }
+
+        /* ── Responsive ── */
+        @@media (max-width: 700px) {
+            #wa-face-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            .wa-labels { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
+            .wa-labels-left, .wa-labels-right { order: 2; }
+            #wa-face-center { order: 1; }
+            .wa-label { flex-direction: row !important; justify-content: flex-start !important; }
+            .wa-connector { display: none; }
+            .wa-face-svg { max-width: 200px; }
+            #wa-modal { padding: 2rem 1.2rem 1.5rem; }
+        }
+    </style>
+
+    <!-- WA MODAL SCRIPT -->
+    <script>
+        var waSelectedZones = new Set();
+        var waCurrentGender = 'female';
+        var waPhoneNumber = '21623322399';
+        var isWAModalOpen = false;
+
+        function openWAModal() {
+            document.getElementById('wa-modal-overlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            isWAModalOpen = true;
+            // Handle back button closure
+            history.pushState({ waModalId: 'open' }, '', '#whatsapp-zones');
+        }
+
+        function closeWAModal(fromPopState) {
+            document.getElementById('wa-modal-overlay').style.display = 'none';
+            document.body.style.overflow = '';
+            isWAModalOpen = false;
+            // If we're closing NOT via back button, we should remove the hash
+            if (!fromPopState && window.location.hash === '#whatsapp-zones') {
+                history.back();
+            }
+        }
+
+        window.onpopstate = function(event) {
+            if (isWAModalOpen) {
+                closeWAModal(true);
+            }
+        };
+
+        function closeWAModalOutside(e) {
+            if (e.target === document.getElementById('wa-modal-overlay')) closeWAModal();
+        }
+
+        function switchGender(gender) {
+            waCurrentGender = gender;
+            var modal = document.getElementById('wa-modal');
+            if (gender === 'male') {
+                document.getElementById('face-female').style.display = 'none';
+                document.getElementById('face-male').style.display = 'block';
+                document.getElementById('btn-female').classList.remove('active');
+                document.getElementById('btn-male').classList.add('active');
+                modal.classList.add('male-mode');
+            } else {
+                document.getElementById('face-female').style.display = 'block';
+                document.getElementById('face-male').style.display = 'none';
+                document.getElementById('btn-male').classList.remove('active');
+                document.getElementById('btn-female').classList.add('active');
+                modal.classList.remove('male-mode');
+            }
+            if (gender === 'male') {
+                var femaleOnly = ['Tempes', 'Cou', 'Main'];
+                femaleOnly.forEach(function(z) { waSelectedZones.delete(z); });
+                refreshUI();
+            }
+        }
+
+        function toggleZone(labelEl) {
+            var zone = labelEl.getAttribute('data-zone');
+            toggleZoneByName(zone);
+        }
+
+        function toggleZoneByName(zone) {
+            if (waSelectedZones.has(zone)) {
+                waSelectedZones.delete(zone);
+            } else {
+                waSelectedZones.add(zone);
+            }
+            refreshUI();
+        }
+
+        function refreshUI() {
+            document.querySelectorAll('.wa-label').forEach(function(el) {
+                var zone = el.getAttribute('data-zone');
+                if (waSelectedZones.has(zone)) el.classList.add('selected');
+                else el.classList.remove('selected');
+            });
+            document.querySelectorAll('.wa-hotspot').forEach(function(el) {
+                var zone = el.getAttribute('data-zone');
+                if (waSelectedZones.has(zone)) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+            var container = document.getElementById('wa-tags-container');
+            container.innerHTML = '';
+            if (waSelectedZones.size === 0) {
+                container.innerHTML = '<span id="wa-no-selection">Aucune zone sélectionnée</span>';
+            } else {
+                waSelectedZones.forEach(function(zone) {
+                    var tag = document.createElement('span');
+                    tag.className = 'wa-tag';
+                    tag.innerHTML = zone + '<span class="wa-tag-remove" onclick="toggleZoneByName(\'' + zone.replace(/'/g, "\\'") + '\')">&times;</span>';
+                    container.appendChild(tag);
+                });
+            }
+        }
+
+        function clearAllZones() {
+            waSelectedZones.clear();
+            refreshUI();
+        }
+
+        function sendToWhatsApp() {
+            if (waSelectedZones.size === 0) {
+                alert('Veuillez sélectionner au moins une zone à traiter.');
+                return;
+            }
+            
+            var zonesList = Array.from(waSelectedZones).join(', ');
+            var btn = document.getElementById('wa-send-btn');
+            var originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
+            btn.disabled = true;
+
+            fetch('/Home/SubmitWAEnquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'gender=' + encodeURIComponent(waCurrentGender) + '&zones=' + encodeURIComponent(zonesList)
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    var genderIcon = waCurrentGender === 'female' ? '👩' : '👨';
+                    var genderText = waCurrentGender === 'female' ? 'FEMME' : 'HOMME';
+                    
+                    var emojiMap = {
+                        "Front": "💆", "Glabelle": "🤨", "Zone du regard": "👁️", "Tempes": "👤",
+                        "Pattes d'oie": "👀", "Pommettes": "😊", "Nez": "👃", "Joues": "👤",
+                        "Sillons nasogéniens": "👄", "Contour des lèvres": "👄", "Volume des lèvres": "💄",
+                        "Plis d'amertume": "👄", "Angle mandibulaire": "👤", "Menton": "👤",
+                        "Ovale du visage": "✨", "Cou": "🦒", "Mains": "🤲"
+                    };
+
+                    // Building the message string locally first
+                    var msg = '*📍 DR. KECHIDA - CONSULTATION*\n';
+                    msg += '*-----------------------------------------*\n\n';
+                    msg += '*👤 PROFIL* : ' + genderIcon + ' ' + genderText + '\n';
+                    msg += '*📝 RÉF* : #' + data.id + '-WA\n\n';
+                    msg += '*-----------------------------------------*\n';
+                    msg += '*✨ ZONES D\'INTERÊT* :\n\n';
+                    
+                    msg += Array.from(waSelectedZones).map(function(z){ 
+                        var emoji = emojiMap[z] || "•";
+                        return emoji + '  ' + z; 
+                    }).join('\n');
+                    
+                    msg += '\n\n*-----------------------------------------*\n';
+                    msg += '_Bonjour Docteur, je souhaite prendre un rendez-vous, merci de le confirmer._';
+
+                    // Final encoding
+                    var encodedMsg = encodeURIComponent(msg);
+                    window.open('https://wa.me/21623322399?text=' + encodedMsg, '_blank');
+                    
+                    setTimeout(closeWAModal, 500);
+                } else {
+                    alert('Erreur : ' + (data.message || 'Inconnue'));
+                }
+            })
+            .catch(function(err) {
+                console.error(err);
+                alert('Une erreur est survenue.');
+            })
+            .finally(function() {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isWAModalOpen) closeWAModal();
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/animations.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    
+    <script>
+        // Mobile menu is handled by animations.js → initMobileMenu()
+        // No duplicate listener needed here.
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>Patient FAQ</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Patient Resources</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>Patient FAQ</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Find answers to frequently asked questions about our procedures, clinical safety, and what to expect during your journey at our clinic in Sousse.</value></data>
+  <data name="Q1" xml:space="preserve"><value>Is a consultation mandatory before a procedure?</value></data>
+  <data name="A1" xml:space="preserve"><value>Yes, a prior consultation is essential to evaluate the quality of your skin, discuss your expectations, and ensure there are no contraindications. It allows Dr. Kechida to create a personalized safety protocol for you.</value></data>
+  <data name="Q2" xml:space="preserve"><value>How long do Dermal Filler results last?</value></data>
+  <data name="A2" xml:space="preserve"><value>In general, fillers last between 6 and 18 months, depending on the area treated, the type of product used, and your individual metabolism. Dr. Kechida will give you a more precise estimate during your visit.</value></data>
+  <data name="Q3" xml:space="preserve"><value>Are the treatments painful?</value></data>
+  <data name="A3" xml:space="preserve"><value>Most of our procedures are minimally invasive and involve little to no discomfort. For injectable treatments, we use ultra-fine needles and can apply an anesthetic cream if requested. Our laser systems also include advanced cooling technology.</value></data>
+  <data name="Q4" xml:space="preserve"><value>What is the recovery time after a "Liquid Facelift"?</value></data>
+  <data name="A4" xml:space="preserve"><value>One of the key benefits of non-surgical rejuvenation is the minimal recovery time. Most patients can return to work immediately. Slight swelling or minor bruising may occur but usually disappears within 24–48 hours.</value></data>
+  <data name="Q5" xml:space="preserve"><value>Do you offer payment plans?</value></data>
+  <data name="A5" xml:space="preserve"><value>Please contact our reception directly at +216 23 322 399 to discuss current booking policies and promotional packages available for multi-session treatments such as laser hair removal or skin boosters.</value></data>
+  <data name="StillHaveQuestions" xml:space="preserve"><value>Do you still have questions?</value></data>
+  <data name="ContactUsBtn" xml:space="preserve"><value>Contact Our Clinic</value></data>
+</root>

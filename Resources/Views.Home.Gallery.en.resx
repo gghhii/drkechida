@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="HeroTitle" xml:space="preserve"><value>Photo Gallery</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>The Proof is in the Results</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Explore our portfolio of clinical results. Each transformation is performed with precision and a commitment to maintaining the patient's natural character.</value></data>
+  <data name="FilterAll" xml:space="preserve"><value>All Results</value></data>
+  <data name="FilterFace" xml:space="preserve"><value>Face</value></data>
+  <data name="FilterHair" xml:space="preserve"><value>Hair</value></data>
+  <data name="FilterBody" xml:space="preserve"><value>Body</value></data>
+  <data name="BALabel" xml:space="preserve"><value>Before &amp; After</value></data>
+  <data name="Disclaimer" xml:space="preserve"><value>* Individual results may vary. Consultations are necessary to determine suitability for any procedure. All photos are of real patients with full consent for clinical display.</value></data>
+</root>

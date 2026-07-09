@@ -1,0 +1,679 @@
+@model DrKchida.Models.Treatment
+@{
+    ViewData["Title"] = Model?.Name ?? "Détails du Traitement";
+}
+
+@if (Model == null)
+{
+    <div class="container" style="padding: 15rem 0; text-align: center;">
+        <h2 class="text-teal">Traitement non trouvé</h2>
+        <p style="margin: 2rem 0;">Nous n'avons pas pu trouver le traitement demandé.</p>
+        <a asp-action="Services" class="btn-primary">Retour aux Traitements</a>
+    </div>
+}
+else
+{
+    <!-- PRO HEADER SECTION -->
+    <header class="treatment-header">
+        <div class="container">
+            <div class="header-grid">
+                <div class="header-content fade-in-up">
+                    <nav class="breadcrumb-pro">
+                        <a asp-action="Services">Traitements</a>
+                        <span class="sep">/</span>
+                        <a asp-action="ServiceDetails" asp-route-service="@Model.ServiceCategory?.Slug">@Model.ServiceCategory?.Title</a>
+                        <span class="sep">/</span>
+                        <span class="current">@Model.Name</span>
+                    </nav>
+
+                    @if (!string.IsNullOrEmpty(Model.SubCategory))
+                    {
+                        <span class="badge-pro">@Model.SubCategory</span>
+                    }
+
+                    <h1 class="header-title">@Model.Name</h1>
+                    
+                    <div class="header-meta">
+                        @if (!string.IsNullOrEmpty(Model.TargetArea))
+                        {
+                            <div class="meta-item">
+                                <span class="meta-label">Zones Ciblées</span>
+                                <span class="meta-value">
+                                    @foreach (var area in Model.TargetArea.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                                    {
+                                        <span class="area-tag">
+                                            @if (area.ToLower() == "face") { <text>Visage</text> }
+                                            else if (area.ToLower() == "body") { <text>Corps</text> }
+                                            else if (area.ToLower() == "hair") { <text>Cheveux</text> }
+                                            else if (area.ToLower() == "laser") { <text>Laser</text> }
+                                            else { <text>@area</text> }
+                                        </span>
+                                    }
+                                </span>
+                            </div>
+                        }
+                        <div class="meta-item">
+                            <span class="meta-label">Catégorie</span>
+                            <span class="meta-value">@Model.ServiceCategory?.Title</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-image-wrapper fade-in-right">
+                    <div class="header-image-card">
+                        @{
+                            var displayImage = Model.ImageUrl;
+                            if (string.IsNullOrEmpty(displayImage))
+                            {
+                                var slug = Model.ServiceCategory?.Slug;
+                                if (slug == "injectables") displayImage = "/images/h1.jpeg";
+                                else if (slug == "biostimulation") displayImage = "/images/h6.png";
+                                else if (slug == "regenerative") displayImage = "/images/rag.png";
+                                else if (slug == "technologie") displayImage = "/images/las.png";
+                                else displayImage = Model.ServiceCategory?.ImageUrl ?? "/images/services_hero.png";
+                            }
+                        }
+                        <img src="@displayImage" alt="@Model.Name" />
+                    </div>
+                    <!-- Floating Accent Card -->
+                    <div class="floating-card">
+                        <div class="floating-icon">
+                           @if (!string.IsNullOrEmpty(Model.Icon))
+                           {
+                               @Html.Raw(Model.Icon)
+                           }
+                           else 
+                           {
+                               <span>✨</span>
+                           }
+                        </div>
+                        <div class="floating-text">
+                            <span class="floating-label">Résultats</span>
+                            <span class="floating-value">Visible & Naturel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT LAYOUT -->
+    <div class="treatment-body">
+        <div class="container">
+            <div class="layout-grid">
+                
+                <!-- LEFT CONTENT COLUMN -->
+                <main class="content-column">
+                    
+                    <!-- OVERVIEW -->
+                    <section class="content-section" id="overview">
+                        <h2 class="section-heading">À Propos</h2>
+                        <div class="rich-text">
+                            <p class="lead-text">
+                                Découvrez une approche raffinée de la médecine esthétique avec notre traitement @Model.Name. 
+                                Conçu pour sublimer votre beauté naturelle, ce protocole allie expertise médicale et technologies de pointe.
+                            </p>
+                            <div class="description-body">
+                                @if (!string.IsNullOrEmpty(Model.FullDescription))
+                                {
+                                    @Html.Raw(Model.FullDescription.Replace("\n", "<br>"))
+                                }
+                                else
+                                {
+                                    <p>@Model.Description</p>
+                                }
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- BENEFITS GRID -->
+                    <section class="content-section" id="benefits">
+                        <h2 class="section-heading">Bénéfices Clés</h2>
+                        <div class="benefits-grid">
+                            @if (!string.IsNullOrEmpty(Model.Benefits))
+                            {
+                                var benefitsList = Model.Benefits.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var benefit in benefitsList)
+                                {
+                                    var parts = benefit.Split(':', 2);
+                                    var title = parts.Length > 0 ? parts[0] : "Bénéfice";
+                                    var desc = parts.Length > 1 ? parts[1] : "";
+
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg>
+                                        </div>
+                                        <div class="benefit-details">
+                                            <h3>@title</h3>
+                                            <p>@desc</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <!-- Default placeholder if empty -->
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    </div>
+                                    <div class="benefit-details">
+                                        <h3>Structure & Volume</h3>
+                                        <p>Restitution harmonieuse des volumes pour un aspect rajeuni.</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    </div>
+                                    <div class="benefit-details">
+                                        <h3>Résultat Naturel</h3>
+                                        <p>Une amélioration subtile qui respecte l'identité de votre visage.</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+
+                    <!-- PROCEDURE STEPS -->
+                    <section class="content-section" id="process">
+                        <h2 class="section-heading">Le Déroulement</h2>
+                        <div class="process-list">
+                            @if (!string.IsNullOrEmpty(Model.ProcedureSteps))
+                            {
+                                var stepsList = Model.ProcedureSteps.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                                int stepIndex = 1;
+                                foreach (var step in stepsList)
+                                {
+                                    var parts = step.Split(':', 2);
+                                    var title = parts.Length > 0 ? parts[0] : "Étape " + stepIndex;
+                                    var desc = parts.Length > 1 ? parts[1] : "";
+
+                                    <div class="process-step">
+                                        <div class="step-marker">@stepIndex</div>
+                                        <div class="step-content">
+                                            <h3>@title</h3>
+                                            <p>@desc</p>
+                                        </div>
+                                    </div>
+                                    stepIndex++;
+                                }
+                            }
+                            else
+                            {
+                                <!-- Default Placeholders -->
+                                <div class="process-step">
+                                    <div class="step-marker">1</div>
+                                    <div class="step-content">
+                                        <h3>Consultation Initiale</h3>
+                                        <p>Analyse précise de vos besoins et élaboration d'un plan de traitement sur-mesure.</p>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-marker">2</div>
+                                    <div class="step-content">
+                                        <h3>Le Traitement</h3>
+                                        <p>Réalisation de l'acte technique dans un environnement médical sécurisé et confortable.</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                    
+                </main>
+
+                <!-- RIGHT SIDEBAR COLUMN -->
+                <aside class="sidebar-column">
+                    <div class="sticky-sidebar">
+                        
+                        <!-- Booking Card -->
+                        <div class="sidebar-card booking-card">
+                            <h3>Prêt à commencer ?</h3>
+                            <p>Réservez votre consultation pour discuter de ce traitement avec le Dr. Kchida.</p>
+                            <a asp-action="Contact" class="btn-book-full">
+                                <span>Prendre Rendez-vous</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="sidebar-card links-card">
+                            <h4>Dans la même collection</h4>
+                            <ul class="related-links">
+                                <li>
+                                    <a asp-action="ServiceDetails" asp-route-service="@Model.ServiceCategory?.Slug">
+                                        Voir toutes les procédures @Model.ServiceCategory?.Title
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Gallery">
+                                        Voir la galerie Avant/Après
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info Mini -->
+                        <div class="sidebar-card contact-mini">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <h5>Besoin de conseils ?</h5>
+                                <p>Appelez-nous au <a href="tel:+21623322399">+216 23 322 399</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    /* CLINICAL LUXURY THEME VARIABLES */
+    :root {
+        --cl-primary: #0f172a;      /* Dark Slate */
+        --cl-accent: #0ea5e9;       /* Medical Blue/Teal */
+        --cl-accent-soft: #e0f2fe;  /* Light Blue Bg */
+        --cl-text: #334155;         /* Slate 700 */
+        --cl-text-light: #64748b;   /* Slate 500 */
+        --cl-bg: #ffffff;
+        --cl-bg-alt: #f8fafc;       /* Slate 50 */
+        --cl-border: #e2e8f0;       /* Slate 200 */
+        --cl-font-serif: 'Playfair Display', serif;
+        --cl-font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* HEADER */
+    .treatment-header {
+        background-color: var(--cl-bg-alt);
+        padding: 8rem 0 6rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+    }
+
+    .breadcrumb-pro {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--cl-text-light);
+    }
+    .breadcrumb-pro a { color: var(--cl-text-light); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb-pro a:hover { color: var(--cl-accent); }
+    .breadcrumb-pro .sep { margin: 0 0.8rem; color: var(--cl-border); }
+    .breadcrumb-pro .current { color: var(--cl-primary); font-weight: 600; }
+
+    .badge-pro {
+        display: inline-block;
+        background: var(--cl-accent-soft);
+        color: var(--cl-accent);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+    }
+
+    .header-title {
+        font-family: var(--cl-font-serif);
+        font-size: 4rem;
+        color: var(--cl-primary);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+    }
+
+    .header-meta {
+        display: flex;
+        gap: 4rem;
+        border-top: 1px solid var(--cl-border);
+        padding-top: 2rem;
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .meta-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--cl-text-light);
+        font-weight: 600;
+    }
+
+    .meta-value {
+        font-size: 1.1rem;
+        color: var(--cl-primary);
+        font-weight: 500;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .area-tag {
+        background: white;
+        border: 1px solid var(--cl-border);
+        padding: 0.2rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+
+    /* HEADER IMAGES */
+    .header-image-wrapper {
+        position: relative;
+    }
+
+    .header-image-card {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+        height: 500px;
+    }
+
+    .header-image-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .floating-card {
+        position: absolute;
+        bottom: 30px;
+        left: -40px;
+        background: white;
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--cl-accent-soft);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--cl-accent);
+    }
+
+    .floating-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .floating-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--cl-text-light);
+        font-weight: 700;
+    }
+    .floating-value {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--cl-primary);
+        font-family: var(--cl-font-serif);
+    }
+
+    /* LAYOUT BODY */
+    .treatment-body {
+        padding: 6rem 0;
+        background: white;
+    }
+
+    .layout-grid {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 6rem;
+    }
+
+    .content-section {
+        margin-bottom: 6rem;
+    }
+
+    .section-heading {
+        font-family: var(--cl-font-serif);
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+        color: var(--cl-primary);
+        position: relative;
+        padding-bottom: 1rem;
+    }
+    
+    .section-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--cl-accent);
+    }
+
+    /* TYPOGRAPHY */
+    .lead-text {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: var(--cl-primary);
+        margin-bottom: 2rem;
+        font-weight: 500;
+    }
+
+    .description-body p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--cl-text);
+        margin-bottom: 1.5rem;
+    }
+
+    /* BENEFITS GRID */
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .benefit-item {
+        background: var(--cl-bg-alt);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--cl-border);
+        transition: transform 0.3s;
+    }
+    .benefit-item:hover { transform: translateY(-5px); border-color: var(--cl-accent); }
+
+    .benefit-icon {
+        width: 48px;
+        height: 48px;
+        background: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cl-accent);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .benefit-details h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--cl-primary); font-family: var(--cl-font-serif); }
+    .benefit-details p { font-size: 0.95rem; color: var(--cl-text-light); line-height: 1.5; margin: 0; }
+
+    /* PROCESS STEPS */
+    .process-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .process-step {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+
+    .step-marker {
+        width: 40px;
+        height: 40px;
+        background: var(--cl-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-family: var(--cl-font-serif);
+        font-size: 1.2rem;
+    }
+
+    .step-content {
+        padding-top: 0.3rem;
+    }
+
+    .step-content h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--cl-primary); font-family: var(--cl-font-serif); }
+    .step-content p { font-size: 1rem; color: var(--cl-text); line-height: 1.6; margin: 0; }
+
+    /* SIDEBAR */
+    .sticky-sidebar {
+        position: sticky;
+        top: 120px;
+    }
+
+    .sidebar-card {
+        background: white;
+        border: 1px solid var(--cl-border);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+    }
+
+    .booking-card {
+        background: var(--cl-primary);
+        color: white;
+        border: none;
+        text-align: center;
+    }
+
+    .booking-card h3 { color: white; font-family: var(--cl-font-serif); font-size: 1.8rem; margin-bottom: 1rem; }
+    .booking-card p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 0.95rem; }
+
+    .btn-book-full {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        background: white;
+        color: var(--cl-primary);
+        font-weight: 700;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: 0.2s;
+        gap: 0.5rem;
+    }
+    .btn-book-full:hover { background: var(--cl-accent); color: white; }
+
+    .links-card h4, .contact-mini h5 {
+        font-family: var(--cl-font-sans);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        color: var(--cl-primary);
+    }
+
+    .related-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .related-links li { margin-bottom: 0.8rem; }
+    .related-links a {
+        color: var(--cl-text);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: 0.2s;
+        display: block;
+        padding-left: 1rem;
+        border-left: 2px solid transparent;
+    }
+    .related-links a:hover {
+        color: var(--cl-accent);
+        border-left-color: var(--cl-accent);
+        padding-left: 1.2rem;
+    }
+
+    .contact-mini {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--cl-bg-alt);
+    }
+    .contact-icon {
+        color: var(--cl-accent);
+    }
+    .contact-mini p { margin: 0; font-size: 0.9rem; }
+    .contact-mini a { color: var(--cl-primary); font-weight: 700; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @@media (max-width: 1024px) {
+        .layout-grid {
+            grid-template-columns: 1fr;
+        }
+        .header-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        .header-image-card {
+            height: 400px;
+        }
+        .header-title {
+            font-size: 3rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .header-image-card {
+            height: 300px;
+        }
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+        .floating-card {
+            display: none;
+        }
+    }
+
+    /* ANIMATIONS */
+    @@keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+    .fade-in-right { animation: fadeInRight 0.8s ease-out 0.2s both; }
+
+</style>

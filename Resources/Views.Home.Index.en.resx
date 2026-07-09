@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>Home</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>Enhancing Natural Beauty with Confidence &amp; Precision</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Personalized Aesthetic Medicine and Advanced Rejuvenation by Dr. Kaouthar KECHIDA in Sousse, Tunisia.</value></data>
+  <data name="HeroCTA1" xml:space="preserve"><value>Book a Consultation</value></data>
+  <data name="HeroCTA2" xml:space="preserve"><value>View Procedures</value></data>
+  
+  <data name="DirectorTitle" xml:space="preserve"><value>Medical Director</value></data>
+  <data name="MeetDoctorEyebrow" xml:space="preserve"><value>Meet the Doctor</value></data>
+  <data name="Quote" xml:space="preserve"><value>Beauty is not about changing who you are, but about revealing the best version of yourself.</value></data>
+  <data name="DoctorBio" xml:space="preserve"><value>As a dedicated specialist in Aesthetic Medicine, Dr. Kechida combines strict medical rigor with a refined artistic vision. Her philosophy is based on restoration—respecting anatomical balance to enhance your natural features without altering your essence.</value></data>
+  <data name="SeePhilosophy" xml:space="preserve"><value>See Her Philosophy</value></data>
+  
+  <data name="ProceduresEyebrow" xml:space="preserve"><value>Our Procedures</value></data>
+  <data name="ProceduresTitle" xml:space="preserve"><value>An Artist's Eye, a Surgeon's Precision</value></data>
+  <data name="InjectablesTitle" xml:space="preserve"><value>Art of Injectables</value></data>
+  <data name="InjectablesDesc" xml:space="preserve"><value>Precision injectables for facial rejuvenation.</value></data>
+  <data name="BiostimulationTitle" xml:space="preserve"><value>Biostimulation</value></data>
+  <data name="BiostimulationDesc" xml:space="preserve"><value>Restoration of structure and elasticity from within.</value></data>
+  <data name="RegenerativeTitle" xml:space="preserve"><value>Regenerative Care</value></data>
+  <data name="RegenerativeDesc" xml:space="preserve"><value>Stem cells and growth factors for deep healing.</value></data>
+  <data name="TechnologyTitle" xml:space="preserve"><value>Advanced Technology</value></data>
+  <data name="TechnologyDesc" xml:space="preserve"><value>State-of-the-art lasers and energy-based devices.</value></data>
+  <data name="SeeMore" xml:space="preserve"><value>See More</value></data>
+  
+  <data name="ResultsEyebrow" xml:space="preserve"><value>Witness the Results</value></data>
+  <data name="ResultsTitle" xml:space="preserve"><value>Scientific Artistry in Motion</value></data>
+  <data name="ResultsDesc" xml:space="preserve"><value>Explore the future of regenerative medicine. Dr. Kechida is one of the few specialists in Tunisia practicing advanced Nano Fat and Stem Cell procedures.</value></data>
+  <data name="FeaturedTreatment" xml:space="preserve"><value>Featured Treatment</value></data>
+  <data name="NanoFatTitle" xml:space="preserve"><value>Nano Fat &amp; Stem Cells</value></data>
+  <data name="NanoFatDesc" xml:space="preserve"><value>Dr. Kechida is one of the few specialists in Tunisia practicing these advanced regenerative procedures.</value></data>
+  <data name="NaturalTitle" xml:space="preserve"><value>Natural Rejuvenation</value></data>
+  <data name="NaturalDesc" xml:space="preserve"><value>Discover the power of advanced stem cell therapy for deep tissue healing and natural restoration.</value></data>
+  <data name="SeeAllVideos" xml:space="preserve"><value>See All Videos</value></data>
+  
+  <data name="TestimonialsEyebrow" xml:space="preserve"><value>Testimonials</value></data>
+  <data name="TestimonialsTitle" xml:space="preserve"><value>Experiences of Our Patients</value></data>
+  <data name="Testimonial1Text" xml:space="preserve"><value>I feel incredible after my treatment with Dr. Kechida — extremely professional and caring.</value></data>
+  <data name="Testimonial1Author" xml:space="preserve"><value>Sarah M.</value></data>
+  <data name="Testimonial2Text" xml:space="preserve"><value>The results are so natural. Dr. Kechida has a true artist's eye. I highly recommend her clinic in Sousse.</value></data>
+  <data name="Testimonial2Author" xml:space="preserve"><value>Ahmed K.</value></data>
+  <data name="Testimonial3Text" xml:space="preserve"><value>Finally found a doctor who listens. The follow-up was exceptional and the procedure painless.</value></data>
+  <data name="Testimonial3Author" xml:space="preserve"><value>Elena R.</value></data>
+  
+  <data name="GalleryEyebrow" xml:space="preserve"><value>Photo Gallery</value></data>
+  <data name="GalleryTitle" xml:space="preserve"><value>Transformations That Speak for Themselves</value></data>
+  <data name="GalleryDesc" xml:space="preserve"><value>Discover the difference that personalized care and advanced techniques can make. Our gallery showcases real results from patients who trust Dr. Kechida.</value></data>
+  <data name="SeeAllGallery" xml:space="preserve"><value>See All Gallery</value></data>
+  <data name="RealResult" xml:space="preserve"><value>Real Result</value></data>
+  
+  <data name="CTATitle" xml:space="preserve"><value>Ready to Start Your Journey?</value></data>
+  <data name="CTADesc" xml:space="preserve"><value>Schedule a consultation today and discover the path to a more confident you.</value></data>
+  <data name="RequestConsultation" xml:space="preserve"><value>Request a Consultation</value></data>
+  <data name="CallDirectly" xml:space="preserve"><value>Call Directly</value></data>
+</root>

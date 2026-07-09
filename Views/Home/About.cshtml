@@ -1,0 +1,371 @@
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<!-- 1. HERO SECTION -->
+<section class="hero-bg" style="background-image: url('/images/cabinet_new.png');">
+    <div class="hero-bg-overlay"></div>
+    <div class="container fade-in">
+        <span class="eyebrow">@Localizer["TheDoctor"]</span>
+        <h1 style="font-size: clamp(3rem, 12vw, 6rem); line-height: 1; margin-bottom: 2rem; overflow-wrap: break-word; hyphens: auto;">Dr. Kaouthar<br>KECHIDA</h1>
+        <div class="accent-line" style="width: 120px; height: 6px; background-color: var(--c-white);"></div>
+        <p class="hero-intro" style="margin-top: 3rem; color: var(--c-white); font-family: var(--font-serif); font-style: italic; opacity: 0.9;">
+            "@Localizer["HeroIntro"]"
+        </p>
+    </div>
+</section>
+
+<!-- 2. THE EDITORIAL PROFILE - ENHANCED -->
+<section class="section bg-white" style="position: relative; padding-bottom: 0;">
+    <div class="container">
+        <div class="editorial-grid">
+            
+            <!-- STICKY PORTRAIT SIDEBAR -->
+            <div class="editorial-sidebar">
+                <div class="sticky-portrait">
+                    <div class="portrait-frame-lux">
+                        <img src="~/images/profile.png" alt="Dr. Kaouthar Kechida" class="portrait-img" />
+                        <div class="frame-accent"></div>
+                    </div>
+                    <div class="signature-block">
+                        <span class="doc-name">Dr. Kaouthar Kechida</span>
+                        <span class="doc-title">@Localizer["MedicalDirector"]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NARRATIVE CONTENT -->
+            <div class="editorial-content">
+                <span class="eyebrow">@Localizer["Philosophy"]</span>
+                <h2 class="editorial-headline">@Html.Raw(Localizer["ArtOfGrace"].Value)</h2>
+                
+                <p class="lead-paragraph">
+                    <span class="drop-cap">@Localizer["DropCap"]</span>@Localizer["Narrative1"]
+                </p>
+
+                <p>
+                    @Localizer["Narrative2"]
+                </p>
+
+                <blockquote class="editorial-quote">
+                    "@Localizer["Quote"]"
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. DETAILED RESUME SECTION - ENHANCED TIMELINE -->
+<section class="section bg-grey-light" style="padding-top: 5rem;">
+    <div class="container">
+        <div class="resume-grid">
+            
+            <!-- LEFT COL: EXPERIENCE -->
+            <div class="resume-col">
+                <h3 class="resume-heading"><i class="fa-solid fa-briefcase" style="margin-right: 1rem; font-size: 0.8em; opacity: 0.7;"></i> @Localizer["ProfessionalExperience"]</h3>
+                <div class="timeline-container">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">2012 — @Localizer["Present"]</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["PrivateClinic"]</h4>
+                            <p class="location">@Localizer["ClinicLocation"]</p>
+                            <p>@Localizer["ClinicDesc"]</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">2006 — 2019</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["IntlProjectsDirector"]</h4>
+                            <p class="role">@Localizer["CollabSalahKamel"]</p>
+                            <p class="location">Arabie Saoudite • Égypte • Liban • France (Juan-les-Pins, Cannes)</p>
+                            <ul class="role-details">
+                                <li>@Localizer["ProjectDirectorSpa"] (2006-2007)</li>
+                                <li>Juan-les-Pins, Cannes, France (2017-2019)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">1994 — 2019</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["ThalassoDirector"]</h4>
+                            <p class="role">@Localizer["MedicalOperationalMgmt"]</p>
+                            <ul class="role-details">
+                                <li><strong>Royal Kenz</strong>, Tunisie (2017-2019)</li>
+                                <li><strong>Imperial Marhaba & Tour Khalef Spa</strong> (2008-2009)</li>
+                                <li><strong>Hasdrubal Thalassa</strong> ('01-'06)</li>
+                                <li><strong>Darint Atlantic Center</strong>, Maroc (2000-2001)</li>
+                                <li><strong>Abou Nawas Boujafar</strong>, Tunisie (1994-1999)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT COL: EDUCATION -->
+            <div class="resume-col">
+                <h3 class="resume-heading"><i class="fa-solid fa-graduation-cap" style="margin-right: 1rem; font-size: 0.8em; opacity: 0.7;"></i> @Localizer["EducationFormation"]</h3>
+                <div class="timeline-container">
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">2019</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["MasterAnatomy"]</h4>
+                            <p class="role">@Localizer["InjectionTechniques"]</p>
+                            <p class="location">Université de Nice, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">2016 — 2017</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["LaserDermatologyDiploma"]</h4>
+                            <p class="location">@Localizer["TurkiFormation"]</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">1996 — 1997</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["MesotherapyIntern"]</h4>
+                            <p class="location">Société Française de Mésothérapie, France</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="resume-year">1985 — 1993</div>
+                        <div class="resume-content">
+                            <h4>@Localizer["MedicalDoctorate"]</h4>
+                            <p class="location">Faculté de Médecine IBN EL JAZZAR, Tunisie</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CERTIFICATES SUB-SECTION -->
+                <div class="cert-block fade-in" style="margin-top: 4rem; padding: 2rem; background: white; border-left: 3px solid var(--c-primary); border-radius: 0 8px 8px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 class="resume-heading" style="margin-bottom: 1.5rem; font-size: 1.5rem; border: none; padding: 0;">@Localizer["CertificationsCongresses"]</h3>
+                    <ul class="cert-list">
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>IMCAS Paris</strong> (2020, 2021, 2023, 2024)</li>
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>TAFAS Tunis</strong> (2018, 2019, 2020, 2021, 2022)</li>
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>AIDL</strong> (2016, 2017, 2018, 2019, 2020, 2021, 2023, 2024, 2025)</li>
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>@Localizer["EstheticCongressParis"]</strong> (Cycle 2013, 2014, 2019)</li>
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>@Localizer["EstheticCongressMonaco"]</strong> (Nov 2018)</li>
+                        <li><i class="fa-solid fa-certificate" style="color: var(--c-primary); margin-right: 10px;"></i> <strong>@Localizer["DermatologyCert"]</strong> (Jan 2017)</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* EDITORIAL LAYOUT SYSTEM */
+    .editorial-grid {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 6rem;
+        align-items: start;
+        position: relative;
+    }
+
+    .sticky-portrait {
+        position: sticky;
+        top: 130px; 
+        z-index: 10;
+        padding-bottom: 2rem;
+    }
+
+    .portrait-frame-lux {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    
+    .portrait-frame-lux img {
+        width: 100%;
+        display: block;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        position: relative;
+        z-index: 2;
+    }
+    
+    .frame-accent {
+        position: absolute;
+        top: 20px;
+        left: -20px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--c-primary);
+        z-index: 1;
+        opacity: 0.3;
+    }
+
+    .signature-block {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .doc-name {
+        display: block;
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        color: var(--c-black);
+        margin-bottom: 0.2rem;
+    }
+
+    .doc-title {
+        display: block;
+        font-family: var(--font-sans);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--c-primary);
+    }
+
+    .editorial-headline {
+        font-size: 4rem;
+        line-height: 1.1;
+        margin-bottom: 2.5rem;
+        font-family: var(--font-serif);
+        color: var(--c-black);
+    }
+
+    .lead-paragraph {
+        font-size: 1.25rem;
+        color: var(--c-charcoal);
+        font-weight: 300;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+    
+    .drop-cap {
+        float: left;
+        font-size: 4.5rem;
+        line-height: 0.8;
+        margin-right: 1.5rem;
+        padding-top: 0.5rem;
+        font-family: var(--font-serif);
+        color: var(--c-primary);
+    }
+
+    .resume-heading {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        color: var(--c-black);
+        border-bottom: 3px solid var(--c-primary);
+        padding-bottom: 1rem;
+        margin-bottom: 3rem;
+        display: inline-block;
+    }
+
+    .timeline-container {
+        position: relative;
+        padding-left: 2rem;
+        border-left: 1px solid #e0e0e0;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: -2.45rem;
+        top: 0.4rem;
+        width: 0.9rem;
+        height: 0.9rem;
+        background: white;
+        border: 2px solid var(--c-primary);
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px #f8f9fa;
+    }
+
+    .timeline-item:hover .timeline-marker {
+        background: var(--c-primary);
+    }
+
+    .resume-year {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: var(--c-primary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        background: rgba(var(--c-primary-rgb, 14, 165, 233), 0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+    }
+
+    .resume-content h4 {
+        font-family: var(--font-serif);
+        font-size: 1.4rem;
+        color: var(--c-black);
+        margin-bottom: 0.4rem;
+    }
+
+    .resume-content p {
+        font-size: 1rem;
+        color: var(--c-charcoal);
+        line-height: 1.6;
+    }
+    
+    .role-details {
+        margin-top: 1rem;
+        list-style: none;
+        padding: 0;
+    }
+    .role-details li {
+        position: relative;
+        padding-left: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #666;
+    }
+    .role-details li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--c-primary);
+    }
+
+    .cert-list { list-style: none; padding: 0; }
+    .cert-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--c-charcoal);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @@media (max-width: 1024px) {
+        .editorial-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        .sticky-portrait {
+            position: relative;
+            top: 0;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .editorial-headline { font-size: clamp(2rem, 8vw, 3rem); text-align: center; overflow-wrap: break-word; }
+        .signature-block { text-align: center; margin-bottom: 2rem; }
+    }
+</style>

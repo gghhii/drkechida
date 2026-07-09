@@ -1,0 +1,334 @@
+@model DrKchida.Models.ServiceCategory
+@{
+    ViewData["Title"] = Model?.Title ?? "Détails du Traitement";
+}
+
+@if (Model == null)
+{
+    <div class="container" style="padding: 15rem 0; text-align: center;">
+        <h2 class="text-teal">Traitement non trouvé</h2>
+        <p style="margin: 2rem 0;">Nous n'avons pas pu trouver la catégorie de soin demandée.</p>
+        <a asp-action="Services" class="btn-miller-primary">Retour aux Traitements</a>
+    </div>
+}
+else
+{
+    var headerImage = Model.ImageUrl;
+    if (Model.Slug == "injectables") headerImage = "/images/h1.jpeg";
+    else if (Model.Slug == "biostimulation") headerImage = "/images/h6.png";
+    else if (Model.Slug == "regenerative") headerImage = "/images/h3.png";
+    else if (Model.Slug == "technologie") headerImage = "/images/h5.png";
+    
+    if (string.IsNullOrEmpty(headerImage)) headerImage = "/images/services_hero.png";
+
+    <section class="section hero-bg" style="background-image: url('@headerImage'); min-height: 80vh; padding-top: 14rem; padding-bottom: 10rem;">
+        <div class="hero-bg-overlay" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);"></div>
+        <div class="container fade-in" style="position: relative; z-index: 2;">
+            <div class="row" style="display: flex; gap: 4rem; align-items: center;">
+                <div style="flex: 1.5;">
+                    <span class="eyebrow" style="margin-bottom: 2rem; color: var(--c-primary-light) !important;">@Model.Subtitle</span>
+                    <h1 class="text-white" style="font-size: clamp(2.5rem, 10vw, 5.5rem); line-height: 1; margin-bottom: 3rem; font-family: var(--font-serif); text-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-wrap: break-word; hyphens: auto;">@Model.Title</h1>
+                    <div class="accent-line" style="width: 150px; height: 4px; background: var(--c-gradient-1);"></div>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 1.25rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin: 0; font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                        @Model.Description
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK EXPLORER BAR -->
+    <div class="quick-explorer-wrapper">
+        <div class="quick-explorer-inner">
+            <a href="javascript:void(0)" class="quick-link active" onclick="filterTreatments('all', this)">Tous les Soins</a>
+            <a href="javascript:void(0)" class="quick-link" onclick="filterTreatments('face', this)">Visage</a>
+            <a href="javascript:void(0)" class="quick-link" onclick="filterTreatments('body', this)">Corps</a>
+            <a href="javascript:void(0)" class="quick-link" onclick="filterTreatments('hair', this)">Cheveux</a>
+            <a href="javascript:void(0)" class="quick-link" onclick="filterTreatments('laser', this)">Laser</a>
+        </div>
+    </div>
+
+    <!-- TREATMENTS MENU -->
+    <section class="section" style="background-color: var(--c-grey-50);">
+        <div class="container">
+            @{
+                var groupedTreatments = Model.Treatments?.GroupBy(t => t.SubCategory ?? "Expertise Signature") ?? Enumerable.Empty<IGrouping<string, DrKchida.Models.Treatment>>();
+            }
+
+            @foreach (var group in groupedTreatments)
+            {
+                <div class="treatment-group" style="margin-bottom: 10rem;">
+                    <div class="group-header" style="margin-bottom: 5rem; text-align: center;">
+                        <span style="font-family: var(--font-sans); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; color: var(--c-primary); margin-bottom: 1.5rem; display: block;">Collection</span>
+                        <h2 style="font-size: clamp(2rem, 8vw, 3rem); font-family: var(--font-serif); overflow-wrap: break-word; hyphens: auto;">@group.Key</h2>
+                        <div style="width: 60px; height: 1px; background: #000; margin: 2rem auto; opacity: 0.2;"></div>
+                    </div>
+
+                    <div class="grid grid-3 treatment-grid" style="gap: 2rem;">
+                        @foreach (var treatment in group)
+                        {
+                            <a href="@Url.Action("TreatmentDetails", "Home", new { id = treatment.Id })" class="luxury-treatment-card-link">
+                                <div class="luxury-treatment-card" data-area="@(treatment.TargetArea?.ToLower() ?? "all")">
+                                    @if (!string.IsNullOrEmpty(treatment.ImageUrl))
+                                    {
+                                        <div class="treatment-image-container">
+                                            <img src="@treatment.ImageUrl" alt="@treatment.Name" class="treatment-img" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="treatment-icon-container">
+                                            <div class="treatment-icon">@treatment.Icon</div>
+                                        </div>
+                                    }
+                                    
+                                    <div class="treatment-content-body">
+                                        <h3 class="treatment-name">@treatment.Name</h3>
+                                        <p class="treatment-desc">@treatment.Description</p>
+                                        <div class="treatment-footer">
+                                            <span class="btn-rdv">
+                                                EN SAVOIR PLUS
+                                                <div class="btn-rdv-line"></div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+            
+            <div style="text-align: center; margin-top: 5rem;">
+                <a asp-action="Services" class="btn-miller-secondary">Découvrir d'autres collections</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section bg-black text-white" style="overflow: hidden; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('/images/cabinet.png?v=2'); background-size: cover; opacity: 0.3; filter: grayscale(0.4);"></div>
+        <div class="container text-block-center" style="position: relative; z-index: 1;">
+            <span class="eyebrow" style="color: var(--c-primary-light);">Consultation</span>
+            <h2 class="text-white" style="font-size: 4rem; margin-bottom: 3rem;">Sublimez Votre Regard</h2>
+            <p style="color: rgba(255,255,255,0.7); margin: 0 auto 4rem; max-width: 600px; font-size: 1.2rem;">
+                Chaque transformation commence par un dialogue. Confiez-nous vos aspirations lors d'un entretien personnalisé.
+            </p>
+            <a asp-action="Contact" class="btn-primary" style="padding: 1.5rem 4rem;">
+                <span>Planifier ma consultation</span>
+            </a>
+        </div>
+    </section>
+}
+
+<style>
+    .luxury-treatment-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .luxury-treatment-card {
+        background: white;
+        padding: 0;
+        border: 1px solid var(--c-grey-200);
+        display: flex;
+        flex-direction: column;
+        transition: 0.4s var(--transition-smooth);
+        overflow: hidden; /* To clip the zoomed image */
+    }
+
+    .luxury-treatment-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        border-color: var(--c-primary-light);
+    }
+    
+    .treatment-image-container {
+        height: 250px;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .treatment-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    .luxury-treatment-card:hover .treatment-img {
+        transform: scale(1.08);
+    }
+    
+    .treatment-icon-container {
+        padding: 3rem 3rem 0;
+    }
+
+    .treatment-content-body {
+        padding: 2rem 3rem 3rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .treatment-icon {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        opacity: 0.8;
+    }
+
+    .treatment-name {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--c-black);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.5px;
+        text-transform: uppercase;
+    }
+
+    .treatment-desc {
+        font-size: 0.95rem;
+        color: var(--c-grey-500);
+        line-height: 1.7;
+        margin-bottom: 3rem;
+        flex-grow: 1;
+    }
+
+    .btn-rdv {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        color: var(--c-black);
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+    }
+
+    .btn-rdv-line {
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 20px;
+        height: 2px;
+        background: var(--c-primary);
+        transition: 0.3s;
+    }
+
+    .luxury-treatment-card:hover .btn-rdv-line {
+        width: 100%;
+    }
+
+    .quick-link {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        color: var(--c-grey-400);
+        position: relative;
+        padding: 0.5rem 0;
+        transition: 0.3s;
+    }
+
+    .quick-link:hover, .quick-link.active {
+        color: var(--c-primary);
+    }
+
+    .quick-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--c-primary);
+        transition: 0.3s;
+    }
+
+    .quick-link:hover::after {
+        width: 100%;
+    }
+
+    .quick-explorer-wrapper {
+        background: white;
+        border-bottom: 1px solid var(--c-grey-100);
+        position: sticky;
+        top: var(--header-height);
+        z-index: 100;
+        width: 100%;
+    }
+
+    .quick-explorer-inner {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        padding: 1.5rem 0;
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+    }
+
+    @@media (max-width: 1024px) {
+        .quick-explorer-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .quick-explorer-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .quick-explorer-inner {
+            justify-content: flex-start;
+            gap: 2rem;
+            padding: 1.5rem 1.5rem;
+            width: max-content;
+            margin: 0;
+        }
+        .quick-link {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .grid-3 { grid-template-columns: 1fr; }
+        .row { flex-direction: column; align-items: flex-start !important; }
+        .luxury-treatment-card { } /* Reset if needed */
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function filterTreatments(area, element) {
+            // Update active state
+            document.querySelectorAll('.quick-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+
+            // Filter cards - now we need to target the link wrapper
+            const cardLinks = document.querySelectorAll('.luxury-treatment-card-link');
+            cardLinks.forEach(link => {
+                const card = link.querySelector('.luxury-treatment-card');
+                const cardAreas = card.getAttribute('data-area').split(' ');
+                if (area === 'all' || cardAreas.includes(area)) {
+                    link.style.display = 'block';
+                    link.style.opacity = '1';
+                } else {
+                    link.style.display = 'none';
+                    link.style.opacity = '0';
+                }
+            });
+
+            // Hide empty groups
+            document.querySelectorAll('.treatment-group').forEach(group => {
+                const visibleCards = group.querySelectorAll('.luxury-treatment-card-link[style*="display: block"]');
+                if (visibleCards.length === 0 && area !== 'all') {
+                    group.style.display = 'none';
+                } else {
+                    group.style.display = 'block';
+                }
+            });
+        }
+    </script>
+}

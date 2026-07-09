@@ -1,0 +1,302 @@
+@model DrKchida.Models.Consultation
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<!-- HERO SECTION -->
+<section class="hero-bg" style="background-image: url('/images/cabinet.png');">
+    <div class="hero-bg-overlay"></div>
+    <div class="container fade-in">
+        <span class="eyebrow">@Localizer["HeroEyebrow"]</span>
+        <h1 style="font-size: 6rem; line-height: 0.9;">@Localizer["HeroTitle"]</h1>
+        <div class="accent-line" style="width: 120px; height: 6px; margin-top: 3rem; background-color: var(--c-white);"></div>
+        <p style="max-width: 850px; font-size: 1.5rem; line-height: 1.7; color: var(--c-white); margin-top: 4rem;">
+            @Localizer["HeroDesc"]
+        </p>
+    </div>
+</section>
+
+<!-- CONTACT CONTENT - ENHANCED DUAL TONE -->
+<section class="section" style="background-color: #f8f9fa;">
+    <div class="container">
+        
+        <!-- MAIN CONTACT CARD -->
+        <div class="contact-card-wrapper fade-in">
+            
+            <!-- LEFT: FORM SECTION -->
+            <div class="contact-form-panel">
+                <div class="panel-header">
+                    <span class="eyebrow-accent">@Localizer["Consultation"]</span>
+                    <h2>@Localizer["StartExperience"]</h2>
+                    <p>@Localizer["FormPrompt"]</p>
+                </div>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" style="padding: 1rem; background: #d4edda; color: #155724; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #c3e6cb;">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                <form asp-action="SubmitConsultation" asp-controller="Home" method="post" class="enhanced-form">
+                    <div class="form-grid">
+                        <div class="input-wrapper">
+                            <label asp-for="FullName">@Localizer["LabelFullName"]</label>
+                            <input asp-for="FullName" type="text" placeholder="@Localizer["PlaceholderFullName"]" />
+                            <span asp-validation-for="FullName" class="text-danger" style="color: red; font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label asp-for="Email">@Localizer["LabelEmail"]</label>
+                            <input asp-for="Email" type="email" placeholder="@Localizer["PlaceholderEmail"]" />
+                            <span asp-validation-for="Email" class="text-danger" style="color: red; font-size: 0.8rem;"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="input-wrapper">
+                            <label asp-for="Phone">@Localizer["LabelPhone"]</label>
+                            <input asp-for="Phone" type="tel" placeholder="@Localizer["PlaceholderPhone"]" />
+                            <span asp-validation-for="Phone" class="text-danger" style="color: red; font-size: 0.8rem;"></span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label asp-for="Subject">@Localizer["LabelSubject"]</label>
+                            <div class="select-wrapper">
+                                <select asp-for="Subject">
+                                    <option value="" disabled selected>@Localizer["SelectTreatment"]</option>
+                                    @if (ViewBag.Treatments != null)
+                                    {
+                                        foreach (var treatment in (List<DrKchida.Models.Treatment>)ViewBag.Treatments)
+                                        {
+                                            <option value="@treatment.Name">@treatment.Name</option>
+                                        }
+                                    }
+                                    <option value="Autre">@Localizer["Other"]</option>
+                                </select>
+                                <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <span asp-validation-for="Subject" class="text-danger" style="color: red; font-size: 0.8rem;"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label asp-for="Message">@Localizer["LabelMessage"]</label>
+                        <textarea asp-for="Message" rows="4" placeholder="@Localizer["PlaceholderMessage"]"></textarea>
+                        <span asp-validation-for="Message" class="text-danger" style="color: red; font-size: 0.8rem;"></span>
+                    </div>
+
+                    <button type="submit" class="btn-submit-modern">
+                        @Localizer["SubmitRequest"]
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- RIGHT: INFO SECTION (DARK THEME) -->
+            <div class="contact-info-panel">
+                <div class="info-content">
+                    <h3 style="color:white; margin-bottom: 2rem;">@Localizer["ContactDetails"]</h3>
+                    
+                    <div class="info-row">
+                        <div class="icon-box">📍</div>
+                        <div>
+                            <span class="info-label">@Localizer["Address"]</span>
+                            <p>@Html.Raw(Localizer["AddressFull"].Value)</p>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="icon-box">📞</div>
+                        <div>
+                            <span class="info-label">@Localizer["Phone"]</span>
+                            <p><a href="tel:+21623322399">+216 23 322 399</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="icon-box">✉️</div>
+                        <div>
+                            <span class="info-label">@Localizer["Email"]</span>
+                            <p><a href="mailto:contact@drkechida.com">contact@drkechida.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="hours-box">
+                        <h4>@Localizer["OpeningHours"]</h4>
+                        <div class="h-item"><span>@Localizer["WeekdayRange"]</span> <span>09:00 - 18:00</span></div>
+                        <div class="h-item"><span>@Localizer["Saturday"]</span> <span>09:00 - 13:00</span></div>
+                    </div>
+                </div>
+
+                <!-- Mini Map Integration -->
+                <div class="panel-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.123456789!2d10.6333!3d35.8245!2m3!1f0!2f3!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ5JzI4LjIiTiAxMMKwMzgnMDAuMCJF!5e0!3m2!1sen!2stn!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* WRAPPER */
+    .contact-card-wrapper {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        min-height: 700px;
+    }
+
+    /* LEFT PANEL: FORM */
+    .contact-form-panel {
+        padding: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .panel-header { margin-bottom: 3rem; }
+    .eyebrow-accent {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: var(--c-primary);
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    .panel-header h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--c-black); }
+    .panel-header p { color: #666; font-size: 1.1rem; }
+
+    .enhanced-form { display: flex; flex-direction: column; gap: 2rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    
+    .input-wrapper { display: flex; flex-direction: column; gap: 0.5rem; position: relative; }
+    .input-wrapper label {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--c-black);
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea,
+    .input-wrapper select {
+        padding: 1rem 1.2rem;
+        background: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 8px;
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        transition: all 0.3s;
+        width: 100%;
+    }
+
+    .input-wrapper input:focus,
+    .input-wrapper textarea:focus,
+    .input-wrapper select:focus {
+        background: white;
+        border-color: var(--c-primary);
+        box-shadow: 0 0 0 4px rgba(var(--c-primary-rgb, 14, 165, 233), 0.1);
+        outline: none;
+    }
+    
+    /* Custom Select */
+    .select-wrapper { position: relative; }
+    .select-wrapper select { appearance: none; cursor: pointer; }
+    .select-arrow { 
+        position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); 
+        pointer-events: none; color: #666; 
+    }
+
+    .btn-submit-modern {
+        background: var(--c-black);
+        color: white;
+        padding: 1.2rem;
+        border-radius: 8px;
+        border: none;
+        font-family: var(--font-sans);
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        transition: 0.3s;
+        margin-top: 1rem;
+    }
+    .btn-submit-modern:hover {
+        background: var(--c-primary);
+        transform: translateY(-2px);
+    }
+
+    /* RIGHT PANEL: INFO */
+    .contact-info-panel {
+        background: var(--c-black);
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .info-content { padding: 4rem; }
+
+    .info-row { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .icon-box {
+        width: 40px; height: 40px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .info-label {
+        font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+        color: rgba(255,255,255,0.5); display: block; margin-bottom: 5px;
+    }
+    .info-row p { margin: 0; font-size: 1.1rem; line-height: 1.5; color: rgba(255,255,255,0.9); }
+    .info-row a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; transition: 0.3s; }
+    .info-row a:hover { border-color: white; }
+
+    .hours-box {
+        background: rgba(255,255,255,0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hours-box h4 { color: white; margin-bottom: 1rem; font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    .hours-box .h-item { display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .hours-box .h-item:last-child { margin: 0; }
+
+    .panel-map { height: 200px; width: 100%; filter: grayscale(1) opacity(0.8); }
+
+    @@media (max-width: 1024px) {
+        .contact-card-wrapper { grid-template-columns: 1fr; }
+        .contact-form-panel { padding: 3rem; }
+        .info-content { padding: 3rem; }
+    }
+</style>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            var submittingText = "@Localizer["Submitting"]";
+            
+            $('.enhanced-form').on('submit', function() {
+                if ($(this).valid()) {
+                    $(this).find('button[type="submit"]').attr('disabled', 'disabled').html(submittingText + '...');
+                }
+            });
+        });
+    </script>
+}

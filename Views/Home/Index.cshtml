@@ -1,0 +1,683 @@
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<!-- 1. HERO: FULL-SCREEN VIDEO HERO -->
+<section class="hero-full" style="background-color: #f0f0f0;">
+    <div class="video-container">
+        <video id="heroVideo" autoplay muted loop playsinline poster="/images/cabinet.png?v=2" class="hero-bg-video">
+            <source src="/videos/vid1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay-dark">
+        <div class="container hero-content-v2">
+            <h1 class="hero-title fade-in">@Localizer["HeroTitle"]</h1>
+            <p class="hero-subtitle fade-in">
+                @Localizer["HeroDesc"]
+            </p>
+            <div class="hero-actions fade-in">
+                <a asp-action="Contact" class="btn-miller-primary">@Localizer["HeroCTA1"]</a>
+                <a asp-action="Procedures" class="btn-miller-outline">@Localizer["HeroCTA2"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. INTRODUCTION SECTION: DR PORTRAIT + MISSION -->
+<section class="section bg-white" id="meet-doctor">
+    <div class="container">
+        <div class="doctor-profile-grid">
+            <div class="doctor-image-wrapper fade-in-left">
+                <div class="portrait-frame-v2">
+                    <img src="~/images/profile.png" alt="Dr. Kaouthar KECHIDA" class="doctor-img-small" />
+                </div>
+                <div class="experience-badge-small">
+                    <span>@Localizer["DirectorTitle"]</span>
+                </div>
+            </div>
+            <div class="doctor-content fade-in-right">
+                <span class="eyebrow">@Localizer["MeetDoctorEyebrow"]</span>
+                <h2 class="text-gradient" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1.5rem; overflow-wrap: break-word; hyphens: auto;">Dr. Kaouthar KECHIDA</h2>
+                <div class="accent-line"></div>
+                
+                <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.8rem; color: var(--c-charcoal); margin-bottom: 1.5rem; line-height: 1.4;">
+                    "@Localizer["Quote"]"
+                </h3>
+
+                <p style="font-size: 1.1rem; color: var(--c-text-light); line-height: 1.8;">
+                    @Localizer["DoctorBio"]
+                </p>
+
+                <div class="credentials-row">
+                    <span class="cred-pill">Sousse</span>
+                    <span class="cred-pill">Tunis</span>
+                    <span class="cred-pill">Paris</span>
+                </div>
+
+                <!-- REAL BRANDED SOCIAL ICONS -->
+                <div class="real-social-row">
+                    <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="social-btn facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+
+                <a asp-action="About" class="btn-miller-link" style="margin-top: 1.5rem;">@Localizer["SeePhilosophy"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. PROCEDURES STRIP: INTERACTIVE GRID -->
+<section class="section bg-grey no-padding-bottom">
+    <div class="container text-block-center">
+        <span class="eyebrow">@Localizer["ProceduresEyebrow"]</span>
+        <h2 class="section-title">@Localizer["ProceduresTitle"]</h2>
+        <div class="accent-line center"></div>
+    </div>
+    <div class="procedures-strip">
+        <!-- 1. INJECTABLE ARTISTRY -->
+        <div class="procedure-col" onclick="location.href='/Home/Procedures#injectables'">
+            <img src="~/images/h1.jpeg?v=2" alt="Injectable Artistry - Medical Injection" />
+            <div class="col-overlay">
+                <h3>@Localizer["InjectablesTitle"]</h3>
+                <p>@Localizer["InjectablesDesc"]</p>
+                <a href="/Home/Procedures#injectables">@Localizer["SeeMore"]</a>
+            </div>
+        </div>
+        <!-- 2. BIOSTIMULATION -->
+        <div class="procedure-col" onclick="location.href='/Home/Procedures#biostimulation'">
+            <img src="~/images/h6.png?v=2" alt="Biostimulation - Radiant Skin" />
+            <div class="col-overlay">
+                <h3>@Localizer["BiostimulationTitle"]</h3>
+                <p>@Localizer["BiostimulationDesc"]</p>
+                <a href="/Home/Procedures#biostimulation">@Localizer["SeeMore"]</a>
+            </div>
+        </div>
+        <!-- 3. REGENERATIVE CARE -->
+        <div class="procedure-col" onclick="location.href='/Home/Procedures#regenerative'">
+            <img src="~/images/h3.png" alt="Regenerative Care - Stem Cells" />
+            <div class="col-overlay">
+                <h3>@Localizer["RegenerativeTitle"]</h3>
+                <p>@Localizer["RegenerativeDesc"]</p>
+                <a href="/Home/Procedures#regenerative">@Localizer["SeeMore"]</a>
+            </div>
+        </div>
+        <!-- 4. ADVANCED TECHNOLOGY -->
+        <div class="procedure-col" onclick="location.href='/Home/Procedures#technology'">
+            <img src="~/images/h5.png" alt="Advanced Technology - Laser Device" />
+            <div class="col-overlay">
+                <h3>@Localizer["TechnologyTitle"]</h3>
+                <p>@Localizer["TechnologyDesc"]</p>
+                <a href="/Home/Procedures#technology">@Localizer["SeeMore"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. ACTION VIDEOS: DUAL CLINICAL SHOWCASE -->
+<section class="section bg-white" style="padding: 10rem 0;">
+    <div class="container text-block-center">
+        <span class="eyebrow">@Localizer["ResultsEyebrow"]</span>
+        <h2 class="section-title">@Localizer["ResultsTitle"]</h2>
+        <div class="accent-line center"></div>
+        <p style="margin-top: 1rem; color: var(--c-text-light);">@Localizer["ResultsDesc"]</p>
+    </div>
+    <div class="container">
+        <div class="dual-video-grid">
+            <!-- Video 1 -->
+            <div class="video-card-premium fade-in-left">
+                <div class="video-window">
+                    <video autoplay muted loop playsinline class="video-element">
+                        <source src="/videos/vid.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-label">@Localizer["FeaturedTreatment"]</div>
+                </div>
+                <h3 class="video-caption">@Localizer["NanoFatTitle"]</h3>
+                <p class="video-sub-caption">@Localizer["NanoFatDesc"]</p>
+            </div>
+            
+            <!-- Video 2 -->
+            <div class="video-card-premium fade-in-right">
+                <div class="video-window">
+                    <video autoplay muted loop playsinline class="video-element">
+                        <source src="/videos/vid2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-label">@Localizer["RegenerativeTitle"]</div>
+                </div>
+                <h3 class="video-caption">@Localizer["NaturalTitle"]</h3>
+                <p class="video-sub-caption">@Localizer["NaturalDesc"]</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a asp-action="Videos" class="btn-miller-primary">@Localizer["SeeAllVideos"]</a>
+        </div>
+    </div>
+</section>
+
+<!-- 5. TESTIMONIALS: PATIENT REVIEWS -->
+<section class="section bg-white">
+    <div class="container text-block-center">
+        <span class="eyebrow">@Localizer["TestimonialsEyebrow"]</span>
+        <h2 class="section-title">@Localizer["TestimonialsTitle"]</h2>
+        <div class="accent-line center"></div>
+    </div>
+    <div class="container">
+        <div class="grid grid-3">
+            <div class="testimonial-v2 glass">
+                <div class="stars">★★★★★</div>
+                <p>"@Localizer["Testimonial1Text"]"</p>
+                <h4>@Localizer["Testimonial1Author"]</h4>
+            </div>
+            <div class="testimonial-v2 glass">
+                <div class="stars">★★★★★</div>
+                <p>"@Localizer["Testimonial2Text"]"</p>
+                <h4>@Localizer["Testimonial2Author"]</h4>
+            </div>
+            <div class="testimonial-v2 glass">
+                <div class="stars">★★★★★</div>
+                <p>"@Localizer["Testimonial3Text"]"</p>
+                <h4>@Localizer["Testimonial3Author"]</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. GALLERY PREVIEW -->
+<section class="section bg-black text-white">
+    <div class="container">
+        <div class="grid grid-2-miller align-center">
+            <div class="gallery-image">
+                <div class="before-after-stack">
+                    <img src="~/images/before_after_face_skin.png" alt="Before After Result" />
+                    <div class="label-box">@Localizer["RealResult"]</div>
+                </div>
+            </div>
+            <div class="gallery-text">
+                <span class="eyebrow text-white">@Localizer["GalleryEyebrow"]</span>
+                <h2 class="text-white">@Localizer["GalleryTitle"]</h2>
+                <p class="opacity-70">
+                    @Localizer["GalleryDesc"]
+                </p>
+                <a asp-action="Gallery" class="btn-miller-outline-white">@Localizer["SeeAllGallery"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. FINAL CTA -->
+<section class="section bg-grey">
+    <div class="container text-block-center" style="margin-bottom: 0;">
+        <h2 class="section-title" style="font-size: 3.5rem;">@Localizer["CTATitle"]</h2>
+        <p style="margin: 2rem auto; max-width: 600px;">
+            @Localizer["CTADesc"]
+        </p>
+        <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 3rem;">
+            <a asp-action="Contact" class="btn-miller-primary">@Localizer["RequestConsultation"]</a>
+            <a href="tel:+21623322399" class="btn-outline" style="border-color: var(--c-primary); color: var(--c-primary);">@Localizer["CallDirectly"]</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('heroVideo');
+            if (video) {
+                video.playbackRate = 0.5;
+            }
+        });
+    </script>
+}
+
+<style>
+    /* HERO SECTION */
+    .hero-full {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .hero-bg-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-overlay-dark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.45);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-content-v2 {
+        text-align: center;
+        max-width: 1100px;
+        color: white;
+    }
+
+    .hero-title {
+        font-size: 5.5rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.1;
+        color: white;
+        font-weight: 400;
+        text-shadow: 0 4px 30px rgba(0,0,0,0.8), 0 8px 60px rgba(0,0,0,0.6);
+    }
+
+    .hero-subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 4rem;
+        opacity: 1;
+        font-weight: 400;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        color: white;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6);
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+    }
+
+    /* PROCEDURES STRIP */
+    .procedures-strip {
+        display: flex;
+        height: 650px;
+        width: 100%;
+        margin-top: 5rem;
+    }
+
+    .procedure-col {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        cursor: pointer;
+    }
+
+    .procedure-col:hover { flex: 1.4; }
+
+    .procedure-col img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .procedure-col:hover img { transform: scale(1.08); }
+
+    .col-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 4rem 3rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        color: white;
+    }
+
+    .col-overlay h3 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .col-overlay p {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .col-overlay a {
+        background: var(--c-gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 800;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.5s var(--transition-smooth);
+        display: inline-block;
+    }
+
+    .procedure-col:hover .col-overlay a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* DUAL VIDEO SHOWCASE */
+    .dual-video-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .video-card-premium {
+        position: relative;
+    }
+
+    .video-window {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        background: #000;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .video-element {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transition: transform 1s ease, opacity 0.5s ease;
+    }
+
+    .video-card-premium:hover .video-element {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    .video-label {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        background: var(--c-gradient-1);
+        color: white;
+        padding: 0.5rem 1.2rem;
+        font-family: var(--font-sans);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 800;
+        border-radius: var(--radius-sm);
+        z-index: 2;
+    }
+
+    .video-caption {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        color: var(--c-black);
+    }
+
+    .video-sub-caption {
+        font-size: 1.05rem;
+        color: var(--c-text-light);
+        font-weight: 400;
+        line-height: 1.7;
+    }
+
+    /* TESTIMONIALS */
+    .testimonial-v2 {
+        padding: 4rem 3rem;
+        text-align: center;
+    }
+
+    .stars {
+        color: #D4AF37;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .testimonial-v2 p {
+        font-family: var(--font-serif);
+        font-size: 1.4rem;
+        font-style: italic;
+        line-height: 1.6;
+        color: var(--c-charcoal);
+        margin-bottom: 2rem;
+    }
+
+    .testimonial-v2 h4 {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 800;
+    }
+
+    /* BEFORE AFTER STACK */
+    .before-after-stack {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .label-box {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--c-gradient-1);
+        color: white;
+        padding: 0.6rem 1.5rem;
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: var(--radius-sm);
+    }
+
+    /* MODERN BUTTONS */
+    .btn-miller-primary {
+        padding: 1.3rem 3.5rem;
+        background: var(--c-gradient-1);
+        color: white;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s var(--transition-smooth);
+    }
+
+    .btn-miller-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .btn-miller-outline {
+        padding: 1.3rem 3.5rem;
+        border: 2px solid white;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 2.5px;
+        font-size: 0.85rem;
+    }
+
+    .btn-miller-outline:hover { background: white; color: var(--c-black); }
+
+    .btn-miller-outline-white {
+        display: inline-block;
+        margin-top: 2.5rem;
+        padding: 1.1rem 3rem;
+        border: 2px solid white;
+        border-radius: var(--radius-sm);
+        color: white;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        font-weight: 700;
+        transition: all 0.3s var(--transition-smooth);
+    }
+
+    .btn-miller-outline-white:hover {
+        background: white;
+        color: var(--c-primary);
+        transform: translateY(-2px);
+    }
+
+    .btn-miller-link {
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        background: var(--c-gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        transition: all 0.3s var(--transition-smooth);
+    }
+
+    .btn-miller-link::after { 
+        content: '→'; 
+        font-size: 1.4rem; 
+        background: var(--c-gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition: transform 0.3s var(--transition-smooth); 
+    }
+    
+    .btn-miller-link:hover::after { transform: translateX(10px); }
+
+    .accent-line {
+        width: 80px;
+        height: 4px;
+        background: var(--c-gradient-1);
+        border-radius: 2px;
+        margin: 2rem 0;
+    }
+
+    .accent-line.center { margin: 2rem auto; }
+
+    /* REDESIGNED DOCTOR PROFILE */
+    .doctor-profile-grid {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 6rem;
+        align-items: center;
+    }
+    
+    .portrait-frame-v2 {
+        position: relative;
+        padding: 20px;
+        border: 1px solid var(--c-grey-border);
+        background: white;
+        transition: transform 0.6s ease;
+    }
+    
+    .portrait-frame-v2:hover {
+        transform: translateY(-5px);
+    }
+    
+    .portrait-frame-v2::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 60px;
+        height: 60px;
+        border-top: 3px solid var(--c-primary);
+        border-left: 3px solid var(--c-primary);
+        border-radius: var(--radius-sm);
+    }
+
+    .doctor-img-small {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: grayscale(10%) contrast(1.05);
+    }
+
+    .experience-badge-small {
+        position: absolute;
+        bottom: -15px;
+        right: 10px;
+        background: var(--c-white);
+        padding: 0.5rem 1.5rem;
+        box-shadow: var(--shadow-lg);
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: var(--c-gradient-1);
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: var(--radius-sm);
+    }
+
+    .credentials-row {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .cred-pill {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 3px;
+        font-weight: 600;
+    }
+
+    @@media (max-width: 1024px) {
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4rem); }
+        .hero-subtitle { font-size: clamp(1rem, 3vw, 1.4rem); }
+        .procedures-strip { flex-direction: column; height: auto; }
+        .procedure-col { height: 350px; }
+        .procedure-col:hover { flex: 1; }
+        .doctor-profile-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+        .portrait-frame-v2 { max-width: 280px; margin: 0 auto; }
+        .accent-line { margin: 2rem auto !important; }
+        .credentials-row { justify-content: center; flex-wrap: wrap; }
+        .btn-miller-link { justify-content: center; }
+        .real-social-row { justify-content: center; }
+        .grid-2-miller { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+        .dual-video-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .video-caption { font-size: 1.5rem; }
+        .btn-miller-primary, .btn-miller-outline { padding: 1rem 2rem; width: 100%; text-align: center; }
+        .hero-actions { flex-direction: column; gap: 1rem; width: 100%; max-width: 300px; margin: 0 auto; }
+    }
+
+    @@media (max-width: 480px) {
+        .hero-title { font-size: clamp(2rem, 10vw, 2.5rem); overflow-wrap: break-word; hyphens: auto; }
+        .section-title { font-size: clamp(1.8rem, 8vw, 2rem) !important; overflow-wrap: break-word; }
+        .eyebrow { font-size: 0.7rem; }
+    }
+</style>

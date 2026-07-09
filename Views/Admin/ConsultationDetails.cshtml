@@ -1,0 +1,166 @@
+@model DrKchida.Models.Consultation
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Détails de la Consultation";
+}
+
+<div style="margin-bottom: 3rem;">
+    <a href="/Admin/Consultations" class="btn-miller-link" style="font-size: 0.9rem; margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-arrow-left"></i> Retour à la liste
+    </a>
+    <div class="eyebrow" style="margin: 0;">Demande de rendez-vous</div>
+    <h1 class="admin-title" style="margin: 0;">Détails du Patient</h1>
+</div>
+
+<div class="grid grid-2" style="gap: 2rem;">
+    <!-- PATIENT INFO -->
+    <div class="admin-card" style="padding: 2.5rem;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--c-teal);">Coordonnées</h3>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Nom Complet</label>
+            <div style="font-size: 1.1rem; font-weight: 700; color: var(--c-black);">@Model.FullName</div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Email</label>
+            <div style="font-size: 1.1rem; color: var(--c-black);">
+                <a href="mailto:@Model.Email" style="color: var(--c-primary); text-decoration: none;">@Model.Email</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Téléphone</label>
+            <div style="font-size: 1.1rem; color: var(--c-black);">
+                <a href="tel:@Model.Phone" style="color: var(--c-primary); text-decoration: none;">@Model.Phone</a>
+            </div>
+        </div>
+
+        <div>
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Date d'envoi</label>
+            <div style="font-size: 1.1rem; color: var(--c-black);">@Model.SubmittedAt.ToString("F")</div>
+        </div>
+    </div>
+
+    <!-- MESSAGE CONTENT -->
+    <div class="admin-card" style="padding: 2.5rem;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--c-teal);">Message du Patient</h3>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Sujet / Soin choisi</label>
+            <div style="display: inline-block; padding: 0.4rem 1rem; background: rgba(14, 165, 233, 0.1); color: var(--c-primary); border-radius: 4px; font-weight: 700;">
+                @Model.Subject
+            </div>
+        </div>
+
+        <div>
+            <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 0.5rem;">Contenu du message</label>
+            <div style="font-size: 1.05rem; line-height: 1.6; color: #444; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                @Model.Message
+            </div>
+        </div>
+
+        @if (Model.Message.Contains("Zones sélectionnées :"))
+        {
+            <div style="margin-top: 2rem;">
+                <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-grey-400); margin-bottom: 1rem;">Visualisation des zones</label>
+                <div id="visual-render-container" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.1rem; display: flex; justify-content: center;">
+                    @{
+                        bool isFemale = Model.FullName.Contains("Femme") || Model.Message.Contains("Profil : Femme");
+                    }
+
+                    <style>
+                        .wa-hotspot { cursor: default; transition: all 0.3s; pointer-events: none; }
+                        .wa-hotspot.active { fill: rgba(14, 165, 233, 0.4); stroke: var(--c-primary); stroke-width: 1.5px; filter: drop-shadow(0 0 4px rgba(14,165,233,0.3)); }
+                    </style>
+
+                    <div style="width: 260px; height: auto; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                        @if (isFemale)
+                        {
+                            <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
+                                <image href="/images/wa_real_female.png" x="0" y="0" width="300" height="340" preserveAspectRatio="xMidYMid slice" />
+                                <rect class="wa-hotspot" data-zone="Front" x="115" y="55" width="70" height="40" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Glabelle" cx="150" cy="122" rx="22" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="125" cy="132" rx="22" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="175" cy="132" rx="22" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Tempes" cx="100" cy="128" rx="18" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Tempes" cx="200" cy="128" rx="18" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="102" cy="142" rx="16" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="198" cy="142" rx="16" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pommettes" cx="112" cy="175" rx="22" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pommettes" cx="188" cy="175" rx="22" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Nez" cx="150" cy="172" rx="18" ry="25" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Joues" cx="115" cy="205" rx="22" ry="20" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Joues" cx="185" cy="205" rx="22" ry="20" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="132" cy="198" rx="12" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="168" cy="198" rx="12" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Contour des lèvres" cx="150" cy="202" rx="26" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Volume des lèvres" cx="150" cy="204" rx="20" ry="8" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="135" cy="225" rx="12" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="165" cy="225" rx="12" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="115" cy="225" rx="20" ry="20" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="185" cy="225" rx="20" ry="20" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Menton" cx="150" cy="235" rx="22" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Ovale du visage" cx="150" cy="228" rx="60" ry="20" fill="transparent" />
+                                <rect class="wa-hotspot" data-zone="Cou" x="130" y="260" width="40" height="40" fill="transparent" />
+                            </svg>
+                        }
+                        else
+                        {
+                            <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
+                                <image href="/images/wa_real_male.png" x="0" y="0" width="300" height="340" preserveAspectRatio="xMidYMid slice" />
+                                <rect class="wa-hotspot" data-zone="Front" x="100" y="52" width="100" height="55" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Glabelle" cx="150" cy="122" rx="28" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="110" cy="132" rx="28" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Zone du regard" cx="190" cy="132" rx="28" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="70" cy="148" rx="18" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pattes d'oie" cx="230" cy="148" rx="18" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pommettes" cx="88" cy="185" rx="28" ry="18" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Pommettes" cx="212" cy="185" rx="28" ry="18" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Nez" cx="150" cy="175" rx="22" ry="28" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Joues" cx="92" cy="215" rx="28" ry="22" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Joues" cx="208" cy="215" rx="28" ry="22" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="122" cy="212" rx="14" ry="18" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Sillons nasogéniens" cx="178" cy="212" rx="14" ry="18" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Contour des lèvres" cx="150" cy="232" rx="32" ry="14" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Volume des lèvres" cx="150" cy="234" rx="26" ry="10" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="118" cy="248" rx="15" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Plis d'amertume" cx="182" cy="248" rx="15" ry="12" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="80" cy="238" rx="24" ry="22" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Angle mandibulaire" cx="220" cy="238" rx="24" ry="22" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Menton" cx="150" cy="264" rx="26" ry="16" fill="transparent" />
+                                <ellipse class="wa-hotspot" data-zone="Ovale du visage" cx="150" cy="255" rx="80" ry="22" fill="transparent" />
+                            </svg>
+                        }
+                    </div>
+                </div>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var message = "@Html.Raw(Model.Message.Replace("\"", "\\\""))";
+                        var rawZones = "";
+                        
+                        if (message.indexOf("Zones sélectionnées : ") !== -1) {
+                            rawZones = message.split("Zones sélectionnées : ")[1];
+                        }
+                        
+                        var zones = rawZones.split(',').map(z => z.trim());
+                        
+                        document.querySelectorAll('.wa-hotspot').forEach(hotspot => {
+                            var zoneName = hotspot.getAttribute('data-zone');
+                            if (zones.includes(zoneName)) {
+                                hotspot.classList.add('active');
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        }
+    </div>
+</div>
+
+<div style="margin-top: 3rem; display: flex; gap: 1rem;">
+    <a href="/Admin/DeleteConsultation/@Model.Id" class="btn-delete" style="padding: 0.8rem 1.5rem;" onclick="return confirm('Confirmer la suppression ?')">
+        <i class="fa-solid fa-trash"></i> Supprimer cette demande
+    </a>
+</div>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>À Propos</value></data>
+  <data name="TheDoctor" xml:space="preserve"><value>Le Docteur</value></data>
+  <data name="HeroIntro" xml:space="preserve"><value>Pionnière du rajeunissement non-chirurgical, alliant précision médicale et art de la beauté naturelle.</value></data>
+  <data name="MedicalDirector" xml:space="preserve"><value>Directrice Médicale</value></data>
+  <data name="Philosophy" xml:space="preserve"><value>La Philosophie</value></data>
+  <data name="ArtOfGrace" xml:space="preserve"><value>L'Art de la&lt;br&gt;&lt;span class="text-teal"&gt;Grâce Naturelle&lt;/span&gt;</value></data>
+  <data name="DropCap" xml:space="preserve"><value>D</value></data>
+  <data name="Narrative1" xml:space="preserve"><value>r. Kaouthar Kechida est un pilier d'excellence esthétique à Sousse. Avec une carrière s'étendant sur des décennies et traversant les continents — des centres de thalassothérapie de Tunisie aux projets de haut niveau en Arabie Saoudite et en France(Juan-les-Pins, Cannes) — elle a développé une approche unique qui marie discipline médicale stricte et œil artistique.</value></data>
+  <data name="Narrative2" xml:space="preserve"><value>Sa philosophie diffère de la tendance de la "transformation". Au lieu de cela, Dr. Kechida croit en la restauration. Il s'agit de retrouver la lumière que le temps a pu atténuer, de respecter l'anatomie unique de chaque visage et de s'assurer qu'aucun patient ne parte jamais avec un aspect "refait" — seulement rafraîchi.</value></data>
+  <data name="Quote" xml:space="preserve"><value>Je ne crée pas la beauté ; je la révèle. Mon rôle est de balayer les ombres du temps pour que votre vraie nature puisse briller.</value></data>
+  <data name="ProfessionalExperience" xml:space="preserve"><value>Expérience Professionnelle</value></data>
+  <data name="Present" xml:space="preserve"><value>Présent</value></data>
+  <data name="PrivateClinic" xml:space="preserve"><value>Cabinet Esthétique Privé</value></data>
+  <data name="ClinicLocation" xml:space="preserve"><value>Tunisie - Sousse</value></data>
+  <data name="ClinicDesc" xml:space="preserve"><value>Cabinet indépendant spécialisé dans le rajeunissement facial non-chirurgical, la volumétrie, la médecine régénérative cellules souche (PRP, nanofat) et les protocoles anti-âge.</value></data>
+  <data name="IntlProjectsDirector" xml:space="preserve"><value>Directrice de Projets Internationaux</value></data>
+  <data name="CollabSalahKamel" xml:space="preserve"><value>Collaboration avec Cheikh Salah Kamel</value></data>
+  <data name="ProjectDirectorSpa" xml:space="preserve"><value>Directrice de Projets pour Ouvertures de Centres Spa</value></data>
+  <data name="ThalassoDirector" xml:space="preserve"><value>Directrice de Centres de Thalassothérapie</value></data>
+  <data name="MedicalOperationalMgmt" xml:space="preserve"><value>Gestion Médicale &amp; Opérationnelle</value></data>
+  <data name="EducationFormation" xml:space="preserve"><value>Éducation &amp; Formation</value></data>
+  <data name="MasterAnatomy" xml:space="preserve"><value>Master d'Anatomie Faciale Superficielle</value></data>
+  <data name="InjectionTechniques" xml:space="preserve"><value>Techniques d'Injection &amp; Volumétrie Esthétique</value></data>
+  <data name="LaserDermatologyDiploma" xml:space="preserve"><value>Diplôme de Lasers en Dermatologie Médicale</value></data>
+  <data name="TurkiFormation" xml:space="preserve"><value>Formation avec Dr. Khaled Turki, Tunisie</value></data>
+  <data name="MesotherapyIntern" xml:space="preserve"><value>Interne en Mésothérapie</value></data>
+  <data name="MedicalDoctorate" xml:space="preserve"><value>Doctorat en Médecine Générale</value></data>
+  <data name="CertificationsCongresses" xml:space="preserve"><value>Certifications &amp; Congrès</value></data>
+  <data name="EstheticCongressParis" xml:space="preserve"><value>Congrès de Médecine Esthétique PARIS</value></data>
+  <data name="EstheticCongressMonaco" xml:space="preserve"><value>Congrès de Médecine Esthétique MONACO</value></data>
+  <data name="DermatologyCert" xml:space="preserve"><value>Attestation Tunisienne de Dermatologie Libérale</value></data>
+</root>

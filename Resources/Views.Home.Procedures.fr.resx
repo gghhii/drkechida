@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="HeroTitle" xml:space="preserve"><value>Interventions Professionnelles</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Expertise &amp; Innovation</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Dr. Kaouthar KECHIDA propose des traitements esthétiques médicaux scientifiques et haut de gamme conçus pour un rajeunissement naturel et durable.</value></data>
+  <data name="ResultsEyebrow" xml:space="preserve"><value>Témoigner des Résultats</value></data>
+  <data name="ResultsTitle" xml:space="preserve"><value>Le Pouvoir de la Transformation</value></data>
+  <data name="ResultsDesc" xml:space="preserve"><value>Chaque intervention que nous réalisons témoigne de notre engagement envers l'excellence. Parcourez notre galerie pour voir comment le Dr. Kechida a aidé les patients à réaliser leurs rêves esthétiques.</value></data>
+  <data name="ResultsCTA" xml:space="preserve"><value>Explorer la Galerie des Photos</value></data>
+  <data name="Autres" xml:space="preserve"><value>Autres</value></data>
+  
+  <data name="Art des Injectables" xml:space="preserve"><value>Art des Injectables</value></data>
+  <data name="Biostimulation" xml:space="preserve"><value>Biostimulation</value></data>
+  <data name="Soins Régénératifs" xml:space="preserve"><value>Soins Régénératifs</value></data>
+  <data name="Technologie Avancée" xml:space="preserve"><value>Technologie Avancée</value></data>
+</root>

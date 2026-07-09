@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>Expertise Services</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Elite Services</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>Aesthetic Excellence</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Discover a comprehensive range of cutting-edge aesthetic medical procedures, combining advanced laser technology and clinical expertise for natural results.</value></data>
+  <data name="Marquee1" xml:space="preserve"><value>Aesthetic Medicine</value></data>
+  <data name="Marquee2" xml:space="preserve"><value>Anti-Aging</value></data>
+  <data name="Marquee3" xml:space="preserve"><value>Volume &amp; Harmony</value></data>
+  <data name="Marquee4" xml:space="preserve"><value>Skin Radiance</value></data>
+  <data name="Marquee5" xml:space="preserve"><value>Regeneration</value></data>
+  <data name="Marquee6" xml:space="preserve"><value>High Precision Laser</value></data>
+  <data name="Discover" xml:space="preserve"><value>Discover</value></data>
+  <data name="KeyTreatments" xml:space="preserve"><value>Signature Treatments</value></data>
+  <data name="ExploreExpertise" xml:space="preserve"><value>Explore Expertise</value></data>
+  <data name="PhilosophyEyebrow" xml:space="preserve"><value>The Ethic of Excellence</value></data>
+  <data name="PhilosophyQuote" xml:space="preserve"><value>"Science at the service of your purest expression."</value></data>
+  <data name="YearsExperience" xml:space="preserve"><value>Years of &lt;br/&gt;Refining</value></data>
+  <data name="Pillar1Title" xml:space="preserve"><value>Exclusive Protocols</value></data>
+  <data name="Pillar1Desc" xml:space="preserve"><value>Every action is governed by a rigorous methodology, combining clinical safety and cutting-edge aesthetic research.</value></data>
+  <data name="Pillar2Title" xml:space="preserve"><value>Artistic Vision</value></data>
+  <data name="Pillar2Desc" xml:space="preserve"><value>We analyze the dynamics of your face to preserve your natural expressions while enhancing its contours.</value></data>
+  <data name="Pillar3Title" xml:space="preserve"><value>Laser Innovation</value></data>
+  <data name="Pillar3Desc" xml:space="preserve"><value>Equipped with the latest global technologies for non-invasive results with surgical precision.</value></data>
+  <data name="StartBtn" xml:space="preserve"><value>Start the Experience</value></data>
+  <data name="ProcessEyebrow" xml:space="preserve"><value>The Patient Journey</value></data>
+  <data name="ProcessTitle" xml:space="preserve"><value>A 4-Step Protocol</value></data>
+  <data name="ProcessIntro" xml:space="preserve"><value>A comprehensive, safe, and artistic approach for exceptional results.</value></data>
+  <data name="Step1Title" xml:space="preserve"><value>Consultation</value></data>
+  <data name="Step1Desc" xml:space="preserve"><value>In-depth analysis of your facial anatomy and listening to your personal goals.</value></data>
+  <data name="Step2Title" xml:space="preserve"><value>Tech Diagnostic</value></data>
+  <data name="Step2Desc" xml:space="preserve"><value>Use of state-of-the-art diagnostic tools to assess skin quality and volumes.</value></data>
+  <data name="Step3Title" xml:space="preserve"><value>Treatment</value></data>
+  <data name="Step3Desc" xml:space="preserve"><value>Procedure with premium products and proven technical skill for your comfort.</value></data>
+  <data name="Step4Title" xml:space="preserve"><value>Aftercare</value></data>
+  <data name="Step4Desc" xml:space="preserve"><value>Personalized post-treatment follow-up to ensure the longevity and quality of results.</value></data>
+</root>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  
+  <data name="Title" xml:space="preserve"><value>Services d'Expertise</value></data>
+  <data name="HeroEyebrow" xml:space="preserve"><value>Services d'Élite</value></data>
+  <data name="HeroTitle" xml:space="preserve"><value>Excellence Esthétique</value></data>
+  <data name="HeroDesc" xml:space="preserve"><value>Découvrez une gamme complète d'interventions médicales esthétiques de pointe, alliant technologie laser avancée et expertise clinique pour des résultats naturels.</value></data>
+  <data name="Marquee1" xml:space="preserve"><value>Médecine Esthétique</value></data>
+  <data name="Marquee2" xml:space="preserve"><value>Anti-Âge</value></data>
+  <data name="Marquee3" xml:space="preserve"><value>Volume &amp; Harmonie</value></data>
+  <data name="Marquee4" xml:space="preserve"><value>Éclat du Teint</value></data>
+  <data name="Marquee5" xml:space="preserve"><value>Régénération</value></data>
+  <data name="Marquee6" xml:space="preserve"><value>Laser Haute Précision</value></data>
+  <data name="Discover" xml:space="preserve"><value>Découvrir</value></data>
+  <data name="KeyTreatments" xml:space="preserve"><value>Interventions phares</value></data>
+  <data name="ExploreExpertise" xml:space="preserve"><value>Explorer l'expertise</value></data>
+  <data name="PhilosophyEyebrow" xml:space="preserve"><value>L'Éthique de l'Excellence</value></data>
+  <data name="PhilosophyQuote" xml:space="preserve"><value>"La science au service de votre expression la plus pure."</value></data>
+  <data name="YearsExperience" xml:space="preserve"><value>Années de &lt;br/&gt;Perfectionnement</value></data>
+  <data name="Pillar1Title" xml:space="preserve"><value>Protocoles Exclusifs</value></data>
+  <data name="Pillar1Desc" xml:space="preserve"><value>Chaque geste est régi par une méthodologie rigoureuse, alliant sécurité clinique et recherche esthétique de pointe.</value></data>
+  <data name="Pillar2Title" xml:space="preserve"><value>Vision Artistique</value></data>
+  <data name="Pillar2Desc" xml:space="preserve"><value>Nous analysons la dynamique de votre visage pour préserver vos expressions naturelles tout en sublimant ses reliefs.</value></data>
+  <data name="Pillar3Title" xml:space="preserve"><value>Innovation Laser</value></data>
+  <data name="Pillar3Desc" xml:space="preserve"><value>Équipés des dernières technologies mondiales pour des résultats non-invasifs d'une précision chirurgicale.</value></data>
+  <data name="StartBtn" xml:space="preserve"><value>Débuter l'expérience</value></data>
+  <data name="ProcessEyebrow" xml:space="preserve"><value>Le Parcours Patient</value></data>
+  <data name="ProcessTitle" xml:space="preserve"><value>Un Protocole en 4 Étapes</value></data>
+  <data name="ProcessIntro" xml:space="preserve"><value>Une prise en charge globale, sécurisée et artistique pour des résultats d'exception.</value></data>
+  <data name="Step1Title" xml:space="preserve"><value>Consultation</value></data>
+  <data name="Step1Desc" xml:space="preserve"><value>Analyse approfondie de votre anatomie faciale et écoute de vos objectifs personnels.</value></data>
+  <data name="Step2Title" xml:space="preserve"><value>Diagnostic Tech</value></data>
+  <data name="Step2Desc" xml:space="preserve"><value>Utilisation d'outils de diagnostic de pointe pour évaluer la qualité de peau et les volumes.</value></data>
+  <data name="Step3Title" xml:space="preserve"><value>Traitement</value></data>
+  <data name="Step3Desc" xml:space="preserve"><value>Intervention avec des produits premium et une technicité éprouvée pour votre confort.</value></data>
+  <data name="Step4Title" xml:space="preserve"><value>Accompagnement</value></data>
+  <data name="Step4Desc" xml:space="preserve"><value>Suivi post-traitement personnalisé pour garantir la pérennité et la qualité des résultats.</value></data>
+</root>

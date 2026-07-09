@@ -1,0 +1,300 @@
+@model IEnumerable<DrKchida.Models.VideoItem>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["HeroTitle"];
+}
+
+<!-- HERO SECTION -->
+<section class="hero-bg" style="background-image: url('/images/cabinet.png');">
+    <div class="hero-bg-overlay"></div>
+    <div class="container fade-in">
+        <span class="eyebrow">@Localizer["HeroEyebrow"]</span>
+        <h1 style="font-size: 6rem; line-height: 0.9;">@Localizer["HeroTitle"]</h1>
+        <div class="accent-line" style="width: 120px; height: 6px; margin-top: 3rem; background-color: var(--c-white);"></div>
+        <p style="max-width: 850px; font-size: 1.5rem; line-height: 1.7; color: var(--c-white); margin-top: 4rem;">
+            @Localizer["HeroDesc"]
+        </p>
+    </div>
+</section>
+
+<!-- VIDEO FILTERS -->
+<section class="section no-top-padding">
+    <div class="container">
+        <div class="video-filters" style="display: flex; gap: 3rem; margin-bottom: 5rem; border-bottom: 1px solid var(--c-grey-border); padding-bottom: 1.5rem;">
+            <button class="filter-btn active" onclick="filterVideos('All', this)">@Localizer["FilterAll"]</button>
+            <button class="filter-btn" onclick="filterVideos('Interventions', this)">@Localizer["FilterInterventions"]</button>
+            <button class="filter-btn" onclick="filterVideos('Témoignages Patients', this)">@Localizer["FilterTestimonials"]</button>
+            <button class="filter-btn" onclick="filterVideos('À Propos de la Pratique', this)">@Localizer["FilterAbout"]</button>
+        </div>
+
+        <div class="grid grid-2 video-grid" style="gap: 4rem;">
+            @foreach (var video in Model)
+            {
+                var isYouTube = video.VideoUrl.Contains("youtube.com") || video.VideoUrl.Contains("youtu.be");
+                string thumbnailUrl = "/images/clinic_interior_luxury.png";
+                
+                if (!string.IsNullOrEmpty(video.ThumbnailUrl))
+                {
+                    thumbnailUrl = video.ThumbnailUrl;
+                }
+                else if (isYouTube)
+                {
+                    var videoId = "";
+                    if (video.VideoUrl.Contains("embed/"))
+                    {
+                        videoId = video.VideoUrl.Split("embed/")[1].Split("?")[0];
+                    }
+                    else if (video.VideoUrl.Contains("v="))
+                    {
+                        videoId = video.VideoUrl.Split("v=")[1].Split("&")[0];
+                    }
+                    if (!string.IsNullOrEmpty(videoId))
+                    {
+                        thumbnailUrl = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
+                    }
+                }
+
+                <div class="video-item fade-in" data-category="@video.Category" onclick="openVideoModal('@video.VideoUrl', @(isYouTube.ToString().ToLower()))" style="cursor: pointer;">
+                    <div class="video-thumbnail-container">
+                        <img src="@thumbnailUrl" alt="@Localizer[video.Title ?? ""]" class="video-thumbnail" />
+                        <div class="play-button-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info" style="margin-top: 1.5rem;">
+                        <span class="eyebrow" style="font-size: 0.7rem; color: var(--c-primary); font-weight: 800;">@Localizer[video.Category ?? ""]</span>
+                        <h3 class="text-teal" style="font-size: 1.5rem; margin: 0.5rem 0; font-family: var(--font-serif);">@Localizer[video.Title ?? ""]</h3>
+                        <p style="color: var(--c-grey-text); font-size: 0.9rem; line-height: 1.6;">@Localizer[video.Description ?? ""]</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal-overlay" onclick="closeVideoModal()">
+    <div class="video-modal-content" onclick="event.stopPropagation()">
+        <button class="close-modal-btn" onclick="closeVideoModal()">&times;</button>
+        <div id="videoContainer" class="video-player-wrapper">
+            <!-- Video content injected here by JS -->
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterVideos(category, element) {
+        // Update active class on filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+
+        // Filter the video items
+        const videoItems = document.querySelectorAll('.video-item');
+        videoItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            if (category === 'All' || itemCategory === category) {
+                item.style.display = 'block';
+                setTimeout(() => item.style.opacity = '1', 10);
+            } else {
+                item.style.opacity = '0';
+                setTimeout(() => item.style.display = 'none', 300);
+            }
+        });
+    }
+
+    function openVideoModal(url, isYouTube) {
+        var container = document.getElementById('videoContainer');
+        var modal = document.getElementById('videoModal');
+        
+        container.innerHTML = ''; // Clear previous content
+
+        if (isYouTube) {
+            // Ensure embed URL format for YouTube
+            var embedUrl = url;
+            if (!url.includes('embed')) {
+                if (url.includes('watch?v=')) {
+                    var v = url.split('watch?v=')[1].split('&')[0];
+                    embedUrl = 'https://www.youtube.com/embed/' + v;
+                }
+            }
+            // Auto-play when opened
+            if (embedUrl.indexOf('?') > -1) {
+                embedUrl += '&autoplay=1';
+            } else {
+                embedUrl += '?autoplay=1';
+            }
+            
+            container.innerHTML = '<iframe src="' + embedUrl + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        } else {
+            // Local Video
+            container.innerHTML = '<video controls autoplay name="media"><source src="' + url + '" type="video/mp4"></video>';
+        }
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeVideoModal() {
+        var modal = document.getElementById('videoModal');
+        var container = document.getElementById('videoContainer');
+        
+        modal.classList.remove('active');
+        container.innerHTML = ''; // Stop video
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+</script>
+
+<style>
+    .video-thumbnail-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .video-item:hover .video-thumbnail-container {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .video-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .video-item:hover .video-thumbnail {
+        transform: scale(1.05);
+    }
+
+    .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .play-button-overlay i {
+        color: white;
+        font-size: 20px;
+        margin-left: 3px; /* visual adjustments for play icon center */
+    }
+
+    .video-item:hover .play-button-overlay {
+        background: var(--c-teal);
+        border-color: var(--c-teal);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Modal Styles */
+    .video-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+    }
+
+    .video-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .video-modal-content {
+        width: 90%;
+        max-width: 1000px;
+        position: relative;
+        background: black;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .close-modal-btn {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+
+    .close-modal-btn:hover {
+        opacity: 1;
+    }
+
+    .video-player-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        background: #000;
+    }
+
+    .video-player-wrapper iframe, 
+    .video-player-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .filter-btn {
+        background: none;
+        border: none;
+        font-family: var(--font-sans);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        color: var(--c-grey-text);
+        cursor: pointer;
+        padding-bottom: 1rem;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    .filter-btn.active { color: var(--c-teal); }
+    .filter-btn.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--c-teal);
+    }
+
+    @@media (max-width: 768px) {
+        .video-filters { overflow-x: auto; white-space: nowrap; gap: 2rem; }
+    }
+</style>

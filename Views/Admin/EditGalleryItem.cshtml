@@ -1,0 +1,70 @@
+@model DrKchida.Models.GalleryItem
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Modifier le Résultat";
+}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <div class="eyebrow">Mise à Jour</div>
+    <h1 class="admin-title">Modifier Résultat</h1>
+
+    <div class="admin-card">
+        <form method="post" action="/Admin/EditGalleryItem" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+
+            <div style="margin-bottom: 2rem;">
+                <label>Titre du Résultat</label>
+                <input asp-for="Title" class="admin-input" required />
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Catégorie</label>
+                <select asp-for="Category" class="admin-input" required>
+                    <option value="Face">Visage (Face)</option>
+                    <option value="Hair">Cheveux (Hair)</option>
+                    <option value="Body">Corps (Body)</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>Description du Cas</label>
+                <textarea asp-for="Description" class="admin-input" style="height: 120px;"></textarea>
+            </div>
+
+            <div class="grid grid-2" style="gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <label>Image Avant (Before)</label>
+                    @if (!string.IsNullOrEmpty(Model.ImageBefore))
+                    {
+                        <div style="margin-bottom: 1rem;">
+                            <img src="~/@Model.ImageBefore" alt="Image avant" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--c-grey-border);" />
+                            <p style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 0.5rem;">Image actuelle</p>
+                        </div>
+                    }
+                    <input type="file" name="imageBefore" class="admin-input" accept="image/*" style="padding: 0.75rem;" />
+                    <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Laissez vide pour conserver l'image actuelle</span>
+                </div>
+                <div>
+                    <label>Image Après (After)</label>
+                    @if (!string.IsNullOrEmpty(Model.ImageAfter))
+                    {
+                        <div style="margin-bottom: 1rem;">
+                            <img src="~/@Model.ImageAfter" alt="Image après" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--c-grey-border);" />
+                            <p style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 0.5rem;">Image actuelle</p>
+                        </div>
+                    }
+                    <input type="file" name="imageAfter" class="admin-input" accept="image/*" style="padding: 0.75rem;" />
+                    <span style="font-size: 0.7rem; color: var(--c-grey-400); margin-top: 5px; display: block;">Laissez vide pour conserver l'image actuelle</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; display: flex; gap: 1.5rem;">
+                <button type="submit" class="btn-premium">
+                    <i class="fa-solid fa-save"></i>
+                    Sauvegarder
+                </button>
+                <a href="/Admin/Gallery" class="btn-premium" style="background: var(--c-grey-400);">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
