@@ -11,14 +11,14 @@
   <data name="HeroCTA1" xml:space="preserve"><value>Book a Consultation</value></data>
   <data name="HeroCTA2" xml:space="preserve"><value>View Procedures</value></data>
   
-  <data name="DirectorTitle" xml:space="preserve"><value>Medical Director</value></data>
+  <data name="DirectorTitle" xml:space="preserve"><value>Aesthetic Doctor</value></data>
   <data name="MeetDoctorEyebrow" xml:space="preserve"><value>Meet the Doctor</value></data>
   <data name="Quote" xml:space="preserve"><value>Beauty is not about changing who you are, but about revealing the best version of yourself.</value></data>
   <data name="DoctorBio" xml:space="preserve"><value>As a dedicated specialist in Aesthetic Medicine, Dr. Kechida combines strict medical rigor with a refined artistic vision. Her philosophy is based on restoration—respecting anatomical balance to enhance your natural features without altering your essence.</value></data>
   <data name="SeePhilosophy" xml:space="preserve"><value>See Her Philosophy</value></data>
   
   <data name="ProceduresEyebrow" xml:space="preserve"><value>Our Procedures</value></data>
-  <data name="ProceduresTitle" xml:space="preserve"><value>An Artist's Eye, a Surgeon's Precision</value></data>
+  <data name="ProceduresTitle" xml:space="preserve"><value>An Artist's Eye, a Professional's Precision</value></data>
   <data name="InjectablesTitle" xml:space="preserve"><value>Art of Injectables</value></data>
   <data name="InjectablesDesc" xml:space="preserve"><value>Precision injectables for facial rejuvenation.</value></data>
   <data name="BiostimulationTitle" xml:space="preserve"><value>Biostimulation</value></data>
@@ -31,12 +31,12 @@
   
   <data name="ResultsEyebrow" xml:space="preserve"><value>Witness the Results</value></data>
   <data name="ResultsTitle" xml:space="preserve"><value>Scientific Artistry in Motion</value></data>
-  <data name="ResultsDesc" xml:space="preserve"><value>Explore the future of regenerative medicine. Dr. Kechida is one of the few specialists in Tunisia practicing advanced Nano Fat and Stem Cell procedures.</value></data>
+  <data name="ResultsDesc" xml:space="preserve"><value>Explore the future of regenerative medicine. Dr. Kechida is one of the few competent specialists in Tunisia practicing advanced Nano Fat and Stem Cell procedures.</value></data>
   <data name="FeaturedTreatment" xml:space="preserve"><value>Featured Treatment</value></data>
   <data name="NanoFatTitle" xml:space="preserve"><value>Nano Fat &amp; Stem Cells</value></data>
-  <data name="NanoFatDesc" xml:space="preserve"><value>Dr. Kechida is one of the few specialists in Tunisia practicing these advanced regenerative procedures.</value></data>
+  <data name="NanoFatDesc" xml:space="preserve"><value>Dr. Kechida is one of the few competent specialists in Tunisia practicing these advanced regenerative procedures.</value></data>
   <data name="NaturalTitle" xml:space="preserve"><value>Natural Rejuvenation</value></data>
-  <data name="NaturalDesc" xml:space="preserve"><value>Discover the power of advanced stem cell therapy for deep tissue healing and natural restoration.</value></data>
+  <data name="NaturalDesc" xml:space="preserve"><value>Discover the power of advanced stem cell therapy for deep tissue regeneration and natural restoration.</value></data>
   <data name="SeeAllVideos" xml:space="preserve"><value>See All Videos</value></data>
   
   <data name="TestimonialsEyebrow" xml:space="preserve"><value>Testimonials</value></data>

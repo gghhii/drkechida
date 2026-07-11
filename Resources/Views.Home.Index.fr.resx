@@ -11,14 +11,14 @@
   <data name="HeroCTA1" xml:space="preserve"><value>Réserver une Consultation</value></data>
   <data name="HeroCTA2" xml:space="preserve"><value>Voir les Soins</value></data>
   
-  <data name="DirectorTitle" xml:space="preserve"><value>Directrice Médicale</value></data>
+  <data name="DirectorTitle" xml:space="preserve"><value>Médecin Esthétique</value></data>
   <data name="MeetDoctorEyebrow" xml:space="preserve"><value>Rencontrez le Docteur</value></data>
   <data name="Quote" xml:space="preserve"><value>La beauté ne consiste pas à changer qui vous êtes, mais à révéler la meilleure version de vous-même.</value></data>
   <data name="DoctorBio" xml:space="preserve"><value>En tant que spécialiste dévouée de la Médecine Esthétique, le Dr. Kechida allie rigueur médicale stricte et vision artistique raffinée. Sa philosophie repose sur la restauration—respecter l'équilibre anatomique pour sublimer vos traits naturels sans altérer votre essence.</value></data>
   <data name="SeePhilosophy" xml:space="preserve"><value>Découvrir Sa Philosophie</value></data>
   
   <data name="ProceduresEyebrow" xml:space="preserve"><value>Nos Soins</value></data>
-  <data name="ProceduresTitle" xml:space="preserve"><value>L'Œil d'un Artiste, la Précision d'un Chirurgien</value></data>
+  <data name="ProceduresTitle" xml:space="preserve"><value>L'Œil d'un Artiste, la Précision d'un Professionnel</value></data>
   <data name="InjectablesTitle" xml:space="preserve"><value>Art des Injectables</value></data>
   <data name="InjectablesDesc" xml:space="preserve"><value>Injectables de précision pour le rajeunissement du visage.</value></data>
   <data name="BiostimulationTitle" xml:space="preserve"><value>Biostimulation</value></data>
@@ -31,12 +31,12 @@
   
   <data name="ResultsEyebrow" xml:space="preserve"><value>Découvrez les Résultats</value></data>
   <data name="ResultsTitle" xml:space="preserve"><value>La technologie scientifique en Mouvement</value></data>
-  <data name="ResultsDesc" xml:space="preserve"><value>Explorez le futur de la médecine régénérative. Le Dr. Kechida est l'une des rares spécialistes en Tunisie à pratiquer les procédures avancées de Nano Fat et Cellules Souches.</value></data>
+  <data name="ResultsDesc" xml:space="preserve"><value>Explorez le futur de la médecine régénérative. Le Dr. Kechida est l'une des rares spécialistes compétentes en Tunisie à pratiquer les procédures avancées de Nano Fat et Cellules Souches.</value></data>
   <data name="FeaturedTreatment" xml:space="preserve"><value>Intervention Phare</value></data>
   <data name="NanoFatTitle" xml:space="preserve"><value>Nano Fat &amp; Cellules Souches</value></data>
-  <data name="NanoFatDesc" xml:space="preserve"><value>Le Dr. Kechida est l'une des rares spécialistes en Tunisie à pratiquer ces procédures régénératives avancées.</value></data>
+  <data name="NanoFatDesc" xml:space="preserve"><value>Le Dr. Kechida est l'une des rares spécialistes compétentes en Tunisie à pratiquer ces procédures régénératives avancées.</value></data>
   <data name="NaturalTitle" xml:space="preserve"><value>Rajeunissement Naturel</value></data>
-  <data name="NaturalDesc" xml:space="preserve"><value>Découvrez la puissance de la thérapie avancée par cellules souches pour une guérison tissulaire profonde et une restauration naturelle.</value></data>
+  <data name="NaturalDesc" xml:space="preserve"><value>Découvrez la puissance de la thérapie avancée par cellules souches pour une régénération tissulaire profonde et une restauration naturelle.</value></data>
   <data name="SeeAllVideos" xml:space="preserve"><value>Voir Toutes les Vidéos</value></data>
   
   <data name="TestimonialsEyebrow" xml:space="preserve"><value>Témoignages</value></data>
