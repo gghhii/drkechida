@@ -60,10 +60,6 @@
             @foreach (var category in Model)
             {
                 var displayImage = category.ImageUrl;
-                if (category.Slug == "injectables") displayImage = "/images/h1.jpeg";
-                else if (category.Slug == "biostimulation") displayImage = "/images/h6.png";
-                else if (category.Slug == "regenerative") displayImage = "/images/h3.png";
-                else if (category.Slug == "technologie") displayImage = "/images/h5.png";
 
                 <div class="luxury-service-card fade-in">
                     <div class="luxury-card-inner">
