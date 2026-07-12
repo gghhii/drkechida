@@ -71,9 +71,11 @@
                 <div class="grid grid-2" style="gap: 2rem; margin-top: 2rem;">
                     <div>
                         <label>Sous-Catégorie</label>
-                        <select name="SubCategory" id="subCategorySelect" class="admin-input" required>
+                        <input type="hidden" asp-for="SubCategory" id="subCategoryHidden" />
+                        <select id="subCategorySelect" class="admin-input">
                             <option value="">-- Choisir d'abord une catégorie --</option>
                         </select>
+                        <input type="text" id="subCategoryManual" class="admin-input" style="display: none; margin-top: 10px;" placeholder="Écrivez la nouvelle sous-catégorie..." />
                     </div>
                     <div>
                          <label>Icône (SVG ou Emoji)</label>
@@ -184,6 +186,8 @@
     function updateSubOptions(preSelectValue) {
         var categorySelect = document.getElementById('categorySelect');
         var subSelect = document.getElementById('subCategorySelect');
+        var subHidden = document.getElementById('subCategoryHidden');
+        var subManual = document.getElementById('subCategoryManual');
         if (!categorySelect || !subSelect) return;
 
         // Find the selected category option to get its 'data-subs'
@@ -192,31 +196,76 @@
 
         // Clear and reset sub-category dropdown
         subSelect.innerHTML = '<option value="">-- S\u00e9lectionner une sous-cat\u00e9gorie --</option>';
-        if (!subs) return;
+        subManual.style.display = "none";
 
-        // Normalize the value we are looking for
-        var normToFind = preSelectValue.trim().toLowerCase().normalize("NFC");
+        var isPreselectedInList = false;
 
-        subs.split(';').forEach(function(s) {
-            s = s.trim();
-            if (!s) return;
+        if (subs) {
+            // Normalize the value we are looking for
+            var normToFind = preSelectValue.trim().toLowerCase().normalize("NFC");
 
-            var opt = document.createElement('option');
-            opt.value = s;
-            opt.text  = s;
+            subs.split(';').forEach(function(s) {
+                s = s.trim();
+                if (!s) return;
 
-            // Normalize current option for match comparison
-            var normOpt = s.toLowerCase().normalize("NFC");
-            if (normOpt === normToFind && normToFind !== "") {
-                opt.selected = true;
-            }
-            subSelect.appendChild(opt);
-        });
+                var opt = document.createElement('option');
+                opt.value = s;
+                opt.text  = s;
+
+                // Normalize current option for match comparison
+                var normOpt = s.toLowerCase().normalize("NFC");
+                if (normOpt === normToFind && normToFind !== "") {
+                    opt.selected = true;
+                    isPreselectedInList = true;
+                    subHidden.value = s;
+                }
+                subSelect.appendChild(opt);
+            });
+        }
+
+        // Add "Other" option
+        var otherOpt = document.createElement('option');
+        otherOpt.value = "__MANUAL__";
+        otherOpt.text = "Autre (Saisir manuellement...)";
+        
+        if (!isPreselectedInList && preSelectValue !== "") {
+            otherOpt.selected = true;
+            subManual.style.display = "block";
+            subManual.value = preSelectValue;
+            subHidden.value = preSelectValue;
+        }
+        
+        subSelect.appendChild(otherOpt);
     }
 
     // Handle manual category changes
     document.getElementById('categorySelect').addEventListener('change', function() {
+        var subHidden = document.getElementById('subCategoryHidden');
+        var subManual = document.getElementById('subCategoryManual');
+        subHidden.value = "";
+        subManual.value = "";
+        subManual.style.display = "none";
         updateSubOptions(""); // Clear selection on manual change
+    });
+
+    // Subcategory Dropdown Logic
+    document.getElementById('subCategorySelect').addEventListener('change', function() {
+        var subHidden = document.getElementById('subCategoryHidden');
+        var subManual = document.getElementById('subCategoryManual');
+        
+        if (this.value === "__MANUAL__") {
+            subManual.style.display = "block";
+            subHidden.value = subManual.value;
+            subManual.focus();
+        } else {
+            subManual.style.display = "none";
+            subHidden.value = this.value;
+        }
+    });
+
+    // Subcategory Manual Input Logic
+    document.getElementById('subCategoryManual').addEventListener('input', function() {
+        document.getElementById('subCategoryHidden').value = this.value;
     });
 
     // Initialize on page load

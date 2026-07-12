@@ -4,10 +4,19 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.Configuration;
+
 namespace DrKchida.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public AccountController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [HttpGet]
         public IActionResult Login(string returnUrl = "/Admin")
         {
@@ -18,9 +27,10 @@ namespace DrKchida.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password, string returnUrl = "/Admin")
         {
-            // Simple hardcoded check for demonstration. 
-            // In production, use ASP.NET Identity or a DB check with hashed passwords.
-            if (username == "admin" && password == "DrKchida2026!")
+            var adminUsername = _configuration["AdminSettings:Username"] ?? "admin";
+            var adminPassword = _configuration["AdminSettings:Password"] ?? "DrKchida2026!";
+
+            if (username == adminUsername && password == adminPassword)
             {
                 var claims = new List<Claim>
                 {

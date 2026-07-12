@@ -30,8 +30,6 @@
                 else if (category.Slug == "biostimulation") displayImage = "/images/h6.png";
                 else if (category.Slug == "regenerative") displayImage = "/images/rag.png";
                 else if (category.Slug == "technologie") displayImage = "/images/las.png";
-                
-                if (string.IsNullOrEmpty(displayImage)) displayImage = "/images/treatment_placeholder.png";
 
                 <div id="@category.Slug" class="procedure-cat-card">
                     <div class="cat-image">

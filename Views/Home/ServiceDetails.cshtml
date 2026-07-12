@@ -72,16 +72,18 @@ else
                             var slugName = treatment.Name?.ToLower().Replace(" ", "-").Replace("é", "e").Replace("è", "e").Replace("à", "a").Replace("'", "-");
                             <a href="@Url.Action("TreatmentDetails", "Home", new { id = treatment.Id, slug = slugName })" class="luxury-treatment-card-link">
                                 <div class="luxury-treatment-card" data-area="@(treatment.TargetArea?.ToLower() ?? "all")">
-                                    <div class="treatment-image-container">
-                                        @if (!string.IsNullOrEmpty(treatment.ImageUrl))
-                                        {
+                                    @if (!string.IsNullOrEmpty(treatment.ImageUrl))
+                                    {
+                                        <div class="treatment-image-container">
                                             <img src="@(treatment.ImageUrl.StartsWith("/") || treatment.ImageUrl.StartsWith("http") ? treatment.ImageUrl : "/" + treatment.ImageUrl)" alt="@treatment.Name" class="treatment-img" />
-                                        }
-                                        else
-                                        {
-                                            <img src="/images/treatment_placeholder.png" alt="@treatment.Name" class="treatment-img placeholder-img" />
-                                        }
-                                    </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="treatment-icon-container">
+                                            <div class="treatment-icon">@treatment.Icon</div>
+                                        </div>
+                                    }
                                     
                                     <div class="treatment-content-body">
                                         <h3 class="treatment-name">@treatment.Name</h3>
