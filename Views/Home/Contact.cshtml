@@ -10,7 +10,7 @@
     <div class="hero-bg-overlay"></div>
     <div class="container fade-in">
         <span class="eyebrow">@Localizer["HeroEyebrow"]</span>
-        <h1 style="font-size: 6rem; line-height: 0.9;">@Localizer["HeroTitle"]</h1>
+        <h1 style="font-size: clamp(2.5rem, 8vw, 6rem); line-height: 0.95;">@Localizer["HeroTitle"]</h1>
         <div class="accent-line" style="width: 120px; height: 6px; margin-top: 3rem; background-color: var(--c-white);"></div>
         <p style="max-width: 850px; font-size: 1.5rem; line-height: 1.7; color: var(--c-white); margin-top: 4rem;">
             @Localizer["HeroDesc"]
@@ -281,6 +281,15 @@
         .contact-card-wrapper { grid-template-columns: 1fr; }
         .contact-form-panel { padding: 3rem; }
         .info-content { padding: 3rem; }
+    }
+    @@media (max-width: 768px) {
+        .contact-form-panel { padding: 2rem 1.5rem; }
+        .info-content { padding: 2.5rem 1.5rem; }
+        .form-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .panel-header h2 { font-size: 1.8rem; }
+        .panel-header p { font-size: 1rem; }
+        .hero-bg { min-height: 40vh; padding: 6rem 0; }
+        .hero-bg p { font-size: 1.1rem; margin-top: 2rem; }
     }
 </style>
 

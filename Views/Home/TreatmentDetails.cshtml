@@ -641,10 +641,11 @@ else
     @@media (max-width: 1024px) {
         .layout-grid {
             grid-template-columns: 1fr;
+            gap: 4rem;
         }
         .header-grid {
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 3rem;
         }
         .header-image-card {
             height: 400px;
@@ -655,11 +656,32 @@ else
     }
 
     @@media (max-width: 768px) {
+        .treatment-body {
+            padding: 3rem 0;
+        }
         .header-image-card {
-            height: 300px;
+            height: 280px;
+        }
+        .header-title {
+            font-size: clamp(2rem, 7vw, 2.5rem);
+            margin-bottom: 2rem;
+        }
+        .header-meta {
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        .breadcrumb-pro {
+            flex-wrap: wrap;
+            gap: 0.2rem 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .breadcrumb-pro .sep {
+            margin: 0;
         }
         .benefits-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
         .floating-card {
             display: none;
