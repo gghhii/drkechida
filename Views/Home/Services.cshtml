@@ -11,7 +11,7 @@
     <div class="hero-bg-overlay" style="background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 100%);"></div>
     <div class="container fade-in">
         <span class="eyebrow" style="color: var(--c-primary-light);">@Localizer["HeroEyebrow"]</span>
-        <h1 style="font-size: 5rem; color: white;">@Localizer["HeroTitle"]</h1>
+        <h1 style="font-size: clamp(2.5rem, 7vw, 5rem); color: white; line-height: 1.1; word-break: break-word;">@Localizer["HeroTitle"]</h1>
         <div class="accent-line" style="width: 120px; height: 6px; margin-top: 2rem; background: var(--c-primary-light);"></div>
         <p style="max-width: 700px; font-size: 1.4rem; color: rgba(255,255,255,0.9); margin-top: 3rem; line-height: 1.6;">
             @Localizer["HeroDesc"]
@@ -427,6 +427,16 @@
     @@media (max-width: 1024px) {
         .grid-2 { grid-template-columns: 1fr; }
         .luxury-content { padding: 3rem; }
+    }
+
+    @@media (max-width: 768px) {
+        .hero-bg { padding: 5rem 0; min-height: 40vh; }
+        .hero-bg p { font-size: 1.1rem; margin-top: 2rem; }
+        .luxury-content { padding: 2.5rem 1.5rem; }
+        .luxury-title { font-size: 2rem; }
+        .luxury-desc { margin-bottom: 2rem; }
+        .treatment-highlight { padding: 1.5rem; margin-bottom: 2rem; }
+        #services-grid { gap: 2.5rem !important; }
     }
 </style>
 

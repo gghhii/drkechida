@@ -420,11 +420,12 @@
         }
 
         @@media (max-width: 600px) {
-            .miller-sticky-bar { height: 60px; }
-            .sticky-text { font-size: 0.6rem; letter-spacing: 0.5px; }
-            .sticky-item { gap: 0.4rem; padding: 0 2px; }
-            .sticky-icon i { font-size: 1rem !important; }
-            main { padding-bottom: 80px; }
+            .miller-sticky-bar { height: 66px; }
+            .sticky-text { font-size: 0.62rem; letter-spacing: 0.3px; line-height: 1.25; text-align: center; }
+            .sticky-item { gap: 0.25rem; padding: 0 4px; }
+            .sticky-item.highlight { flex: 1.4; }
+            .sticky-icon i { font-size: 0.95rem !important; }
+            main { padding-bottom: 85px; }
         }
 
         .sticky-item::before {
@@ -723,8 +724,19 @@
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
                         <span>&copy; @DateTime.Now.Year Dr. Kaouthar KECHIDA. Tous Droits Réservés.</span>
+                        
+                        <!-- Web Empire Agency Credit -->
+                        <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: #666;">
+                            <span>Créé par</span>
+                            <a href="tel:+21627609796" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: inherit; transition: 0.2s;">
+                                <img src="/images/web_empire_logo.jpg" alt="Web Empire" style="height: 20px; width: auto; border-radius: 3px; vertical-align: middle;" />
+                                <span style="font-weight: 700; color: #ccc;">Web Empire</span>
+                                <span style="color: #888; font-size: 0.75rem;">(+216 27 609 796)</span>
+                            </a>
+                        </div>
+
                         <div style="display: flex; gap: 2rem;">
                             <a href="#" style="color: inherit;">Politique de Confidentialité</a>
                             <a href="#" style="color: inherit;">Conditions de Service</a>
