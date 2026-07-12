@@ -128,7 +128,7 @@
                     <div style="position: absolute; top: -30px; left: -30px; width: 100%; height: 100%; border: 1px solid rgba(14, 165, 233, 0.2); border-radius: var(--radius-lg); z-index: 0;"></div>
                     
                     <!-- Floating Stat Card -->
-                    <div class="glass-card" style="position: absolute; bottom: 40px; right: -40px; padding: 4rem; width: 350px;">
+                    <div class="glass-card philosophy-stat-card" style="position: absolute; bottom: 40px; right: -40px; padding: 4rem; width: 350px;">
                         <div style="font-size: 4rem; font-weight: 800; color: var(--c-primary-light); line-height: 1;">10+</div>
                         <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: white; margin-top: 1rem; opacity: 0.8;">@Html.Raw(Localizer["YearsExperience"].Value)</p>
                     </div>
@@ -456,13 +456,8 @@
         .philosophy-grid { gap: 3rem !important; }
         .philosophy-grid img { height: 400px !important; }
         .philosophy-quote { font-size: 2.2rem !important; }
-        .glass-card {
-            position: relative !important;
-            bottom: auto !important;
-            right: auto !important;
-            width: 100% !important;
-            padding: 2.5rem !important;
-            margin-top: 2.5rem;
+        .philosophy-stat-card {
+            display: none !important;
         }
 
         .process-section { padding: 5rem 0 !important; }

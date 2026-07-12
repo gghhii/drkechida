@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrKchida")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63e9263cd4352f11ff93043e4f5999b197745fc4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f55a39c26c49c6dd378657927c90ed71ae0ee29")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrKchida")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrKchida")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
