@@ -21,12 +21,14 @@ namespace DrKchida.Controllers
 
         public IActionResult Index() => View();
         public IActionResult About() => View();
+        [Route("soins-esthetiques")]
         public async Task<IActionResult> Services()
         {
             var categories = await _context.ServiceCategories.Include(c => c.Treatments).ToListAsync();
             return View(categories);
         }
 
+        [Route("collection/{service}")]
         public async Task<IActionResult> ServiceDetails(string service)
         {
             if (string.IsNullOrEmpty(service)) return RedirectToAction("Services");
@@ -40,7 +42,8 @@ namespace DrKchida.Controllers
             return View(currentService);
         }
 
-        public async Task<IActionResult> TreatmentDetails(int id)
+        [Route("soin/{id}/{slug?}")]
+        public async Task<IActionResult> TreatmentDetails(int id, string slug = null)
         {
             var treatment = await _context.Treatments
                 .Include(t => t.ServiceCategory)

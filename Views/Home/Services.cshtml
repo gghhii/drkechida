@@ -71,7 +71,7 @@
                             <img src="@displayImage" alt="@Localizer[category.Title ?? ""]" class="luxury-img" />
                             <div class="luxury-badge">@Localizer[category.CardLabel ?? ""]</div>
                             <div class="luxury-overlay">
-                                <a href="/Home/ServiceDetails?service=@category.Slug" class="luxury-btn">@Localizer["Discover"]</a>
+                                <a href="/collection/@category.Slug" class="luxury-btn">@Localizer["Discover"]</a>
                             </div>
 
                         </div>
@@ -93,7 +93,7 @@
                                 </ul>
                             </div>
                             
-                            <a href="/Home/ServiceDetails?service=@category.Slug" class="premium-link">
+                            <a href="/collection/@category.Slug" class="premium-link">
                                 @Localizer["ExploreExpertise"]
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>

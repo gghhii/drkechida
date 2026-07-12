@@ -11,10 +11,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Dr. Kaouthar KECHIDA</title>
+    <link rel="icon" type="image/png" href="/favicon.png?v=2" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Sublimer la Beauté Naturelle avec Confiance & Précision. Médecine Esthétique Personnalisée et Rajeunissement Avancé par le Dr. Kaouthar KECHIDA à Sousse, Tunisie." />
+    <meta name="description" content="@(ViewData["MetaDescription"] ?? "Sublimer la Beauté Naturelle avec Confiance & Précision. Médecine Esthétique Personnalisée et Rajeunissement Avancé par le Dr. Kaouthar KECHIDA à Sousse, Tunisie.")" />
     <meta name="keywords" content="Dr Kaouthar Kechida, Médecine Esthétique Sousse, Botox Sousse, Fillers Tunisie, Rajeunissement Peau Sousse, Clinique Cosmétique Sousse" />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="@ViewData["Title"] - Dr. Kaouthar KECHIDA" />
+    <meta property="og:description" content="@(ViewData["MetaDescription"] ?? "Cabinet de Médecine Esthétique à Sousse")" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.dr-kechida.com/images/cover.jpeg" />
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="fr" href="https://www.dr-kechida.com" />
+    <link rel="alternate" hreflang="en" href="https://www.dr-kechida.com/Home/SetLanguage?culture=en" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "MedicalClinic",
+      "name": "Dr. Kaouthar KECHIDA",
+      "medicalSpecialty": "Aesthetic Medicine",
+      "address": {
+        "@@type": "PostalAddress",
+        "streetAddress": "05, Avenue Mahmoud Hochlef",
+        "addressLocality": "Sousse",
+        "addressCountry": "TN"
+      },
+      "telephone": "+216 23 322 399",
+      "url": "https://www.dr-kechida.com",
+      "image": "https://www.dr-kechida.com/images/cover.jpeg"
+    }
+    </script>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -591,10 +621,10 @@
                     <div class="nav-dropdown">
                         <a asp-controller="Home" asp-action="Services" class="nav-item dropdown-toggle">@Localizer["Services"]</a>
                         <div class="dropdown-content">
-                            <a href="/Home/ServiceDetails?service=injectables">Art des Injectables</a>
-                            <a href="/Home/ServiceDetails?service=biostimulation">Biostimulation</a>
-                            <a href="/Home/ServiceDetails?service=regenerative">Soins Régénératifs</a>
-                            <a href="/Home/ServiceDetails?service=technologie">Technologie Avancée</a>
+                            <a href="/collection/injectables">Art des Injectables</a>
+                            <a href="/collection/biostimulation">Biostimulation</a>
+                            <a href="/collection/regenerative">Soins Régénératifs</a>
+                            <a href="/collection/technologie">Technologie Avancée</a>
                             <a href="/Home/Services">Toutes les Collections</a>
                         </div>
                     </div>
@@ -664,9 +694,9 @@
                     <div class="footer-col px-4">
                     <h4 class="mb-4">Services</h4>
                     <ul class="footer-list">
-                        <li><a href="/Home/ServiceDetails?service=face">Soins du Visage</a></li>
-                        <li><a href="/Home/ServiceDetails?service=body">Soins du Corps</a></li>
-                        <li><a href="/Home/ServiceDetails?service=hair">Soins des Cheveux</a></li>
+                        <li><a href="/collection/face">Soins du Visage</a></li>
+                        <li><a href="/collection/body">Soins du Corps</a></li>
+                        <li><a href="/collection/hair">Soins des Cheveux</a></li>
                         <li><a href="/Home/Services">Tout voir</a></li>
                     </ul>
                 </div>
