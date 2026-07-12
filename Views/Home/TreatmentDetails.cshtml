@@ -70,7 +70,11 @@ else
                                 else if (slug == "biostimulation") displayImage = "/images/h6.png";
                                 else if (slug == "regenerative") displayImage = "/images/rag.png";
                                 else if (slug == "technologie") displayImage = "/images/las.png";
-                                else displayImage = Model.ServiceCategory?.ImageUrl ?? "/images/services_hero.png";
+                                else displayImage = Model.ServiceCategory?.ImageUrl;
+                            }
+                            if (string.IsNullOrEmpty(displayImage))
+                            {
+                                displayImage = "/images/treatment_placeholder.png";
                             }
                         }
                         <img src="@displayImage" alt="@Model.Name" />
