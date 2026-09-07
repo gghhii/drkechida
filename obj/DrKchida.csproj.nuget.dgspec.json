@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ThinkPad L590\\Downloads\\DrKchida\\DrKchida.csproj": {}
+    "C:\\Users\\ThinkPad L590\\Documents\\DrKchida\\DrKchida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ThinkPad L590\\Downloads\\DrKchida\\DrKchida.csproj": {
+    "C:\\Users\\ThinkPad L590\\Documents\\DrKchida\\DrKchida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ThinkPad L590\\Downloads\\DrKchida\\DrKchida.csproj",
+        "projectUniqueName": "C:\\Users\\ThinkPad L590\\Documents\\DrKchida\\DrKchida.csproj",
         "projectName": "DrKchida",
-        "projectPath": "C:\\Users\\ThinkPad L590\\Downloads\\DrKchida\\DrKchida.csproj",
+        "projectPath": "C:\\Users\\ThinkPad L590\\Documents\\DrKchida\\DrKchida.csproj",
         "packagesPath": "C:\\Users\\ThinkPad L590\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ThinkPad L590\\Downloads\\DrKchida\\obj\\",
+        "outputPath": "C:\\Users\\ThinkPad L590\\Documents\\DrKchida\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

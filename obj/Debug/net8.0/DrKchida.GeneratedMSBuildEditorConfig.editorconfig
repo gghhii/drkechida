@@ -9,125 +9,125 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DrKchida
 build_property.RootNamespace = DrKchida
-build_property.ProjectDir = C:\Users\ThinkPad L590\Downloads\DrKchida\
+build_property.ProjectDir = C:\Users\ThinkPad L590\Documents\DrKchida\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ThinkPad L590\Downloads\DrKchida
+build_property.MSBuildProjectDirectory = C:\Users\ThinkPad L590\Documents\DrKchida
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Account/Login.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/ConsultationDetails.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/ConsultationDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29uc3VsdGF0aW9uRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/Consultations.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/Consultations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29uc3VsdGF0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/CreateGalleryItem.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/CreateGalleryItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlR2FsbGVyeUl0ZW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/CreateTreatment.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/CreateTreatment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlVHJlYXRtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/CreateVideo.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/CreateVideo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlVmlkZW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/EditGalleryItem.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/EditGalleryItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEdhbGxlcnlJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/EditTreatment.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/EditTreatment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFRyZWF0bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/EditVideo.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/EditVideo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFZpZGVvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/Gallery.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/Gallery.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cR2FsbGVyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/Index.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/Treatments.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/Treatments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVHJlYXRtZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Admin/Videos.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Admin/Videos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmlkZW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/About.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Contact.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/FAQ.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/FAQ.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGQVEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Gallery.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Gallery.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHYWxsZXJ5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Index.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Procedures.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Procedures.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9jZWR1cmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/ServiceDetails.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/ServiceDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aWNlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Services.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Services.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aWNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/TreatmentDetails.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/TreatmentDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUcmVhdG1lbnREZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Home/Videos.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Home/Videos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWRlb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Shared/_AdminLayout.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Shared/_AdminSidebar.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Shared/_AdminSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pblNpZGViYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/Shared/_Layout.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/_ViewImports.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ThinkPad L590/Downloads/DrKchida/Views/_ViewStart.cshtml]
+[C:/Users/ThinkPad L590/Documents/DrKchida/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
